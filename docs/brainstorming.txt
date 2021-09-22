@@ -4,3 +4,4 @@ IDEE PROGETTI (MARELLI-RONCORONI-BIACNHI-LUCIDERA) (GRUPPO QUATTRO DRAGONI)
 - Gioco omino che cammina per la scuola (2.5D terza persona)
 - Web App o App per ordini bar hostata su rpi
 - Mappa chiara con path finder per qualsiasi aula/luogo
+- Cabinato con joystick
