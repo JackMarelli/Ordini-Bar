@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --red: #FF4126;
+    --grayA: #AAAAAA;
+    --grayC: #C4C4C4;
+    --grayD: #DDDDDD;
+    --grayE: #EEEEEE;
+    --black: #000000;
+    --white: #FFFFFF;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+}
+
+.logo {
+    font-family: "Poppins", sans-serif;
+    font-size: 64px;
+}
+
+.loginform {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+#email, #password {
+    height: 64px;
+    width: 324px;
+    margin: 25px;
+}
+
+#email input, #password input, #email input:focus, #password input:focus {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: var(--grayE);
+    padding-inline: 40px;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    color: var(--black);
+    border-radius: 12px;
+}
+
+::placeholder {
+    color: var(--grayA);
+}
+
+.loginbuttons {
+    display: flex;
+    width: 324px;
+    margin: auto;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.loginbuttons button {
+    width: 152px;
+    height: 30px;
+    border: none;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    border-radius: 8px;
+    color: var(--white);
+}
+
+#login {
+    background-color: var(--red);
+}
+
+#registrati {
+    background-color: var(--grayC);
+}
