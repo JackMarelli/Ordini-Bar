@@ -66,6 +66,14 @@ body {
   color: var(--grayA);
 }
 
+.vedipsw {
+  position: relative;
+  height: 24px;
+  width: 24px;
+  left: 280px;
+  top: -68%;
+}
+
 .loginbuttons {
   display: flex;
   width: 324px;
