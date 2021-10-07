@@ -1,0 +1,17 @@
+DOCUMENTO DEI COMPITI
+
+Agnello
+	Proposta di nuove idee da implementare nel progetto.
+	Presentazione PowerPoint del progetto al termine della sua realizzazione.
+	
+Bianchi
+	Realizzazione del database del il progetto.
+
+Lucidera
+	Programmazione in JavaScript delle funzioni delle pagine HTML.
+
+Marelli
+	Realizzazione della grafica delle pagine HTML con HTML, CSS e JavaScript.
+
+Roncoroni
+	Programmazione in JavaScript delle funzioni delle pagine HTML.
