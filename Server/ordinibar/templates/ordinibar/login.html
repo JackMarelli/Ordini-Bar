@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RedMenu - Login</title>
     <link rel="stylesheet" href='{% static "ordinibar/css/styles.css"%}'>
     <script src='{% static "ordinibar/js/animazioni.js"%}'></script>
 </head>
@@ -15,16 +15,39 @@
     <div class="content">
         <div class="loginform">
             <div class="logo">LOGO</div>
-            <form action="">
-                <!-- <div id="email"><input type="email" placeholder="email"></input></div>
-                <div id="password"><input id="pswinput" type="password" placeholder="password"></input><div id="vedipsw" class="vedipsw" onclick="vedipsw()"><img src='{% static "ordinibar/img/eye.png"%}' alt=""></div></div>
-                --> <div class="loginbuttons">
-                        {{ login_form}}
-                    <button id="login">Log in</button><button id="registrati">Registrati</button></div> 
+
+
+
+            <form method="POST">
+
+                <!-- <div id="email">
+                    <input type="email" placeholder="email"></input>
+                </div>
+                <div id="password"><input id="pswinput" type="password" placeholder="password"></input>
+                    <div id="vedipsw" class="vedipsw" onclick="vedipsw()"><img src='{% static "ordinibar/img/eye.png"%}'
+                            alt=""></div>
+                </div> -->
+                {% csrf_token %}
+                {{login_form}}
+
+                {% if messages %}
+                {% for message in messages %}
+                <p id = "login_error">Username o password errati</p>
+                {% endfor %}
+                {% endif %}
+
+                <div class="loginbuttons">
+
+                    <button id="login" type="submit">Log in</button><button id="registrati"
+                        type="button">Registrati</button>
+                </div>
+
             </form>
         </div>
     </div>
-    <div id="overlay" class="overlay"><div class="logo">LOGO</div></div>
+    <div id="overlay" class="overlay">
+        <div class="logo">LOGO</div>
+    </div>
 </body>
 
 </html>

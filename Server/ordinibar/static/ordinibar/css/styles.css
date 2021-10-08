@@ -33,21 +33,34 @@ body {
   font-size: 64px;
 }
 
-.loginform {
+.loginform,
+form{
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
 }
 
-form input {
+form input[type = "text"],
+form input[type = "password"] {
   height: 64px;
   width: 324px;
-  margin: 25px;
+  margin: 15px;
 }
 
-input, input:focus {
-  width: 100%;
-  height: 100%;
+label{
+  display: none;
+}
+
+/* #email input,
+#password input,
+#email input:focus,
+#password input:focus */
+form input[type = "text"],
+form input[type = "password"],
+form input[type = "text"]:focus,
+form input[type = "password"]:focus{
+  /* width: 100%;
+  height: 100%; */
   border: none;
   outline: none;
   background-color: var(--grayE);
@@ -79,6 +92,7 @@ input, input:focus {
 }
 
 .loginbuttons button {
+  margin-top: 15px;
   width: 152px;
   height: 30px;
   border: none;
@@ -123,6 +137,12 @@ input, input:focus {
   }
 }
 
+#login_error{
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  color:#ff4126;
+}
+
 /* === mainlist.html === */
 
 .redbg {
@@ -134,24 +154,29 @@ input, input:focus {
   justify-content: center;
 }
 
-.menubutton {
- position: absolute;
- top: 30px;
- left: 30px;
+.functions {
+  display: flex;
+  flex-flow: column;
+  width: 90%;
+  margin-top: 30px;
 }
 
 .searchbar {
-  position: absolute;
-  top: 80px;
-
-  width: 85%;
-  height: 30px;
-  background-color: red;
+  margin-top: 20px;
+  height: 50px;
 }
 
 .searchbar input {
   width: 100%;
   height: 100%;
+  border: none;
+  outline: none;
+  background-color: var(--grayE);
+  padding-inline: 40px;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  color: var(--black);
+  border-radius: 12px;
 }
 
 .whitebg {
