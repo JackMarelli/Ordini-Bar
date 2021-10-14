@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
+
 :root {
   --red: #ff4126;
   --grayA: #aaaaaa;
@@ -79,9 +80,10 @@ form input[type = "password"]:focus{
   position: relative;
   height: 24px;
   width: 24px;
-  left: 280px;
-  top: -68%;
+  left: 130px;
+  top:-23%; 
 }
+
 
 .loginbuttons {
   display: flex;
