@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RedMenu - Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href='{% static "ordinibar/css/styles.css"%}'>
     <script src='{% static "ordinibar/js/animazioni.js"%}'></script>
 </head>
@@ -20,19 +21,12 @@
 
             <form method="POST">
 
-                <!-- <div id="email">
-                    <input type="email" placeholder="email"></input>
-                </div>
-                <div id="password"><input id="pswinput" type="password" placeholder="password"></input>
-                    <div id="vedipsw" class="vedipsw" onclick="vedipsw()"><img src='{% static "ordinibar/img/eye.png"%}'
-                            alt=""></div>
-                </div> -->
                 {% csrf_token %}
                 {{login_form}}
-
+                <div class="vedipsw" onclick="vedipsw()"><img src="{%static 'ordinibar/img/eye.png'%}"></div>
                 {% if messages %}
                 {% for message in messages %}
-                <p id = "login_error">Username o password errati</p>
+                <p id="login_error">Username o password errati</p>
                 {% endfor %}
                 {% endif %}
 
@@ -44,10 +38,12 @@
 
             </form>
         </div>
+
     </div>
     <div id="overlay" class="overlay">
         <div class="logo">LOGO</div>
     </div>
 </body>
+
 
 </html>
