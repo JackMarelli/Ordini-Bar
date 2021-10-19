@@ -7,9 +7,12 @@ function vedipsw() {
     }
 }
 
-function overlaytranslate() {
-    alert("f");
-    document.getElementById("menubutton").style.transform = "translate(0, 0)";
+function overlayTranslateIn() {
+    document.getElementById("overlaymenu").style.transform = "translate(0, 0)";
+}
+
+function overlayTranslateOut() {
+    document.getElementById("overlaymenu").style.transform = "translate(0, -100%)";
 }
 
 //psw mail:

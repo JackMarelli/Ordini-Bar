@@ -300,8 +300,13 @@ body, *{
   margin-block: 8px;
 }
 
+.menuicon {
+  cursor: pointer;
+}
+
 .backicon {
   position: absolute;
   top: 30px;
   left: 30px;
+  cursor: pointer;
 }
