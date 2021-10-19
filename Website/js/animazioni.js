@@ -7,5 +7,10 @@ function vedipsw() {
     }
 }
 
+function overlaytranslate() {
+    alert("f");
+    document.getElementById("menubutton").style.transform = "translate(0, 0)";
+}
+
 //psw mail:
 //Redmenu2021
