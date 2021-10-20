@@ -1,0 +1,123 @@
+/* login.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+:root {
+  --red: #ff4126;
+  --grayA: #aaaaaa;
+  --grayC: #c4c4c4;
+  --grayD: #dddddd;
+  --grayE: #eeeeee;
+  --black: #000000;
+  --white: #ffffff;
+}
+
+.content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  
+    height: 100%;
+    width: 100%;
+  }
+  
+  .logo {
+    font-family: "Poppins", sans-serif;
+    font-size: 64px;
+    margin-bottom: 30px;
+  }
+  
+  .loginform {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+  
+  #email,
+  #password {
+    height: 64px;
+    width: 324px;
+    margin-bottom: 25px;
+  }
+  
+  #email input,
+  #password input,
+  #email input:focus,
+  #password input:focus {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: var(--grayE);
+    padding-inline: 40px;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    color: var(--black);
+    border-radius: 12px;
+  }
+  
+  ::placeholder {
+    color: var(--grayA);
+  }
+  
+  .vedipsw {
+    position: relative;
+    height: 24px;
+    width: 24px;
+    left: 280px;
+    top: -68%;
+  }
+  
+  .loginbuttons {
+    display: flex;
+    width: 324px;
+    margin: auto;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+  
+  .loginbuttons button {
+    width: 152px;
+    height: 30px;
+    border: none;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    border-radius: 8px;
+    color: var(--white);
+  }
+  
+  #login {
+    background-color: var(--red);
+  }
+  
+  #registrati {
+    background-color: var(--grayC);
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background-color: var(--white);
+  
+    animation: fade 1s ease-in-out forwards;
+  }
+  
+  @keyframes fade {
+    0% {
+      opacity: 1;
+    }
+    65% {
+        opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
