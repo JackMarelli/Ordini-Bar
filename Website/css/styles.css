@@ -37,7 +37,6 @@ body, *{
 .logo {
   font-family: "Poppins", sans-serif;
   font-size: 64px;
-
   margin-bottom: 30px;
 }
 
@@ -137,24 +136,27 @@ body, *{
 
 /* === mainlist.html === */
 
-.redbg {
+.redcontainer {
   width: 100%;
   height: 100%;
   background-color: var(--red);
 
   display: flex;
-  justify-content: center;
+  flex-flow: column;
+  justify-content: space-between;
 }
 
-.functions {
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-  margin: 30px 30px 0 30px;
+.menubutton {
+  height: 32px;
+  margin: 30px 0 0 30px;
+}
+
+.menubutton img {
+  cursor: pointer;
 }
 
 .searchbar {
-  margin-top: 20px;
+  margin: -50px 30px 0 30px;
   height: 50px;
 }
 
@@ -169,25 +171,25 @@ body, *{
   font-family: "Poppins", sans-serif;
   color: var(--black);
   border-radius: 12px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.274);
 }
 
-.whitebg {
-  position: absolute;
-  bottom: 0;
-  top: 175px;
+.whitecontainer {
   width: 100%;
-  max-height: 100%;
+  height: 70%;
   background-color: var(--white);
   border-radius: 50px 50px 0 0;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.300));
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
 }
 
 .lista {
   display: flex;
-  flex-flow: column nowrap;
-
+  flex-flow: column;
   margin: 0 40px 0 40px;
-  padding: 0;
-  height: fit-content;
+  overflow: auto;
 }
 
 .prodotto {
@@ -223,10 +225,12 @@ body, *{
 
   font-family: "Poppins", sans-serif;
   cursor: pointer;
+  /*box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.274);*/
 }
 
 .prop .nome {
   font-size: 20px;
+  cursor: pointer;
 }
 
 .prop .prezzo {
@@ -246,13 +250,17 @@ body, *{
   padding-inline: 15px;
 }
 
+.quantity .minus, .quantity .plus {
+  cursor: pointer;
+}
+
 /* done tick button */
 .done {
   position: absolute;
   bottom: 10%;
+  width: 100%;
 
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -261,13 +269,14 @@ body, *{
   width: 100px;
   height: 100px;
   border-radius: 100%;
-
+  
   display: flex;
   justify-content: center;
   align-items: center;
 
   opacity: 90%;
   cursor: pointer;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.274);
 }
 
 /* overlay menu */
@@ -293,14 +302,11 @@ body, *{
 
   font-family: "Poppins", sans-serif;
   font-size: 24px;
-  color: white;
+  color: var(--white);
 }
 
 .overlaymenu .option {
   margin-block: 8px;
-}
-
-.menuicon {
   cursor: pointer;
 }
 
