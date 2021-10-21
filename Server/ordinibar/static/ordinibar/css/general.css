@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+:root {
+  --red: #ff4126;
+  --grayA: #aaaaaa;
+  --grayC: #c4c4c4;
+  --grayD: #dddddd;
+  --grayE: #eeeeee;
+  --black: #000000;
+  --white: #ffffff;
+}
+
+html,
+body, *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}

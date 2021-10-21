@@ -5,4 +5,5 @@ app_name = "ordinibar"
 urlpatterns = [
     path("", views.indexView, name = "index"),
     path('login', views.loginView, name = 'login' ),
+    path('index/getitemlist', views.getProdottiView, name = 'get_item_list')
 ]
