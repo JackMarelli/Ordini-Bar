@@ -6,44 +6,67 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Red Menu</title>
-    <link rel="stylesheet" href="{% static 'ordinibar/css/styles.css' %}" />
+    <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}" />
+    <link rel="stylesheet" href="{%static 'ordinibar/css/mainlist.css'%}" />
+    <script src="{% static 'ordinibar/js/animazioni.js' %}"></script>
   </head>
   <body>
-    <div class="content">
-      <div class="redbg">
-        <div class="functions">
-          <div class="menubutton">
-            <img src="{%static 'ordinibar/img/menuicon.svg'%}" alt="" />
-          </div>
-          <div class="searchbar">
-            <input
-              type="text"
-              name="searchbar"
-              id="searchbar"
-              placeholder="Panzerotto, Calzone..."
-            />
-          </div>
-          
+    <div id="overlaymenu" class="overlaymenu">
+      <div class="backicon">
+        <img src="{%static 'ordinibar/img/back.png'%}" alt="" onclick="overlayTranslateOut()" />
+      </div>
+      <div class="options">
+        <div class="option">Account</div>
+        <div class="option">Ordina per</div>
+        <div class="option">Visualizza stati</div>
+      </div>
+    </div>
+    <div class="redcontainer">
+      <div class="menubutton">
+        <img
+          id="menubutton"
+          src="{%static 'ordinibar/img/menuicon.svg'%}"
+          alt=""
+          onclick="overlayTranslateIn()"
+        />
+      </div>
+      <div class="searchbar">
+        <input
+          type="text"
+          name="searchbar"
+          id="searchbar"
+          placeholder="Panzerotto, Calzone..."
+        />
+      </div>
+      <div class="whitecontainer">
+        <div class="buttons">
+          <div id="salato">Salato</div>
+          <div id="dolce">Dolce</div>
         </div>
-        <div class="whitebg">
-          <div class="buttons">
-            <div id="salato">Salato</div>
-            <div id="dolce">Dolce</div>
-          </div>
-          <div class="lista">
-            <div class="prodotto">
-              <div class="prop">
-                <div class="nome">Prodotto</div>
-                <div class="prezzo">2,50€</div>
+        <div class="lista">
+          <div class="gradient"></div>
+          <div class="prodotto">
+            <div class="prop">
+              <div class="nome">Prodotto</div>
+              <div class="prezzo">2,50€</div>
+            </div>
+            <div class="quantity">
+              <div class="plus">
+                <img src="{%static 'ordinibar/img/minusicon.png' %}" alt="" srcset="" />
               </div>
-              <div class="quantity">
-                <div class="plus"><img src="{%static 'ordinibar/img/minusicon.png'%}" alt="" srcset=""></div>
-                <div class="number">0</div>
-                <div class="minus"><img src="{%static 'ordinibar/img/plusicon.svg'%}" alt="" srcset=""></div>
+              <div class="number">0</div>
+              <div class="minus">
+                <img src="{%static 'ordinibar/img/plusicon.svg'%}" alt="" srcset="" />
               </div>
             </div>
           </div>
+          
         </div>
+      </div>
+    </div>
+    <div class="done">
+      <div class="redcircle">
+        <div class="tick"><img src="{% static 'ordinibar/img/tick.svg' %}" alt="" /></div>
       </div>
     </div>
   </body>
