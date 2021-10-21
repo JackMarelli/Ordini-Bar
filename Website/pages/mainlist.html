@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="../css/general.css" />
     <link rel="stylesheet" href="../css/mainlist.css" />
     <script src="../js/animazioni.js"></script>
+    <script src="../js/mainlist.js"></script>
   </head>
-  <body>
+  <body onload="CaricaPagina()">
     <div id="overlaymenu" class="overlaymenu">
       <div class="backicon">
         <img src="../images/back.png" alt="" onclick="overlayTranslateOut()" />
@@ -43,6 +44,27 @@
         </div>
         <div class="lista">
           <div class="gradient"></div>
+
+
+
+          
+          <div class="prodotto">
+            <div class="prop">
+              <div class="nome">Prodotto</div>
+              <div class="prezzo">2,50€</div>
+            </div>
+            <div class="quantity">
+              <div class="minus">
+                <img src="../images/minusicon.png" alt="" srcset="" />
+              </div>
+
+              <div class="number">0</div>
+              <div class="plus">
+                <img src="../images/plusicon.svg" alt="" srcset="" />
+              </div>
+            </div>
+          </div>
+          <!--
           <div class="prodotto">
             <div class="prop">
               <div class="nome">Prodotto</div>
@@ -148,21 +170,7 @@
               </div>
             </div>
           </div>
-          <div class="prodotto">
-            <div class="prop">
-              <div class="nome">Prodotto</div>
-              <div class="prezzo">2,50€</div>
-            </div>
-            <div class="quantity">
-              <div class="plus">
-                <img src="../images/minusicon.png" alt="" srcset="" />
-              </div>
-              <div class="number">0</div>
-              <div class="minus">
-                <img src="../images/plusicon.svg" alt="" srcset="" />
-              </div>
-            </div>
-          </div>
+          -->
         </div>
       </div>
     </div>
