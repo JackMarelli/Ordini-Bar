@@ -94,10 +94,6 @@
   margin: 0 0 0 10px;
 }
 
-.ketchup, .maionese {
-  color:var(--grayA)
-}
-
 #ketchup, #maionese {
   cursor: pointer;
 }
