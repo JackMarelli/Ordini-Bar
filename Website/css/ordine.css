@@ -33,10 +33,12 @@
 }
 
 .whitecontainer {
-  height: 85%;
+  flex-grow: 1;
+  margin-block-start: 28px;
   width: 100%;
   background-color: var(--white);
   border-radius: 50px 50px 0 0;
+  overflow: auto;
 }
 
 .whitecontainer p {
@@ -60,5 +62,87 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-block: 10px;
+  margin: 10px 0 5px 0;
+}
+
+.prop .nome {
+  font-size: 20px;
+}
+
+.prop .prezzo {
+  font-size: 16px;
+  color: gray;
+}
+
+.quantity {
+  font-size: 26px;
+}
+
+.aggiunte {
+  display: flex;
+  flex-flow: column;
+  margin: 0 0 0 40px;
+}
+
+.aggiunte div {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  margin: 10px 0 0 0;
+}
+
+.aggiunte span {
+  margin: 0 0 0 10px;
+}
+
+.ketchup, .maionese {
+  color:var(--grayA)
+}
+
+#ketchup, #maionese {
+  cursor: pointer;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  margin: 30px 0 50px 0;
+}
+
+#conferma,
+#annulla {
+  height: 47px;
+  width: 35%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 15px;
+
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  /*box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.274);*/
+}
+
+#conferma {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+#annulla {
+  background-color: var(--grayE);
+}
+
+.gradient {
+  position: fixed;
+  border-radius: 50px 50px 0 0;
+  height: 60px;
+  width: 100%;
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.774) 30%,
+    rgba(0, 212, 255, 0) 100%
+  );
 }
