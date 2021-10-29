@@ -6,11 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Red Menu</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}" />
     <link rel="stylesheet" href="{%static 'ordinibar/css/mainlist.css'%}" />
     <script src="{% static 'ordinibar/js/animazioni.js' %}"></script>
+    <script src="{% static 'ordinibar/js/mainlist.js' %}"></script>
   </head>
-  <body>
+  <body  onload = "load_inizio()">
     <div id="overlaymenu" class="overlaymenu">
       <div class="backicon">
         <img src="{%static 'ordinibar/img/back.png'%}" alt="" onclick="overlayTranslateOut()" />
@@ -36,30 +38,15 @@
           name="searchbar"
           id="searchbar"
           placeholder="Panzerotto, Calzone..."
+          oninput ="search_element()"
         />
       </div>
       <div class="whitecontainer">
         <div class="buttons">
-          <div id="salato">Salato</div>
-          <div id="dolce">Dolce</div>
+          <div id="salato" onclick = "load_salato()">Salato</div>
+          <div id="dolce" onclick = "load_dolce()">Dolce</div>
         </div>
         <div class="lista">
-          <div class="gradient"></div>
-          <div class="prodotto">
-            <div class="prop">
-              <div class="nome">Prodotto</div>
-              <div class="prezzo">2,50€</div>
-            </div>
-            <div class="quantity">
-              <div class="plus">
-                <img src="{%static 'ordinibar/img/minusicon.png' %}" alt="" srcset="" />
-              </div>
-              <div class="number">0</div>
-              <div class="minus">
-                <img src="{%static 'ordinibar/img/plusicon.svg'%}" alt="" srcset="" />
-              </div>
-            </div>
-          </div>
           
         </div>
       </div>

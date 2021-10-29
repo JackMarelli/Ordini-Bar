@@ -15,7 +15,7 @@ from .models import *
 def indexView(request):
     return render(request=request, template_name="ordinibar/mainlist.html")
     
-#@csrf_exempt
+@csrf_exempt
 def getProdottiView(request):
     request_dict = json.loads(request.body.decode('UTF-8'))
     item_list = ProdottoDaVendere.objects.filter(tipo = request_dict["tipo"]).all()
