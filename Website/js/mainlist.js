@@ -1,4 +1,4 @@
-var json = '[{"nome":"panino","prezzo":"1"},{"nome":"pizza","prezzo":"2"},{"nome":"kebab","prezzo":"50"},{"nome":"panino","prezzo":"1"},{"nome":"panino","prezzo":"1"},{"nome":"panino","prezzo":"1"},{"nome":"panino","prezzo":"1"},{"nome":"panino","prezzo":"1"},{"nome":"panino","prezzo":"1"}]';
+var json = '[{"nome":"panino","prezzo":"1"},{"nome":"pizza","prezzo":"2"},{"nome":"kebab2","prezzo":"50"},{"nome":"panino2","prezzo":"1"},{"nome":"panino3","prezzo":"1"},{"nome":"panino4","prezzo":"1"},{"nome":"panino5","prezzo":"1"},{"nome":"panino6","prezzo":"1"},{"nome":"panino7","prezzo":"1"}]';
 const obj = JSON.parse(json); //metodo per fare il parse del JSON
 var Quantita = []; //vettore per le quantità di ogni singolo elemento
 var x = 0;
@@ -8,6 +8,16 @@ var lunghezza = 0;
 obj.forEach(element => {
     lunghezza++;
 });
+var vettoreOggettiDaSalvare = [{}];
+
+var JsonDaSalvare;
+function cambiami(index){
+    localStorage.clear();
+    var myObj = { "nome":obj[index].nome, "prezzo":obj[index].prezzo, "quantita":Quantita[index] };
+    vettoreOggettiDaSalvare[index] = myObj;
+    var jsonDaX = JSON.stringify(vettoreOggettiDaSalvare);
+    localStorage.setItem("json",jsonDaX);
+}
 
 //imposto tutti gli elementi del vettore a 0
 for (let index = 0; index < lunghezza; index++) {
@@ -20,9 +30,11 @@ function incrementa(nome) { //il parametro è l'id del div contenete la quantit�
             var tmp = "#" + nome;
             var bloccoNumero = document.querySelector(tmp)
             bloccoNumero.textContent = Quantita[i];
+            cambiami(i);
             break;
         }
     }
+
 }
 function decrementa(nome) {  //il parametro è l'id del div contenete la quantità del determinato prodotto
     for (var i = 0; i < lunghezza; i++) {
@@ -32,10 +44,12 @@ function decrementa(nome) {  //il parametro è l'id del div contenete la quantit
                 var bloccoNumero = document.querySelector(tmp)
                 Quantita[i] = Quantita[i] - 1;
                 bloccoNumero.textContent = Quantita[i];
+                cambiami(i);
             }
             break;
         }
     }
+
 }
 
 function CaricaPagina() {
@@ -57,7 +71,7 @@ function CaricaPagina() {
           </div>
     COME DEVE RISULTARE IL CODICE
     */
-
+    localStorage.clear();
    //creo gli elementi in base alla lunghezza del JSON passato dal server
     for (let index = 0; index < lunghezza; index++) {
         //Prendo il nome del prodotto passato dal JSON. ES: Panino
@@ -118,4 +132,5 @@ function CaricaPagina() {
                 divQuantita.appendChild(divPiu);
                     divPiu.appendChild(immaginePiu);
     }
+
 }
