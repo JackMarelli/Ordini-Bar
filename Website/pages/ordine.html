@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="../css/general.css" />
     <link rel="stylesheet" href="../css/ordine.css" />
     <script src="../js/animazioni.js"></script>
+    <script src="../js/ordine.js"></script>
   </head>
-  <body>
+  <body onload="CaricaPagina()">
     <div id="overlaymenu" class="overlaymenu">
       <div class="backicon">
         <img src="../images/back.png" alt="" onclick="overlayTranslateOut()" />
@@ -32,96 +33,16 @@
         <div class="gradient"></div>
         <p>Ordine</p>
         <div class="lista">
-          <div class="prodotto">
-            <div class="prop">
-              <div class="nome">Prodotto</div>
-              <div class="prezzo">2,50€</div>
-            </div>
-            <div class="quantity">
-              <div class="number">2</div>
-            </div>
-          </div>
-          <div class="prodotto">
-            <div class="prop">
-              <div class="nome">Prodotto</div>
-              <div class="prezzo">2,50€</div>
-            </div>
-            <div class="quantity">
-              <div class="number">1</div>
-            </div>
-          </div>
-          <div class="prodotto">
-            <div class="prop">
-              <div class="nome">Prodotto</div>
-              <div class="prezzo">2,50€</div>
-            </div>
-            <div class="quantity">
-              <div class="number">1</div>
-            </div>
-          </div>
-          <div class="prodotto">
-            <div class="prop">
-              <div class="nome">Prodotto</div>
-              <div class="prezzo">2,50€</div>
-            </div>
-            <div class="quantity">
-              <div class="number">2</div>
-            </div>
-          </div>
-          <div class="prodotto">
-            <div class="prop">
-              <div class="nome">Prodotto</div>
-              <div class="prezzo">2,50€</div>
-            </div>
-            <div class="quantity">
-              <div class="number">1</div>
-            </div>
-          </div>
-          <div class="prodotto">
-            <div class="prop">
-              <div class="nome">Prodotto</div>
-              <div class="prezzo">2,50€</div>
-            </div>
-            <div class="quantity">
-              <div class="number">1</div>
-            </div>
-          </div>
-          <div class="prodotto">
-            <div class="prop">
-              <div class="nome">Prodotto</div>
-              <div class="prezzo">2,50€</div>
-            </div>
-            <div class="quantity">
-              <div class="number">2</div>
-            </div>
-          </div>
-          <div class="prodotto">
-            <div class="prop">
-              <div class="nome">Prodotto</div>
-              <div class="prezzo">2,50€</div>
-            </div>
-            <div class="quantity">
-              <div class="number">1</div>
-            </div>
-          </div>
-          <div class="prodotto">
-            <div class="prop">
-              <div class="nome">Prodotto</div>
-              <div class="prezzo">2,50€</div>
-            </div>
-            <div class="quantity">
-              <div class="number">1</div>
-            </div>
-          </div>
+          <!-- CONTENUTO -->
         </div>
-        <div class="totale">18,50€</div>
+        <div id="totale" class="totale"></div>
         <div class="aggiunte">
           <div id="ketchup">Ketchup</div>
           <div id="maionese">Maionese</div>
         </div>
         <div class="orario">
           <p>Scegli un orario di ritiro:</p>
-          <input type="text" name="" id="" />
+          <input type="time" name="" id="" />
         </div>
         <div class="buttons">
           <div id="conferma">
