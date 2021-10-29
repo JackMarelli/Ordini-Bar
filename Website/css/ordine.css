@@ -198,3 +198,36 @@
 ::placeholder {
   color: var(--grayA);
 }
+
+.orarioprezzo {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  margin: 0 35px;
+  font-size: 40px;
+  color: var(--grayC);
+}
+
+#qr {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#qr img {
+  width: 100%;
+  margin: auto;
+  max-width: 400px;
+}
+
+.home {
+  background-color: var(--red);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  height: 44px;
+  margin: 0 auto;
+  width: 324px;
+}
