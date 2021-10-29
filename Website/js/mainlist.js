@@ -1,36 +1,42 @@
+//json dal server (qui è di esempio)
 var json = '[{"nome":"panino","prezzo":"1"},{"nome":"pizza","prezzo":"2"},{"nome":"kebab2","prezzo":"50"},{"nome":"panino2","prezzo":"1"},{"nome":"panino3","prezzo":"1"},{"nome":"panino4","prezzo":"1"},{"nome":"panino5","prezzo":"1"},{"nome":"panino6","prezzo":"1"},{"nome":"panino7","prezzo":"1"}]';
-const obj = JSON.parse(json); //metodo per fare il parse del JSON
-var Quantita = []; //vettore per le quantità di ogni singolo elemento
-var x = 0;
+//metodo per fare il parse del JSON
+const obj = JSON.parse(json); 
+//numero di oggetti presenti nel JSON
 var lunghezza = 0;
-
 //ciclo foreach per prendere la lunghezza del JSON
 obj.forEach(element => {
     lunghezza++;
 });
-var vettoreOggettiDaSalvare = [{}];
 
-var JsonDaSalvare;
-function cambiami(index){
+//vettore per le quantità di ogni singolo elemento
+var quantita = []; 
+var x = 0;
+//imposto tutti gli elementi del vettore a 0
+for (let index = 0; index < lunghezza; index++) {
+    quantita[index] = x;
+}
+
+//vettore di oggetti dove salvare i prodotti
+var vettOggSaving = [{}]; 
+
+function SalvaInLocalStorage(index){
     localStorage.clear();
-    var myObj = { "nome":obj[index].nome, "prezzo":obj[index].prezzo, "quantita":Quantita[index] };
-    vettoreOggettiDaSalvare[index] = myObj;
-    var jsonDaX = JSON.stringify(vettoreOggettiDaSalvare);
+    var myObj = { "nome":obj[index].nome, "prezzo":obj[index].prezzo, "quantita":quantita[index] };
+    vettOggSaving[index] = myObj;
+    var jsonDaX = JSON.stringify(vettOggSaving);
     localStorage.setItem("json",jsonDaX);
 }
 
-//imposto tutti gli elementi del vettore a 0
-for (let index = 0; index < lunghezza; index++) {
-    Quantita[index] = x;
-}
+
 function incrementa(nome) { //il parametro è l'id del div contenete la quantità del determinato prodotto
     for (var i = 0; i < lunghezza; i++) {
         if (obj[i].nome == nome) {
-            Quantita[i] = Quantita[i] + 1;
+            quantita[i] = quantita[i] + 1;
             var tmp = "#" + nome;
             var bloccoNumero = document.querySelector(tmp)
-            bloccoNumero.textContent = Quantita[i];
-            cambiami(i);
+            bloccoNumero.textContent = quantita[i];
+            SalvaInLocalStorage(i);
             break;
         }
     }
@@ -39,12 +45,12 @@ function incrementa(nome) { //il parametro è l'id del div contenete la quantit�
 function decrementa(nome) {  //il parametro è l'id del div contenete la quantità del determinato prodotto
     for (var i = 0; i < lunghezza; i++) {
         if (obj[i].nome == nome) {
-            if(Quantita[i]>0){
+            if(quantita[i]>0){
                 var tmp = "#" + nome;
                 var bloccoNumero = document.querySelector(tmp)
-                Quantita[i] = Quantita[i] - 1;
-                bloccoNumero.textContent = Quantita[i];
-                cambiami(i);
+                quantita[i] = quantita[i] - 1;
+                bloccoNumero.textContent = quantita[i];
+                SalvaInLocalStorage(i);
             }
             break;
         }
@@ -53,26 +59,9 @@ function decrementa(nome) {  //il parametro è l'id del div contenete la quantit
 }
 
 function CaricaPagina() {
-    /*
-        <div class="prodotto">
-            <div class="prop">
-              <div class="nome">Prodotto</div>
-              <div class="prezzo">2,50€</div>
-            </div>
-            <div class="quantity">
-              <div class="plus">
-                <img src="../images/minusicon.png" alt="" srcset="" />
-              </div>
-              <div class="number">0</div>
-              <div class="minus">
-                <img src="../images/plusicon.svg" alt="" srcset="" />
-              </div>
-            </div>
-          </div>
-    COME DEVE RISULTARE IL CODICE
-    */
+    //pulisco il localStorage per essere sicuro che sia libero
     localStorage.clear();
-   //creo gli elementi in base alla lunghezza del JSON passato dal server
+    //creo gli elementi in base alla lunghezza del JSON passato dal server
     for (let index = 0; index < lunghezza; index++) {
         //Prendo il nome del prodotto passato dal JSON. ES: Panino
         var nomeAttributo = obj[index].nome;
@@ -131,6 +120,24 @@ function CaricaPagina() {
                 divQuantita.appendChild(divNumero);
                 divQuantita.appendChild(divPiu);
                     divPiu.appendChild(immaginePiu);
+
+    /* struttura del codice dello script: 
+        <div class="prodotto">
+            <div class="prop">
+              <div class="nome">Prodotto</div>
+              <div class="prezzo">2,50€</div>
+            </div>
+            <div class="quantity">
+              <div class="plus">
+                <img src="../images/minusicon.png" alt="" srcset="" />
+              </div>
+              <div class="number">0</div>
+              <div class="minus">
+                <img src="../images/plusicon.svg" alt="" srcset="" />
+              </div>
+            </div>
+        </div>
+    */
     }
 
 }
