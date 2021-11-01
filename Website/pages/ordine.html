@@ -42,13 +42,15 @@
         </div>
         <div class="orario">
           <p>Scegli un orario di ritiro:</p>
-          <input type="time" name="" id="" />
+          <input type="time" id="orarioRitiro" />
         </div>
         <div class="buttons">
           <div id="conferma">
-            <a href="../pages/ordine_confirmed.html">Conferma</a>
+            <div onclick="PassaggioAvanti()">Conferma</div>
           </div>
-          <div id="annulla">Annulla</div>
+          <div id="annulla">
+            <div onclick="PassaggioIndietro()">Annulla</div>
+          </div>
         </div>
       </div>
     </div>

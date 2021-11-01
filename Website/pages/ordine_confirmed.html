@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="../css/general.css" />
     <link rel="stylesheet" href="../css/ordine.css" />
     <script src="../js/animazioni.js"></script>
+    <script src="../js/ordine_confirmed.js"></script>
   </head>
-  <body>
+  <body onload="CaricaPagina()">
     <div id="overlaymenu" class="overlaymenu">
       <div class="backicon">
         <img src="../images/back.png" alt="" onclick="overlayTranslateOut()" />
@@ -32,12 +33,12 @@
         <div class="gradient"></div>
         <p>Ordine</p>
         <div class="orarioprezzo">
-          <div id="prezzo">18:50€</div>
-          <div id="orario">12:45</div>
+          <div id="prezzo"></div>
+          <div id="orario"></div>
         </div>
         <div id="qr"><img src="../images/qrtestimage.svg" alt="" /></div>
         <div class="home">
-          <a href="../pages/mainlist.html">Home</a>
+          <div onclick="PassaggioIndietro()">Home</div>
         </div>
       </div>
     </div>

@@ -5,9 +5,8 @@
 //da mainlist a ordine conservato il Server non fa nulla
 //json.getitem json
 
-//Struttura JSON che si deve ricevere dalla pagina precedente
-var json = '[{"nome":"Panino con la cotoletta","prezzo":"2", "quantita":"1"},{"nome":"Pizza con le patatine","prezzo":"3,50", "quantita":"3"},{"nome":"Panzerotto","prezzo":"1,50", "quantita":"2"}]'; //,{"nome":"panino","prezzo":"1", "quantita":"2"},{"nome":"panino","prezzo":"1", "quantita":"2"},{"nome":"panino","prezzo":"1", "quantita":"2"},{"nome":"panino","prezzo":"1", "quantita":"2"},{"nome":"panino","prezzo":"1", "quantita":"2"},{"nome":"panino","prezzo":"1", "quantita":"2"}]';
-const obj = JSON.parse(json);
+//Si recupera il JSON dal localStorage
+const obj = JSON.parse(localStorage.getItem("json"));
 
 //Si determina la lunghezza del JSON
 var lunghezza = 0;
@@ -40,7 +39,7 @@ function CaricaPagina() {
             var quantitaAttributo = obj[index].quantita;
             
             //Si calcola il totale
-            Totale += parseFloat(prezzoAttributo.replace(",", "."));
+            Totale += parseFloat(prezzoAttributo.replace(",", "."))*parseFloat(quantitaAttributo);
             
             //Si creano i DIV
             const divProdotto = document.createElement("div");
@@ -72,6 +71,21 @@ function CaricaPagina() {
         }       
     }    
 
-    //Si visualizza il pre
+    //Si visualizza il prezzo totale dell'ordine
     document.getElementById("totale").innerHTML = Totale + "€";
+}
+
+function PassaggioAvanti(){
+    //Se i dati sono corretti passo alla pagina successiva
+    if(document.getElementById("orarioRitiro").value != "") {
+        localStorage.setItem("totale", Totale);
+        localStorage.setItem("orario", document.getElementById("orarioRitiro").value);
+        window.location.href = "../pages/ordine_confirmed.html";
+    }
+}
+
+function PassaggioIndietro(){
+    //Si salva il JSON sul localstorage
+    
+    window.location.href = "../pages/mainlist.html";
 }
