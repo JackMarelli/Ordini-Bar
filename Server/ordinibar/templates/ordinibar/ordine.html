@@ -1,0 +1,59 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Red Menu</title>
+    <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}" />
+    <link rel="stylesheet" href="{%static 'ordinibar/css/ordine.css' %}" />
+    <script src="{% static 'ordinibar/js/animazioni.js' %}"></script>
+    <script src="{% static 'ordinibar/js/ordine.js' %}"></script>
+  </head>
+  <body onload="CaricaPagina()">
+    <div id="overlaymenu" class="overlaymenu">
+      <div class="backicon">
+        <img src="../images/back.png" alt="" onclick="overlayTranslateOut()" />
+      </div>
+      <div class="options">
+        <div class="option">Account</div>
+        <div class="option">Ordina per</div>
+        <div class="option">Visualizza stati</div>
+      </div>
+    </div>
+    <div class="redcontainer">
+      <div class="menubutton">
+        <img
+          id="menubutton"
+          src="../images/menuicon.svg"
+          alt=""
+          onclick="overlayTranslateIn()"
+        />
+      </div>
+      <div class="whitecontainer">
+        <div class="gradient"></div>
+        <p>Ordine</p>
+        <div class="lista">
+          <!-- CONTENUTO -->
+        </div>
+        <div id="totale" class="totale"></div>
+        <div class="aggiunte">
+          <div id="ketchup">Ketchup</div>
+          <div id="maionese">Maionese</div>
+        </div>
+        <div class="orario">
+          <p>Scegli un orario di ritiro:</p>
+          <input type="time" id="orarioRitiro" />
+        </div>
+        <div class="buttons">
+          <div id="conferma">
+            <div onclick="PassaggioAvanti()">Conferma</div>
+          </div>
+          <div id="annulla" onclick="PassaggioIndietro()">
+            <div >Annulla</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

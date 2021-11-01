@@ -46,3 +46,7 @@ def loginView(request):
                 messages.error(request,"Invalid username or password.")
     form = UserLoginForm()
     return render(request=request, template_name="ordinibar/login.html", context={"login_form":form})
+
+@login_required(login_url="/login")
+def ordineView(request):
+    return render(request=request, template_name="ordinibar/ordine.html")

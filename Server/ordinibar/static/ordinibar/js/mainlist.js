@@ -1,12 +1,33 @@
-//var json = '[{"nome":"panino","prezzo":"1"},{"nome":"pizza","prezzo":"2"},{"nome":"kebab","prezzo":"50"},{"nome":"panino","prezzo":"1"},{"nome":"panino","prezzo":"1"},{"nome":"panino","prezzo":"1"},{"nome":"panino","prezzo":"1"},{"nome":"panino","prezzo":"1"},{"nome":"panino","prezzo":"1"}]';
-//metodo per fare il parse del JSON
-var Quantita = []; //vettore per le quantità di ogni singolo elemento
 var x = 0;
-var lunghezza = 0;
-var obj = "";
-//var json;
+var vettore_salato = [];//vettore contenente l'elenco dei prodotti salati e le relative quantità selezionate
+var vettore_dolce = [];//vettore contenente l'elenco dei prodotti dolci e le relative quantità selezionate
+var tipologia_selezionata = "";//Tipologia di prodotto attualmente selezionata (salato/dolce)
+var vettOggSaving = [];
+
+function cambia_tipologia(tipologia){
+    tipologia_selezionata = tipologia;
+    document.querySelector(".lista").innerHTML = '';
+    if(tipologia == "salato"){
+        CaricaPagina(vettore_salato);
+    }
+    else{
+        CaricaPagina(vettore_dolce);
+    }
+}
 
 function search_element() {
+
+    var obj;
+
+    if(tipologia_selezionata == "salato"){
+        obj = vettore_salato;
+    }
+    else{
+        obj = vettore_dolce;
+    }
+
+    lunghezza = obj.length;
+
     var text = document.getElementById("searchbar").value;
     var value_to_search = text.toUpperCase();
     var result_list = [];
@@ -16,87 +37,124 @@ function search_element() {
             result_list.push(obj[i]);
         }
     }
-
     document.querySelector(".lista").innerHTML = '';
     CaricaPagina(result_list);
 }
 
-function load_inizio() {
-    load_salato();
+function SalvaInLocalStorage(index) {
     localStorage.clear();
+    if(tipologia_selezionata == "dolce"){
+        index = vettore_salato.length + index;
+    }
+    obj = [].concat(vettore_salato,vettore_dolce);
+    //alert(JSON.stringify(obj));
+    var myObj = { "nome": obj[index].nome, "prezzo": obj[index].prezzo, "quantita": obj[index].quantita };
+    vettOggSaving[index] = myObj;
+    var jsonDaX = JSON.stringify(vettOggSaving);
+    localStorage.setItem("json", jsonDaX);
 }
 
-function load_salato() {
-    document.querySelector(".lista").innerHTML = '';
-    $.ajax({
+function load_inizio() {
+    localStorage.clear();//cancello svuoto il localstorage
+    //riempio i 2 vettori
+    $.when(carica_salato(), carica_dolce()).done(function(ajax1Results,ajax2Results){
+        tipologia_selezionata = "salato";
+        CaricaPagina(vettore_salato);
+    });
+    
+}
+
+function carica_salato(){
+    return $.ajax({
         url: "/index/getitemlist",
         type: "POST",
         data: '{"tipo":"Salato"}',
         success: function (response) {
-            obj = response;
-            CaricaPagina(response);
+            for (let i = 0; i < response.length; i++) {
+                vettore_salato[i] = {
+                    nome:response[i].nome,
+                    quantita:0,
+                    prezzo: response[i].prezzo,
+                }
+            }
         }
     });
-
-
 }
 
-function load_dolce() {
-    document.querySelector(".lista").innerHTML = '';
-    $.ajax({
+function carica_dolce(){
+    return $.ajax({
         url: "/index/getitemlist",
         type: "POST",
         data: '{"tipo":"Dolce"}',
         success: function (response) {
-            obj = response;
-            CaricaPagina(response);
-
+            for (let i = 0; i < response.length; i++) {
+                vettore_dolce[i] = {
+                    nome:response[i].nome,
+                    quantita:0,
+                    prezzo: response[i].prezzo,
+                }
+            }
         }
     });
-
 }
 
-
-//ciclo foreach per prendere la lunghezza del JSON
-
-
-
 function incrementa(nome) { //il parametro è l'id del div contenete la quantità del determinato prodotto
+
+    var obj;
+
+    if(tipologia_selezionata == "salato"){
+        obj = vettore_salato;
+    }
+    else{
+        obj = vettore_dolce;
+    }
+
+    lunghezza = obj.length;
+
     for (var i = 0; i < lunghezza; i++) {
         if (obj[i].nome == nome) {
-            Quantita[i] = Quantita[i] + 1;
-            var tmp = "#" + nome;
+            obj[i].quantita = obj[i].quantita + 1;
+            var tmp = "[id = '" + nome + "']";
             var bloccoNumero = document.querySelector(tmp)
-            bloccoNumero.textContent = Quantita[i];
+            bloccoNumero.textContent = obj[i].quantita;
+            SalvaInLocalStorage(i);
             break;
         }
     }
 }
+
 function decrementa(nome) {  //il parametro è l'id del div contenete la quantità del determinato prodotto
+
+    var obj;
+
+    if(tipologia_selezionata == "salato"){
+        obj = vettore_salato;
+    }
+    else{
+        obj = vettore_dolce;
+    }
+
+    lunghezza = obj.length;
+
     for (var i = 0; i < lunghezza; i++) {
         if (obj[i].nome == nome) {
-            if (Quantita[i] > 0) {
-                var tmp = "#" + nome;
+            if (obj[i].quantita > 0) {
+                var tmp = "[id = '" + nome + "']";
                 var bloccoNumero = document.querySelector(tmp)
-                Quantita[i] = Quantita[i] - 1;
-                bloccoNumero.textContent = Quantita[i];
+                obj[i].quantita = obj[i].quantita - 1;
+                bloccoNumero.textContent = obj[i].quantita;
+                SalvaInLocalStorage(i);
             }
             break;
         }
     }
+
 }
 
 function CaricaPagina(object) {
 
-    object.forEach(element => {
-        lunghezza++;
-    });
-
-    //imposto tutti gli elementi del vettore a 0
-    for (let index = 0; index < lunghezza; index++) {
-        Quantita[index] = x;
-    }
-
+    lunghezza = object.length;
+    //alert(lunghezza);
     //creo gli elementi in base alla lunghezza del JSON passato dal server
     for (let index = 0; index < lunghezza; index++) {
         //Prendo il nome del prodotto passato dal JSON. ES: Panino
@@ -130,7 +188,7 @@ function CaricaPagina(object) {
         divNumero.setAttribute("class", "number");
         //imposto l'id del div contenente la quantità di quel determinato prodotto, così posso modificare il numero in base al nome del prodotto
         divNumero.setAttribute("id", nomeAttributo);
-        divNumero.innerHTML = 0;//imposto la quantità di base
+        divNumero.innerHTML = object[index].quantita;//imposto la quantità di base
         divPiu.setAttribute("class", "plus");
         //immaginePiu.setAttribute("src","{% static 'ordinibar/img/plusicon.svg' %}");//metto il path delle immagini
         divPiu.innerHTML = '<svg fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path fill-rule="evenodd" d="M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z"/></svg>';

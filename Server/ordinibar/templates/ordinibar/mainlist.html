@@ -1,60 +1,55 @@
 {% load static %}
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Red Menu</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}" />
-    <link rel="stylesheet" href="{%static 'ordinibar/css/mainlist.css'%}" />
-    <script src="{% static 'ordinibar/js/animazioni.js' %}"></script>
-    <script src="{% static 'ordinibar/js/mainlist.js' %}"></script>
-  </head>
-  <body  onload = "load_inizio()">
-    <div id="overlaymenu" class="overlaymenu">
-      <div class="backicon">
-        <img src="{%static 'ordinibar/img/back.png'%}" alt="" onclick="overlayTranslateOut()" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Red Menu</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}" />
+  <link rel="stylesheet" href="{%static 'ordinibar/css/mainlist.css'%}" />
+  <script src="{% static 'ordinibar/js/animazioni.js' %}"></script>
+  <script src="{% static 'ordinibar/js/mainlist.js' %}"></script>
+</head>
+
+<body onload="load_inizio()">
+  <div id="overlaymenu" class="overlaymenu">
+    <div class="backicon">
+      <img src="{%static 'ordinibar/img/back.png'%}" alt="" onclick="overlayTranslateOut()" />
+    </div>
+    <div class="options">
+      <div class="option">Account</div>
+      <div class="option">Ordina per</div>
+      <div class="option">Visualizza stati</div>
+    </div>
+  </div>
+  <div class="redcontainer">
+    <div class="menubutton">
+      <img id="menubutton" src="{%static 'ordinibar/img/menuicon.svg'%}" alt="" onclick="overlayTranslateIn()" />
+    </div>
+    <div class="searchbar">
+      <input type="text" name="searchbar" id="searchbar" placeholder="Panzerotto, Calzone..."
+        oninput="search_element()" />
+    </div>
+    <div class="whitecontainer">
+      <div class="buttons">
+        <div id="salato" onclick="cambia_tipologia('salato')">Salato</div>
+        <div id="dolce" onclick="cambia_tipologia('dolce')">Dolce</div>
       </div>
-      <div class="options">
-        <div class="option">Account</div>
-        <div class="option">Ordina per</div>
-        <div class="option">Visualizza stati</div>
+      <div class="lista">
+
       </div>
     </div>
-    <div class="redcontainer">
-      <div class="menubutton">
-        <img
-          id="menubutton"
-          src="{%static 'ordinibar/img/menuicon.svg'%}"
-          alt=""
-          onclick="overlayTranslateIn()"
-        />
-      </div>
-      <div class="searchbar">
-        <input
-          type="text"
-          name="searchbar"
-          id="searchbar"
-          placeholder="Panzerotto, Calzone..."
-          oninput ="search_element()"
-        />
-      </div>
-      <div class="whitecontainer">
-        <div class="buttons">
-          <div id="salato" onclick = "load_salato()">Salato</div>
-          <div id="dolce" onclick = "load_dolce()">Dolce</div>
-        </div>
-        <div class="lista">
-          
-        </div>
-      </div>
-    </div>
-    <div class="done">
+  </div>
+  <div class="done">
+    <a href = "/ordine">
       <div class="redcircle">
         <div class="tick"><img src="{% static 'ordinibar/img/tick.svg' %}" alt="" /></div>
       </div>
-    </div>
-  </body>
+    </a>
+  </div>
+</body>
+
 </html>
