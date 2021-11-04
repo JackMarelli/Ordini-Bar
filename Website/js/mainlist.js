@@ -18,7 +18,8 @@ for (let index = 0; index < lunghezza; index++) {
 }
 
 //vettore di oggetti dove salvare i prodotti
-var vettOggSaving = [{}]; 
+var vettOggSaving = [{}];
+vettOggSaving[0] = null; 
 
 function SalvaInLocalStorage(index){
     localStorage.clear();
