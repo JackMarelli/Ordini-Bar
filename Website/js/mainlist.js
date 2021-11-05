@@ -1,5 +1,5 @@
 //json dal server (qui è di esempio)
-var json = '[{"nome":"panino","prezzo":"1"},{"nome":"pizza","prezzo":"2"},{"nome":"kebab2","prezzo":"50"},{"nome":"panino2","prezzo":"1"},{"nome":"panino3","prezzo":"1"},{"nome":"panino4","prezzo":"1"},{"nome":"panino5","prezzo":"1"},{"nome":"panino6","prezzo":"1"},{"nome":"panino7","prezzo":"1"}]';
+var json = '[{"nome":"Panino","prezzo":"2","aggiunte":true},{"nome":"Pizza_con_patatine","prezzo":"2,50","aggiunte":false},{"nome":"Panzerotto","prezzo":"1,50","aggiunte":false}]';
 //metodo per fare il parse del JSON
 const obj = JSON.parse(json);
 //numero di oggetti presenti nel JSON
@@ -27,7 +27,7 @@ function SalvaInLocalStorage(index) {
         vettOggSaving[index] = null;
     }
     else {
-        var myObj = { "nome": obj[index].nome, "prezzo": obj[index].prezzo, "quantita": quantita[index] };
+        var myObj = { "nome": obj[index].nome, "prezzo": obj[index].prezzo, "quantita": quantita[index], "aggiunte": obj[index].aggiunte};
         vettOggSaving[index] = myObj;
     }
     var jsonDaX = JSON.stringify(vettOggSaving);
