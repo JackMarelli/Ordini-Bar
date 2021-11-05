@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.http.response import JsonResponse
 import json
 from .models import *
+from django.contrib.auth.decorators import user_passes_test
 
 # Create your views here.
 @login_required(login_url="/login")
@@ -25,6 +26,7 @@ def getProdottiView(request):
         item_dict["nome"] = item.nome
         item_dict["prezzo"] = item.prezzo
         item_dict["tipo"] = item.tipo
+        item_dict["aggiunte"] = item.aggiunte
         response_list.append(item_dict)
     return JsonResponse(response_list, safe = False)
 
@@ -39,7 +41,10 @@ def loginView(request):
                 if user is not None:
                     login(request, user)
                     messages.info(request, f"You are now logged in as {username}.")
-                    return redirect("ordinibar:index")
+                    if(request.user.is_superuser):
+                        return redirect("ordinibar:index_admin")
+                    else:
+                        return redirect("ordinibar:index")
                 else:
                     messages.error(request,"Invalid username or password.")
             else:
@@ -50,3 +55,18 @@ def loginView(request):
 @login_required(login_url="/login")
 def ordineView(request):
     return render(request=request, template_name="ordinibar/ordine.html")
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def indexAdminView(request):
+    return render(request=request, template_name='ordinibar/index_admin.html');
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def orderListAdminView(request):
+    order_list = Ordine.objects.all()
+    context = {
+        'order_list': order_list
+    }
+    return render(request=request, template_name='ordinibar/product_list.html', context=context);
+
