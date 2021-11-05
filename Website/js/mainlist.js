@@ -23,7 +23,10 @@ vettOggSaving[0] = null;
 
 function SalvaInLocalStorage(index) {
     localStorage.clear();
+
     if (quantita[index] == 0) {
+        vettOggSaving[index].quantita = 0;
+        checkZEROTWO();
         vettOggSaving[index] = null;
     }
     else {
@@ -40,6 +43,7 @@ function incrementa(nome) { //il parametro √® l'id del div contenete la quantit√
             var tmp = "#" + nome;
             var bloccoNumero = document.querySelector(tmp)
             bloccoNumero.textContent = quantita[i];
+            document.getElementById("coso").style.visibility = "visible";
             SalvaInLocalStorage(i);
             break;
         }
@@ -143,5 +147,23 @@ function caricaDaPagOrdine() {
                 bloccoNumero.textContent = vettOggSaving[i].quantita;
             }
         }
+    }
+}
+function checkZEROTWO(){
+    let evilRammus = "ok";
+    for (let i = 0; i < vettOggSaving.length; i++) {
+        if(vettOggSaving != null){
+            if(vettOggSaving[i].quantita != 0  ){
+                evilRammus = "not ok";
+                break;
+            }
+        }
+        else{
+            break;
+        }
+        
+    }
+    if(evilRammus == "ok"){
+        document.getElementById("coso").style.visibility = "hidden";
     }
 }
