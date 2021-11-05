@@ -1,9 +1,4 @@
 //checiu e maionese due bottoni, quando clicchi diventa sotto o grigio
-//orario diventa variabile
-//ricevo l'enco, prezzo totale, 
-//tutto invio al Server
-//da mainlist a ordine conservato il Server non fa nulla
-//json.getitem json
 
 //Si recupera il JSON dal localStorage
 const obj = JSON.parse(localStorage.getItem("json"));
@@ -85,7 +80,7 @@ function PassaggioAvanti(){
 }
 
 function PassaggioIndietro(){
-    //Si salva il JSON sul localstorage
-    
+    //Indico alla pagina precedente di caricare il JSON per non perdere i prodotti già inseriti
+    localStorage.setItem("caricaDaLocalStorage", true);
     window.location.href = "../pages/mainlist.html";
 }
