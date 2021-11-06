@@ -119,3 +119,5 @@ function DecrementaMaionese(){
         document.querySelector("#numeroMaionese").textContent = Maionese;
     }
 }
+
+//https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
