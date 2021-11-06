@@ -94,17 +94,15 @@
 }
 
 .buttons {
-  width: 100%;
   display: flex;
-  flex-flow: row;
-  justify-content: space-evenly;
-  margin: 50px 0 50px 0;
+  margin: 50px 20px 0 20px;
+  justify-content: space-between;
 }
 
 #conferma,
 #annulla {
   height: 47px;
-  width: 35%;
+  width: 45%;
 
   display: flex;
   justify-content: center;
@@ -141,7 +139,7 @@
 .orario {
   height: 50px;
   width: 90%;
-  margin: 20px auto 0 auto;
+  margin: 20px 20px 0 20px;
 }
 
 .orario p {
@@ -235,4 +233,11 @@
 
 #maionese .nome {
   border-bottom: 2px solid #d3bf70;
+  padding: 0 10px 0 0;
+}
+
+#ketchup .nome {
+  border-bottom: 2px solid var(--red);
+  padding: 0 10px 0 0;
+
 }
