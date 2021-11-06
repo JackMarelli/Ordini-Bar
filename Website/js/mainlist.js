@@ -1,5 +1,5 @@
 //json dal server (qui è di esempio)
-var json = '[{"nome":"Panino","prezzo":"2","aggiunte":true},{"nome":"Pizza_con_patatine","prezzo":"2,50","aggiunte":false},{"nome":"Panzerotto","prezzo":"1,50","aggiunte":false}]';
+var json = '[{"nome":"Panino","prezzo":"2","aggiunte":true},{"nome":"Pizza_con_patatine","prezzo":"2,50","aggiunte":false},{"nome":"Panzerotto","prezzo":"1,50","aggiunte":false},{"nome":"Pizza_liscia","prezzo":"2,50","aggiunte":false},{"nome":"Calzone","prezzo":"2","aggiunte":false},{"nome":"Focaccia","prezzo":"1","aggiunte":false},{"nome":"Panuozzo","prezzo":"3","aggiunte":true}]';
 
 //metodo per fare il parse del JSON
 const obj = JSON.parse(json);
@@ -70,7 +70,6 @@ function CaricaPagina() { //creazione della pagina web da codice
         funzione = "decrementa('" + nomeAttributo + "')";
         immagineMeno.setAttribute('onclick', funzione);
 
-
         //ora vado a inserire gli elementi nel body
         var divLista = document.querySelector(".lista");
 
@@ -131,8 +130,8 @@ function incrementa(nome) { //il parametro è l'id del div contenete la quantit�
             break;
         }
     }
-
 }
+
 function decrementa(nome) {  //il parametro è l'id del div contenete la quantità del determinato prodotto
     for (var i = 0; i < obj.length; i++) {
         if (obj[i].nome == nome) {
@@ -146,7 +145,6 @@ function decrementa(nome) {  //il parametro è l'id del div contenete la quantit
             break;
         }
     }
-
 }
 
 function SalvaInLocalStorage(index) { //salvo i dati nel localStorage
