@@ -1,10 +1,3 @@
-//checiu e maionese due bottoni, quando clicchi diventa sotto o grigio
-//orario diventa variabile
-//ricevo l'enco, prezzo totale, 
-//tutto invio al Server
-//da mainlist a ordine conservato il Server non fa nulla
-//json.getitem json
-
 //Si recupera il JSON dal localStorage
 const obj = JSON.parse(localStorage.getItem("json"));
 
@@ -15,6 +8,9 @@ obj.forEach(element => {
 });
 
 var Totale = 0;
+var MassimoKetchupMaionese = 0;
+var Ketchup = 0;
+var Maionese = 0;
 
 function CaricaPagina() {
     /*
@@ -40,6 +36,9 @@ function CaricaPagina() {
             
             //Si calcola il totale
             Totale += parseFloat(prezzoAttributo.toString().replace(",", "."))*parseFloat(quantitaAttributo);
+
+            //Si calcolano le aggiunte
+            if(obj[index].aggiunte == true) MassimoKetchupMaionese += quantitaAttributo*2;
             
             //Si creano i DIV
             const divProdotto = document.createElement("div");
@@ -80,12 +79,45 @@ function PassaggioAvanti(){
     if(document.getElementById("orarioRitiro").value != "") {
         localStorage.setItem("totale", Totale);
         localStorage.setItem("orario", document.getElementById("orarioRitiro").value);
+        localStorage.setItem("ketchup", Ketchup);
+        localStorage.setItem("maionese", Maionese);
         window.location.href = "../pages/ordine_confirmed.html";
     }
 }
 
 function PassaggioIndietro(){
-    //Si salva il JSON sul localstorage
+    //Indico alla pagina precedente di caricare il JSON per non perdere i prodotti già inseriti
     localStorage.setItem("caricaDaLocalStorage", true);
     window.location.href = "/";
 }
+
+//Funzioni per incrementare e decrementare le quantità di Ketchup e Maionese -> Il valore massimo è il complessivo dei due
+function IncrementaKetchup(){
+    if(Ketchup + 1 + Maionese <= MassimoKetchupMaionese){
+        Ketchup++;
+        document.querySelector("#numeroKetchup").textContent = Ketchup;
+    }
+}
+
+function DecrementaKetchup(){
+    if(Ketchup - 1 >= 0){
+        Ketchup--;
+        document.querySelector("#numeroKetchup").textContent = Ketchup;
+    }
+}
+
+function IncrementaMaionese(){
+    if(Maionese + 1 + Ketchup <= MassimoKetchupMaionese){
+        Maionese++;
+        document.querySelector("#numeroMaionese").textContent = Maionese;
+    }
+}
+
+function DecrementaMaionese(){
+    if(Maionese - 1 >= 0){
+        Maionese--;
+        document.querySelector("#numeroMaionese").textContent = Maionese;
+    }
+}
+
+//https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event

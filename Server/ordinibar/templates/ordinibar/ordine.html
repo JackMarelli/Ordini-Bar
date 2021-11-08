@@ -14,10 +14,10 @@
   <body onload="CaricaPagina()">
     <div id="overlaymenu" class="overlaymenu">
       <div class="backicon">
-        <img src="../images/back.png" alt="" onclick="overlayTranslateOut()" />
+        <img src="{%static 'ordinibar/img/back.png'%}" alt="" onclick="overlayTranslateOut()" />
       </div>
       <div class="options">
-        <div class="option">Account</div>
+        <div class="option"><a href="/account">Account</a></div>
         <div class="option">Ordina per</div>
         <div class="option">Visualizza stati</div>
       </div>
@@ -26,7 +26,7 @@
       <div class="menubutton">
         <img
           id="menubutton"
-          src="../images/menuicon.svg"
+          src="{%static 'ordinibar/img/menuicon.svg'%}"
           alt=""
           onclick="overlayTranslateIn()"
         />
@@ -39,16 +39,42 @@
         </div>
         <div id="totale" class="totale"></div>
         <div class="aggiunte">
-          <div id="ketchup">Ketchup</div>
-          <div id="maionese">Maionese</div>
+          <div class="aggiunta" id="ketchup">
+            <div class="prop">
+              <div class="nome">Ketchup</div>
+            </div>
+            <div class="aggiunta_quantity">
+              <div class="minus" onclick="DecrementaKetchup()">
+                <img src="{% static 'ordinibar/img/minusicon.png' %}" alt="" srcset="" />
+              </div>
+              <div class="number">0</div>
+              <div class="plus" onclick = "IncrementaKetchup()">
+                <img src="{% static 'ordinibar/img/plusicon.svg' %}" alt="" srcset="" />
+              </div>
+            </div>
+          </div>
+          <div class="aggiunta" id="maionese">
+            <div class="prop">
+              <div class="nome">Maionese</div>
+            </div>
+            <div class="aggiunta_quantity">
+              <div class="minus">
+                <img src="{% static 'ordinibar/img/minusicon.png' %}" alt="" srcset="" />
+              </div>
+              <div class="number">0</div>
+              <div class="plus">
+                <img src="{% static 'ordinibar/img/plusicon.svg' %}" alt="" srcset="" />
+              </div>
+            </div>
+          </div>
         </div>
         <div class="orario">
           <p>Scegli un orario di ritiro:</p>
           <input type="time" id="orarioRitiro" />
         </div>
         <div class="buttons">
-          <div id="conferma">
-            <div onclick="PassaggioAvanti()">Conferma</div>
+          <div id="conferma" class="disabled">
+            <div id = "conferma" onclick="PassaggioAvanti()" >Conferma</div>
           </div>
           <div id="annulla" onclick="PassaggioIndietro()">
             <div >Annulla</div>

@@ -2,7 +2,7 @@ var x = 0;
 var vettore_salato = [];//vettore contenente l'elenco dei prodotti salati e le relative quantità selezionate
 var vettore_dolce = [];//vettore contenente l'elenco dei prodotti dolci e le relative quantità selezionate
 var tipologia_selezionata = "";//Tipologia di prodotto attualmente selezionata (salato/dolce)
-var vettOggSaving = [];
+var prodottiLocalStorage = [];
 
 function cambia_tipologia(tipologia) {
     tipologia_selezionata = tipologia;
@@ -51,32 +51,55 @@ function SalvaInLocalStorage(index) {
     obj = [].concat(vettore_salato, vettore_dolce);
     //alert(JSON.stringify(obj));
     var myObj = { "nome": obj[index].nome, "prezzo": obj[index].prezzo, "quantita": obj[index].quantita, "tipologia": tipologia };
-    vettOggSaving[index] = myObj;
-    var jsonDaX = JSON.stringify(vettOggSaving);
+    prodottiLocalStorage[index] = myObj;
+    var jsonDaX = JSON.stringify(prodottiLocalStorage);
     localStorage.setItem("json", jsonDaX);
 }
 
 function load_inizio() {
     //localStorage.clear();//cancello svuoto il localstorage
 
-    vettOggSaving[0] = null;
+    prodottiLocalStorage[0] = null;
     //riempio i 2 vettori
     $.when(carica_salato(), carica_dolce()).done(function (ajax1Results, ajax2Results) {
         tipologia_selezionata = "salato";
         caricaDaPagOrdine();
         CaricaPagina(vettore_salato);
+        checkZero();
     });
 
+}
+
+function checkZero() { //controlla se tutti i prodotti sono impostati a 0 e se sono impostati a 0 fa scomparire il pulsante di conferma
+    let togli = true; 
+    for (let i = 0; i < prodottiLocalStorage.length; i++) {
+        //controlle che il vettore di oggetti non sia nullo
+        if (prodottiLocalStorage[i] != null) {
+            //se non è nullo ora controllo se la quantità sia diversa da 0
+            if (prodottiLocalStorage[i].quantita != 0) {
+                //se c'è un prodotto diverso da 0 interrompe il ciclo
+                togli = false;
+                break;
+            }
+        }
+    }
+    //vado a togliere il bottone DONE se tutto è andato a buon fine
+    if (togli == true) {
+        document.getElementById("done").style.visibility = "hidden";
+    }
+    else{
+        document.getElementById("done").style.visibility = "visible";
+    }
 }
 
 function caricaDaPagOrdine() {
     var carica = localStorage.getItem("caricaDaLocalStorage");
     if (carica == "true") {
         localStorage.setItem("caricaDaLocalStorage", false);
-        vettOggSaving = JSON.parse(localStorage.getItem("json"));
-        for (var i = 0; i < vettOggSaving.length; i++) {
-            if (vettOggSaving[i] != null) {
-                obj = vettOggSaving[i];
+        prodottiLocalStorage = JSON.parse(localStorage.getItem("json"));
+        for (var i = 0; i < prodottiLocalStorage.length; i++) {
+            if (prodottiLocalStorage[i] != null) {
+                obj = prodottiLocalStorage[i];
                 //se l'elemento è salato
                 if (obj.tipologia == 'salato') {
                     for (let i = 0; i < vettore_salato.length; i++) {
@@ -158,6 +181,7 @@ function incrementa(nome) { //il parametro è l'id del div contenete la quantit�
             break;
         }
     }
+    checkZero();
 }
 
 function decrementa(nome) {  //il parametro è l'id del div contenete la quantità del determinato prodotto
@@ -185,6 +209,7 @@ function decrementa(nome) {  //il parametro è l'id del div contenete la quantit
             break;
         }
     }
+    checkZero();
 
 }
 
