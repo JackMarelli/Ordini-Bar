@@ -1,0 +1,44 @@
+:root {
+    --red: #ff4136;
+    --grayA: #aaaaaa;
+    --grayC: #c4c4c4;
+    --grayD: #dddddd;
+    --grayE: #eeeeee;
+    --black: #000000;
+    --white: #ffffff;
+  }
+
+#content {
+    margin: 35px 0 35px 35px;
+    display: flex;
+    flex-flow: column;
+    height: 90%;
+    width: fit-content;
+    justify-content: space-between;
+}
+
+#account {
+    font-size: 44px;
+}
+
+.title {
+    font-size: 24px;
+    color: var(--grayA);
+}
+
+.dato {
+    font-size: 16px;
+    margin: 0 0 10px 0;
+}
+
+.action {
+    text-decoration: underline;
+}
+
+.action-red {
+    color: var(--red);
+}
+
+.action a{
+    color:black;
+}

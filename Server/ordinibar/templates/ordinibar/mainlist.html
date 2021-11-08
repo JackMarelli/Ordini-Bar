@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{%static 'ordinibar/css/mainlist.css'%}" />
   <script src="{% static 'ordinibar/js/animazioni.js' %}"></script>
   <script src="{% static 'ordinibar/js/mainlist.js' %}"></script>
+  <link rel = "shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
 </head>
 
 <body onload="load_inizio()">
@@ -20,7 +21,7 @@
       <img src="{%static 'ordinibar/img/back.png'%}" alt="" onclick="overlayTranslateOut()" />
     </div>
     <div class="options">
-      <div class="option">Account</div>
+      <div class="option"><a href="/account">Account</a></div>
       <div class="option">Ordina per</div>
       <div class="option">Visualizza stati</div>
     </div>

@@ -4,13 +4,13 @@ var vettore_dolce = [];//vettore contenente l'elenco dei prodotti dolci e le rel
 var tipologia_selezionata = "";//Tipologia di prodotto attualmente selezionata (salato/dolce)
 var vettOggSaving = [];
 
-function cambia_tipologia(tipologia){
+function cambia_tipologia(tipologia) {
     tipologia_selezionata = tipologia;
     document.querySelector(".lista").innerHTML = '';
-    if(tipologia == "salato"){
+    if (tipologia == "salato") {
         CaricaPagina(vettore_salato);
     }
-    else{
+    else {
         CaricaPagina(vettore_dolce);
     }
 }
@@ -19,10 +19,10 @@ function search_element() {
 
     var obj;
 
-    if(tipologia_selezionata == "salato"){
+    if (tipologia_selezionata == "salato") {
         obj = vettore_salato;
     }
-    else{
+    else {
         obj = vettore_dolce;
     }
 
@@ -43,28 +43,65 @@ function search_element() {
 
 function SalvaInLocalStorage(index) {
     localStorage.clear();
-    if(tipologia_selezionata == "dolce"){
+    var tipologia = "salato";
+    if (tipologia_selezionata == "dolce") {
         index = vettore_salato.length + index;
+        tipologia = "dolce";
     }
-    obj = [].concat(vettore_salato,vettore_dolce);
+    obj = [].concat(vettore_salato, vettore_dolce);
     //alert(JSON.stringify(obj));
-    var myObj = { "nome": obj[index].nome, "prezzo": obj[index].prezzo, "quantita": obj[index].quantita };
+    var myObj = { "nome": obj[index].nome, "prezzo": obj[index].prezzo, "quantita": obj[index].quantita, "tipologia": tipologia };
     vettOggSaving[index] = myObj;
     var jsonDaX = JSON.stringify(vettOggSaving);
     localStorage.setItem("json", jsonDaX);
 }
 
 function load_inizio() {
-    localStorage.clear();//cancello svuoto il localstorage
+    //localStorage.clear();//cancello svuoto il localstorage
+
+    vettOggSaving[0] = null;
     //riempio i 2 vettori
-    $.when(carica_salato(), carica_dolce()).done(function(ajax1Results,ajax2Results){
+    $.when(carica_salato(), carica_dolce()).done(function (ajax1Results, ajax2Results) {
         tipologia_selezionata = "salato";
+        caricaDaPagOrdine();
         CaricaPagina(vettore_salato);
     });
-    
+
 }
 
-function carica_salato(){
+function caricaDaPagOrdine() {
+    var carica = localStorage.getItem("caricaDaLocalStorage");
+    if (carica == "true") {
+        localStorage.setItem("caricaDaLocalStorage", false);
+        vettOggSaving = JSON.parse(localStorage.getItem("json"));
+        for (var i = 0; i < vettOggSaving.length; i++) {
+            if (vettOggSaving[i] != null) {
+                obj = vettOggSaving[i];
+                //se l'elemento è salato
+                if (obj.tipologia == 'salato') {
+                    for (let i = 0; i < vettore_salato.length; i++) {
+                        if(vettore_salato[i].nome == obj.nome){
+                            vettore_salato[i].quantita = obj.quantita;
+                        }
+                    }
+                }
+                //se l'elemento è dolce
+                if (obj.tipologia == 'dolce') {
+                    for (let i = 0; i < vettore_dolce.length; i++) {
+                        if(vettore_dolce[i].nome == obj.nome){
+                            vettore_dolce[i].quantita = obj.quantita;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else {
+        localStorage.clear();
+    }
+}
+
+function carica_salato() {
     return $.ajax({
         url: "/index/getitemlist",
         type: "POST",
@@ -72,8 +109,8 @@ function carica_salato(){
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
                 vettore_salato[i] = {
-                    nome:response[i].nome,
-                    quantita:0,
+                    nome: response[i].nome,
+                    quantita: 0,
                     prezzo: response[i].prezzo,
                 }
             }
@@ -81,7 +118,7 @@ function carica_salato(){
     });
 }
 
-function carica_dolce(){
+function carica_dolce() {
     return $.ajax({
         url: "/index/getitemlist",
         type: "POST",
@@ -89,8 +126,8 @@ function carica_dolce(){
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
                 vettore_dolce[i] = {
-                    nome:response[i].nome,
-                    quantita:0,
+                    nome: response[i].nome,
+                    quantita: 0,
                     prezzo: response[i].prezzo,
                 }
             }
@@ -102,10 +139,10 @@ function incrementa(nome) { //il parametro è l'id del div contenete la quantit�
 
     var obj;
 
-    if(tipologia_selezionata == "salato"){
+    if (tipologia_selezionata == "salato") {
         obj = vettore_salato;
     }
-    else{
+    else {
         obj = vettore_dolce;
     }
 
@@ -127,10 +164,10 @@ function decrementa(nome) {  //il parametro è l'id del div contenete la quantit
 
     var obj;
 
-    if(tipologia_selezionata == "salato"){
+    if (tipologia_selezionata == "salato") {
         obj = vettore_salato;
     }
-    else{
+    else {
         obj = vettore_dolce;
     }
 

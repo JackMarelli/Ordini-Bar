@@ -1,0 +1,37 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RedMenu</title>
+    <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}" />
+    <link rel="stylesheet" href="{%static 'ordinibar/css/account.css'%}" />
+    <link rel = "shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
+  </head>
+  <body>
+    <div id="content">
+      <div><a href="javascript:history.back()">
+      <img  src="{% static 'ordinibar/img/back-black.png' %}" alt="" onclick="overlayTranslateOut()" />
+    </a> <div id="account">Account</div>
+        <div id="dati">
+          <info>
+            <p class="title">Email</p>
+            <p class="dato">{{user.email}}</p>
+          </info>
+          <info>
+            <p class="title">Nome Utente</p>
+            <p class="dato">{{user.username}}</p>
+          </info>
+        </div>
+      </div>
+      <div id="actions">
+        <p class="action">Visualizza cronologia ordini</p>
+        <p class="action">Visualizza QR utente</p>
+        <p class="action">Cambia email</p>
+        <p class="action action-red">Cambia password</p>
+        <p class="action"><a href="/logout">Log out</a></p>
+      </div>
+    </div>
+  </body>
+</html>

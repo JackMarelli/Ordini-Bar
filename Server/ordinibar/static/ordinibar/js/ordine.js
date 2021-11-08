@@ -86,5 +86,6 @@ function PassaggioAvanti(){
 
 function PassaggioIndietro(){
     //Si salva il JSON sul localstorage
+    localStorage.setItem("caricaDaLocalStorage", true);
     window.location.href = "/";
 }
