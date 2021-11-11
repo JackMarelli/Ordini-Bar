@@ -33,6 +33,7 @@
 
 .action {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .action-red {
