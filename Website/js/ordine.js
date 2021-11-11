@@ -72,6 +72,53 @@ function CaricaPagina() {
 
     //Si visualizza il prezzo totale dell'ordine
     document.getElementById("totale").innerHTML = Totale + "€";
+
+    if(MassimoKetchupMaionese != 0){
+        CreazioneCampiKetchupMaionese("ketchup", "Ketchup", "DecrementaKetchup()", "numeroKetchup", "IncrementaKetchup()");
+        CreazioneCampiKetchupMaionese("maionese", "Maionese", "DecrementaMaionese()", "numeroMaionese", "IncrementaMaionese()");
+    }
+}
+
+function CreazioneCampiKetchupMaionese(idAggiunta, innerNome, onclickImgM, idNumber, onclickImgP){
+    //Si creano i DIV
+    const divAggiunta = document.createElement("div");
+    const divProp = document.createElement("div");
+        const divNome = document.createElement("div");
+    const divAggiuntaQuantity = document.createElement("div");
+        const divMinus = document.createElement("div");
+            const divImgM = document.createElement("img");
+        const divNumber = document.createElement("div");
+        const divPlus = document.createElement("div");
+            const divImgP = document.createElement("img");
+
+    //Si impostano le classi ai DIV
+    divAggiunta.setAttribute("class", "aggiunta");
+    divAggiunta.setAttribute("id", idAggiunta); //CAMBIA
+    divProp.setAttribute("class", "prop");
+    divNome.setAttribute("class", "nome");
+        divNome.innerHTML = innerNome; //CAMBIA
+    divAggiuntaQuantity.setAttribute("class", "aggiunta_quantity");
+    divMinus.setAttribute("class", "minus");
+        divImgM.setAttribute("src", "../images/minusicon.png");
+        divImgM.setAttribute("onclick", onclickImgM); //CAMBIA
+    divNumber.setAttribute("class", "number");
+    divNumber.setAttribute("id", idNumber); //CAMBIA
+    divNumber.innerHTML = "0";
+    divPlus.setAttribute("class", "plus");
+        divImgP.setAttribute("src", "../images/plusicon.svg");
+        divImgP.setAttribute("onclick", onclickImgP); //CAMBIA
+
+    //Si inseriscono gli elementi nel body
+    var divContainer = document.getElementById("containerKetchupMaionese");
+    divContainer.appendChild(divAggiunta);
+        divAggiunta.appendChild(divProp);
+            divProp.appendChild(divNome);
+        divAggiunta.appendChild(divAggiuntaQuantity);
+            divAggiuntaQuantity.appendChild(divMinus);
+                divMinus.appendChild(divImgM);
+            divAggiuntaQuantity.appendChild(divNumber);
+            divAggiuntaQuantity.appendChild(divPlus);
+                divPlus.appendChild(divImgP);
 }
 
 function PassaggioAvanti(){
@@ -119,5 +166,7 @@ function DecrementaMaionese(){
         document.querySelector("#numeroMaionese").textContent = Maionese;
     }
 }
+
+
 
 //https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
