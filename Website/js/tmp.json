@@ -3,12 +3,13 @@
         "ordine":[{
             "nome": "Pizza_con_patatine",
             "prezzo": "2,50",
-            
+            "quantita":"2",
             "aggiunte": false
         },
         {
             "nome":"Panino",
             "prezzo":"2",
+            "quantita":"1",
             "aggiunte":true
         }]
     },
@@ -16,15 +17,18 @@
         "ordine":[{
             "nome": "Pizza_con_patatine",
             "prezzo": "2,50",
+            "quantita":"3",
             "aggiunte": false
         },
         {
             "nome":"Panino",
             "prezzo":"2",
+            "quantita":"1",
             "aggiunte":true
         },
         {
             "nome":"Panzerotto",
+            "quantita":"1",
             "prezzo":"1,50",
             "aggiunte":false
         }] 
@@ -32,21 +36,25 @@
     {
         "ordine":[{
             "nome": "Pizza_con_patatine",
+            "quantita":"1",
             "prezzo": "2,50",
             "aggiunte": false
         },
         {
             "nome":"Panino",
+            "quantita":"1",
             "prezzo":"2",
             "aggiunte":true
         },
         {
             "nome":"Panzerotto",
+            "quantita":"1",
             "prezzo":"1,50",
             "aggiunte":false
         },
         {
             "nome":"Calzone",
+            "quantita":"1",
             "prezzo":"2",
             "aggiunte":false
         }] 
