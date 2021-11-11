@@ -68,15 +68,15 @@ function CaricaPagina() {
                 divProdotto.appendChild(divQuantity);
                     divQuantity.appendChild(divNumber);
         }       
-    }    
-
-    //Si visualizza il prezzo totale dell'ordine
-    document.getElementById("totale").innerHTML = Totale + "€";
+    }
 
     if(MassimoKetchupMaionese != 0){
         CreazioneCampiKetchupMaionese("ketchup", "Ketchup", "DecrementaKetchup()", "numeroKetchup", "IncrementaKetchup()");
         CreazioneCampiKetchupMaionese("maionese", "Maionese", "DecrementaMaionese()", "numeroMaionese", "IncrementaMaionese()");
     }
+
+    //Si visualizza il prezzo totale dell'ordine
+    document.getElementById("totale").innerHTML = Totale + "€";
 }
 
 function CreazioneCampiKetchupMaionese(idAggiunta, innerNome, onclickImgM, idNumber, onclickImgP){
@@ -93,20 +93,20 @@ function CreazioneCampiKetchupMaionese(idAggiunta, innerNome, onclickImgM, idNum
 
     //Si impostano le classi ai DIV
     divAggiunta.setAttribute("class", "aggiunta");
-    divAggiunta.setAttribute("id", idAggiunta); //CAMBIA
+    divAggiunta.setAttribute("id", idAggiunta);
     divProp.setAttribute("class", "prop");
     divNome.setAttribute("class", "nome");
-        divNome.innerHTML = innerNome; //CAMBIA
+        divNome.innerHTML = innerNome;
     divAggiuntaQuantity.setAttribute("class", "aggiunta_quantity");
     divMinus.setAttribute("class", "minus");
         divImgM.setAttribute("src", "../images/minusicon.png");
-        divImgM.setAttribute("onclick", onclickImgM); //CAMBIA
+        divImgM.setAttribute("onclick", onclickImgM);
     divNumber.setAttribute("class", "number");
-    divNumber.setAttribute("id", idNumber); //CAMBIA
+    divNumber.setAttribute("id", idNumber);
     divNumber.innerHTML = "0";
     divPlus.setAttribute("class", "plus");
         divImgP.setAttribute("src", "../images/plusicon.svg");
-        divImgP.setAttribute("onclick", onclickImgP); //CAMBIA
+        divImgP.setAttribute("onclick", onclickImgP);
 
     //Si inseriscono gli elementi nel body
     var divContainer = document.getElementById("containerKetchupMaionese");
@@ -122,7 +122,7 @@ function CreazioneCampiKetchupMaionese(idAggiunta, innerNome, onclickImgM, idNum
 }
 
 function PassaggioAvanti(){
-    //Se i dati sono corretti passo alla pagina successiva
+    //Se i dati sono corretti si passa alla pagina successiva
     if(document.getElementById("orarioRitiro").value != "") {
         localStorage.setItem("totale", Totale);
         localStorage.setItem("orario", document.getElementById("orarioRitiro").value);
@@ -135,6 +135,7 @@ function PassaggioAvanti(){
 function PassaggioIndietro(){
     //Indico alla pagina precedente di caricare il JSON per non perdere i prodotti già inseriti
     localStorage.setItem("caricaDaLocalStorage", true);
+    //Ritorno alla pagina precedente
     window.location.href = "../pages/mainlist.html";
 }
 
@@ -166,7 +167,3 @@ function DecrementaMaionese(){
         document.querySelector("#numeroMaionese").textContent = Maionese;
     }
 }
-
-
-
-//https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
