@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../css/ordine.css" />
     <script src="../js/animazioni.js"></script>
     <script src="../js/ordine_confirmed.js"></script>
+    <script type="text/javascript" src="jquery.qrcode.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
   </head>
   <body onload="CaricaPagina()">
     <div id="overlaymenu" class="overlaymenu">
@@ -36,7 +38,9 @@
           <div id="prezzo"></div>
           <div id="orario"></div>
         </div>
-        <div id="qr"><img src="../images/qrtestimage.svg" alt="" /></div>
+        <div id="qr">
+          <!-- CONTENUTO -->
+        </div>        
         <div class="home">
           <div onclick="PassaggioIndietro()">Home</div>
         </div>
