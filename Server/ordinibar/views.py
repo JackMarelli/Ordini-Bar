@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import render, redirect
+from django.http import response
+from django.shortcuts import render, redirect, resolve_url
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
@@ -57,12 +58,63 @@ def ordineView(request):
     return render(request=request, template_name="ordinibar/ordine.html")
 
 @login_required(login_url="/login")
+def inviaOrdine(request):
+    request_dict = json.loads(request.body.decode('UTF-8'))
+    print(request.body.decode('UTF-8'))
+    ordine = Ordine()
+
+    lista_prodotti = request_dict['lista_prodotti']
+    orario = request_dict['orario']
+    numero_ketchup = request_dict['ketchup']
+    numero_maionesi = request_dict['maionesi']
+
+    ordine.orario = orario
+    ordine.numero_ketchup = numero_ketchup
+    ordine.numero_maionesi = numero_maionesi
+    ordine.id_utente = request.user.id
+    ordine.save()
+
+    for prodotto in lista_prodotti:
+        print(prodotto)
+        nome = prodotto["nome"]
+        quantita = prodotto["quantita"]
+        prodotto_da_vendere = ProdottoDaVendere.objects.filter(nome = nome).last()
+        print(prodotto_da_vendere, quantita)
+        # if prodotto_da_vendere == None:
+        #     response = dict()
+        #     response["result"] = False
+        #     return JsonResponse(response, safe=False)
+
+        p = ProdottoOrdinato.objects.create(id_prodotto = prodotto_da_vendere.pk, quantita = quantita)
+        ordine.lista_prodotti.add(p)
+
+    
+
+    response = dict()
+    response["result"] = True
+    
+    return JsonResponse(response, safe=False)
+
+@login_required(login_url="/login")
+def getLastUserOrder(request):
+    user = request.user
+    pk = Ordine.objects.filter(id_utente = user.pk).last().pk
+
+    response_dict = dict()
+    response_dict['primary_key'] = pk
+    return JsonResponse(response_dict, safe=False)
+
+@login_required(login_url="/login")
 def accountView(request):
     return render(request=request, template_name='ordinibar/account.html')
 
 def logoutView(request):
     logout(request)
     return redirect("ordinibar:index")
+
+@login_required(login_url="/login")
+def ordineConfermatoView(request):
+    return render(request=request, template_name="ordinibar/ordine_confirmed.html")
 
 @login_required(login_url="/login")
 def getListOrdini(request):
@@ -85,4 +137,6 @@ def getListOrdini(request):
         return_list.append(dict_ordine)
     
     return JsonResponse(return_list, safe= False)
+
+
         

@@ -12,7 +12,11 @@ urlpatterns = [
     path('login', views.loginView, name = 'login' ),
     path('index/getitemlist', views.getProdottiView, name = 'get_item_list'),
     path('ordine', views.ordineView, name = 'ordine'),
+    path('ordine/inviaordine', views.inviaOrdine, name = "invia_ordine"),
     path('account', views.accountView, name = 'account'),
+    path('ordineconfermato', views.ordineConfermatoView, name = 'ordine_confermato'),
+    path('ordineconfermato/getlastpk', views.getLastUserOrder, name = 'get_last_pk'),
+
     path('listaOrdini/getListaOrdini', views.getListOrdini, name = "get_order_list"),
     #admin pages
     path('administration', admin_views.indexAdminView, name = 'index_admin'),

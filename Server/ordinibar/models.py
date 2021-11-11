@@ -14,7 +14,7 @@ class ProdottoDaVendere(models.Model):
         verbose_name_plural = 'ProdottiDaVendere'
 
 class ProdottoOrdinato(models.Model):#prodotto che è stato ordinato
-    prodotto = models.OneToOneField(ProdottoDaVendere, on_delete=models.DO_NOTHING,)
+    id_prodotto = models.IntegerField(default=0)
     quantita = models.IntegerField(default= 0)
 
     class Meta:
@@ -25,9 +25,10 @@ class Ordine(models.Model):#lista dei prodotti presenti in un ordine
     numero_ketchup = models.IntegerField()
     numero_maionesi = models.IntegerField()
     lista_prodotti = models.ManyToManyField(ProdottoOrdinato)
-    nome_utente = models.OneToOneField(User, on_delete=models.DO_NOTHING,)
-    stato = models.CharField(max_length=25)
-    data = models.DateTimeField(auto_now= True)
+    id_utente = models.IntegerField(default=0)
+    stato = models.CharField(max_length=25, blank=True)
+    orario = models.TimeField(default=0)
+    data = models.DateField(auto_now=True)
 
     class Meta:
         verbose_name = 'Ordine'

@@ -169,10 +169,63 @@ function time_changed() {
 function PassaggioAvanti() {
     //Se i dati sono corretti si passa alla pagina successiva
     if (document.getElementById("orarioRitiro").value != "" && document.getElementById("orarioRitiro").value != null) {
-        localStorage.setItem("totale", Totale);
-        localStorage.setItem("orario", document.getElementById("orarioRitiro").value);
-        localStorage.setItem("ketchup", Ketchup);
-        localStorage.setItem("maionese", Maionese);
-        window.location.href = "../pages/ordine_confirmed.html";//--->TO CHANGE
+
+        var request_obj = []
+
+        for (let i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+                request_obj.push(obj[i]);
+            }
+        }
+
+        var request_data = {
+            orario: document.getElementById("orarioRitiro").value,
+            ketchup: Ketchup,
+            maionesi: Maionese,
+            lista_prodotti: request_obj,
+        };
+
+        var request_string = JSON.stringify(request_data);
+        //alert(request_string);
+
+        $.ajaxSetup({
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken")
+            }
+        });
+
+        $.ajax({
+            url: "/ordine/inviaordine",
+            type: "POST",
+            data: request_string,
+            success: function (ajax_results) {
+                if (ajax_results.result == true) {
+                    localStorage.setItem("totale", Totale);
+                    localStorage.setItem("orario", document.getElementById("orarioRitiro").value);
+                    localStorage.setItem("ketchup", Ketchup);
+                    localStorage.setItem("maionese", Maionese);
+                    localStorage.setItem("primaryKey", "001");
+                    window.location.href = "/ordineconfermato";
+                }
+            }
+        });
     }
+}
+
+
+function getCookie(name) {
+    var dc = document.cookie;
+    var prefix = name + "=";
+    var begin = dc.indexOf("; " + prefix);
+    if (begin == -1) {
+        begin = dc.indexOf(prefix);
+        if (begin != 0) return null;
+    } else {
+        begin += 2;
+    }
+    var end = document.cookie.indexOf(";", begin);
+    if (end == -1) {
+        end = dc.length;
+    }
+    return unescape(dc.substring(begin + prefix.length, end));
 }
