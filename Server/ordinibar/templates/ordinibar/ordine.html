@@ -1,86 +1,61 @@
 {% load static %}
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Red Menu</title>
-    <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}" />
-    <link rel="stylesheet" href="{%static 'ordinibar/css/ordine.css' %}" />
-    <script src="{% static 'ordinibar/js/animazioni.js' %}"></script>
-    <script src="{% static 'ordinibar/js/ordine.js' %}"></script>
-    <link rel = "shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
-  </head>
-  <body onload="CaricaPagina()">
-    <div id="overlaymenu" class="overlaymenu">
-      <div class="backicon">
-        <img src="{%static 'ordinibar/img/back.png'%}" alt="" onclick="overlayTranslateOut()" />
-      </div>
-      <div class="options">
-        <div class="option"><a href="/account">Account</a></div>
-        <div class="option">Ordina per</div>
-        <div class="option">Visualizza stati</div>
-      </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Red Menu</title>
+  <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}" />
+  <link rel="stylesheet" href="{%static 'ordinibar/css/ordine.css' %}" />
+  <script src="{% static 'ordinibar/js/animazioni.js' %}"></script>
+  <script src="{% static 'ordinibar/js/ordine.js' %}"></script>
+  <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
+</head>
+
+<body onload="CaricaPagina()">
+  <div id="overlaymenu" class="overlaymenu">
+    <div class="backicon">
+      <img src="{%static 'ordinibar/img/back.png'%}" alt="" onclick="overlayTranslateOut()" />
     </div>
-    <div class="redcontainer">
-      <div class="menubutton">
-        <img
-          id="menubutton"
-          src="{%static 'ordinibar/img/menuicon.svg'%}"
-          alt=""
-          onclick="overlayTranslateIn()"
-        />
+    <div class="options">
+      <div class="option"><a href="/account">Account</a></div>
+      <div class="option">Ordina per</div>
+      <div class="option">Visualizza stati</div>
+    </div>
+  </div>
+  <div class="redcontainer">
+    <div class="menubutton">
+      <img id="menubutton" src="{%static 'ordinibar/img/menuicon.svg'%}" alt="" onclick="overlayTranslateIn()" />
+    </div>
+
+    <!-- WHITE CONTAINER START -->
+    <div class="whitecontainer">
+      <div class="gradient"></div>
+      <p>Ordine</p>
+      <div class="lista">
+        <!-- CONTENUTO -->
       </div>
-      <div class="whitecontainer">
-        <div class="gradient"></div>
-        <p>Ordine</p>
-        <div class="lista">
+      <div id="totale" class="totale"></div>
+      <div class="aggiunte">
+        <div id="containerKetchupMaionese">
           <!-- CONTENUTO -->
-        </div>
-        <div id="totale" class="totale"></div>
-        <div class="aggiunte">
-          <div class="aggiunta" id="ketchup">
-            <div class="prop">
-              <div class="nome">Ketchup</div>
-            </div>
-            <div class="aggiunta_quantity">
-              <div class="minus" onclick="DecrementaKetchup()">
-                <img src="{% static 'ordinibar/img/minusicon.png' %}" alt="" srcset="" />
-              </div>
-              <div class="number">0</div>
-              <div class="plus" onclick = "IncrementaKetchup()">
-                <img src="{% static 'ordinibar/img/plusicon.svg' %}" alt="" srcset="" />
-              </div>
-            </div>
-          </div>
-          <div class="aggiunta" id="maionese">
-            <div class="prop">
-              <div class="nome">Maionese</div>
-            </div>
-            <div class="aggiunta_quantity">
-              <div class="minus">
-                <img src="{% static 'ordinibar/img/minusicon.png' %}" alt="" srcset="" />
-              </div>
-              <div class="number">0</div>
-              <div class="plus">
-                <img src="{% static 'ordinibar/img/plusicon.svg' %}" alt="" srcset="" />
-              </div>
-            </div>
-          </div>
         </div>
         <div class="orario">
           <p>Scegli un orario di ritiro:</p>
-          <input type="time" id="orarioRitiro" />
+          <input type="time" id="orarioRitiro" onchange="time_changed()" />
         </div>
         <div class="buttons">
-          <div id="conferma" class="disabled">
-            <div id = "conferma" onclick="PassaggioAvanti()" >Conferma</div>
+          <div class="disabled" id="conferma" onclick="PassaggioAvanti()">
+            <div>Conferma</div>
           </div>
-          <div id="annulla" onclick="PassaggioIndietro()">
-            <div >Annulla</div>
+          <div class="enabled" id="annulla" onclick="PassaggioIndietro()">
+            <div>Annulla</div>
           </div>
         </div>
       </div>
+      <!-- WHITE CONTAINER END -->
     </div>
-  </body>
+</body>
+
 </html>

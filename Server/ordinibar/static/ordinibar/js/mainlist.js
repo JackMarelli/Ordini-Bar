@@ -50,7 +50,7 @@ function SalvaInLocalStorage(index) {
     }
     obj = [].concat(vettore_salato, vettore_dolce);
     //alert(JSON.stringify(obj));
-    var myObj = { "nome": obj[index].nome, "prezzo": obj[index].prezzo, "quantita": obj[index].quantita, "tipologia": tipologia };
+    var myObj = { "nome": obj[index].nome, "prezzo": obj[index].prezzo, "quantita": obj[index].quantita, "tipologia": tipologia, "aggiunte": obj[index].aggiunte };
     prodottiLocalStorage[index] = myObj;
     var jsonDaX = JSON.stringify(prodottiLocalStorage);
     localStorage.setItem("json", jsonDaX);
@@ -135,6 +135,7 @@ function carica_salato() {
                     nome: response[i].nome,
                     quantita: 0,
                     prezzo: response[i].prezzo,
+                    aggiunte: response[i].aggiunte,
                 }
             }
         }
@@ -152,6 +153,7 @@ function carica_dolce() {
                     nome: response[i].nome,
                     quantita: 0,
                     prezzo: response[i].prezzo,
+                    aggiunte: response[i].aggiunte,
                 }
             }
         }
