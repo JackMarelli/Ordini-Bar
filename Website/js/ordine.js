@@ -68,14 +68,61 @@ function CaricaPagina() {
                 divProdotto.appendChild(divQuantity);
                     divQuantity.appendChild(divNumber);
         }       
-    }    
+    }
+
+    if(MassimoKetchupMaionese != 0){
+        CreazioneCampiKetchupMaionese("ketchup", "Ketchup", "DecrementaKetchup()", "numeroKetchup", "IncrementaKetchup()");
+        CreazioneCampiKetchupMaionese("maionese", "Maionese", "DecrementaMaionese()", "numeroMaionese", "IncrementaMaionese()");
+    }
 
     //Si visualizza il prezzo totale dell'ordine
     document.getElementById("totale").innerHTML = Totale + "€";
 }
 
+function CreazioneCampiKetchupMaionese(idAggiunta, innerNome, onclickImgM, idNumber, onclickImgP){
+    //Si creano i DIV
+    const divAggiunta = document.createElement("div");
+    const divProp = document.createElement("div");
+        const divNome = document.createElement("div");
+    const divAggiuntaQuantity = document.createElement("div");
+        const divMinus = document.createElement("div");
+            const divImgM = document.createElement("img");
+        const divNumber = document.createElement("div");
+        const divPlus = document.createElement("div");
+            const divImgP = document.createElement("img");
+
+    //Si impostano le classi ai DIV
+    divAggiunta.setAttribute("class", "aggiunta");
+    divAggiunta.setAttribute("id", idAggiunta);
+    divProp.setAttribute("class", "prop");
+    divNome.setAttribute("class", "nome");
+        divNome.innerHTML = innerNome;
+    divAggiuntaQuantity.setAttribute("class", "aggiunta_quantity");
+    divMinus.setAttribute("class", "minus");
+        divImgM.setAttribute("src", "../images/minusicon.png");
+        divImgM.setAttribute("onclick", onclickImgM);
+    divNumber.setAttribute("class", "number");
+    divNumber.setAttribute("id", idNumber);
+    divNumber.innerHTML = "0";
+    divPlus.setAttribute("class", "plus");
+        divImgP.setAttribute("src", "../images/plusicon.svg");
+        divImgP.setAttribute("onclick", onclickImgP);
+
+    //Si inseriscono gli elementi nel body
+    var divContainer = document.getElementById("containerKetchupMaionese");
+    divContainer.appendChild(divAggiunta);
+        divAggiunta.appendChild(divProp);
+            divProp.appendChild(divNome);
+        divAggiunta.appendChild(divAggiuntaQuantity);
+            divAggiuntaQuantity.appendChild(divMinus);
+                divMinus.appendChild(divImgM);
+            divAggiuntaQuantity.appendChild(divNumber);
+            divAggiuntaQuantity.appendChild(divPlus);
+                divPlus.appendChild(divImgP);
+}
+
 function PassaggioAvanti(){
-    //Se i dati sono corretti passo alla pagina successiva
+    //Se i dati sono corretti si passa alla pagina successiva
     if(document.getElementById("orarioRitiro").value != "") {
         localStorage.setItem("totale", Totale);
         localStorage.setItem("orario", document.getElementById("orarioRitiro").value);
@@ -88,6 +135,7 @@ function PassaggioAvanti(){
 function PassaggioIndietro(){
     //Indico alla pagina precedente di caricare il JSON per non perdere i prodotti già inseriti
     localStorage.setItem("caricaDaLocalStorage", true);
+    //Ritorno alla pagina precedente
     window.location.href = "../pages/mainlist.html";
 }
 
@@ -119,5 +167,3 @@ function DecrementaMaionese(){
         document.querySelector("#numeroMaionese").textContent = Maionese;
     }
 }
-
-//https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event

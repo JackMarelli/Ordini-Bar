@@ -28,7 +28,7 @@ function CaricaPagina() {
 
     //Creazione elementi in base alla lunghezza del JSON
     for (let index = 0; index < lunghezza; index++) {
-        if(obj[index] != null){
+        if(obj[index] != null && obj[index].quantita > 0){
             //Si prendono i valori di nome, prezzo e quantita per l'oggetto attuale
             var nomeAttributo = obj[index].nome;
             var prezzoAttributo = obj[index].prezzo;

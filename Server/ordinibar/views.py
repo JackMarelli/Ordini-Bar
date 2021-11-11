@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
+from django.utils.regex_helper import flatten_result
 from .forms import UserLoginForm
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
@@ -62,3 +63,26 @@ def accountView(request):
 def logoutView(request):
     logout(request)
     return redirect("ordinibar:index")
+
+@login_required(login_url="/login")
+def getListOrdini(request):
+    user = request.user
+    lista_ordini = Ordine.objects.filter(nome_utente = user).all()
+    return_list = list()
+    for ordine in lista_ordini:
+        prodotti_ordine = ordine.lista_prodotti.objects.all()
+        lista_prodotti = list()
+        for prodotto in prodotti_ordine:
+            prodotto_base = prodotto.prodotto
+            dict_prodotto = dict()
+            dict_prodotto['nome'] = prodotto_base.nome
+            dict_prodotto['prezzo'] = prodotto_base.prezzo
+            dict_prodotto['aggiunte'] = prodotto_base.aggiunte
+            dict_prodotto['quantita'] = prodotto.quantita
+            lista_prodotti.append(dict_prodotto)
+        dict_ordine = dict()
+        dict_ordine['ordine'] = lista_prodotti
+        return_list.append(dict_ordine)
+    
+    return JsonResponse(return_list, safe= False)
+        

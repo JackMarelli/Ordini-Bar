@@ -6,8 +6,9 @@
     <title>RedMenu</title>
     <link rel="stylesheet" href="../css/general.css" />
     <link rel="stylesheet" href="../css/account.css" />
+    <script src = "../js/account.js"></script>
   </head>
-  <body>
+  <body onload = onload_function()>
     <div id="content">
       <div><a href="javascript:history.back()">
       <img  src="../images/back-black.png" alt="" onclick="overlayTranslateOut()" />
@@ -25,10 +26,25 @@
       </div>
       <div id="actions">
         <p class="action">Visualizza cronologia ordini</p>
-        <p class="action">Cambia email</p>
-        <p class="action action-red">Cambia password</p>
+        <p class="action" id = "change_email">Cambia email</p>
+        <p class="action action-red" id = "change_password">Cambia password</p>
         <p class="action">Log out</p>
       </div>
+
+     <div  class = "modal" id = "email_modal">
+       <div  class = "modal_content" id = "email_modal_content">
+        <span class="close" id = "close_email">&times;</span>
+          <p>Modale cambio email</p>
+       </div>
+     </div>
+
+     <div  class = "modal" id = "password_modal">
+      <div  class = "modal_content" id = "password_modal_content">
+       <span class="close" id = "close_password">&times;</span>
+         <p>Modale cambio password</p>
+      </div>
+    </div>
+
     </div>
   </body>
 </html>

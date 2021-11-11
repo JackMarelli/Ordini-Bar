@@ -37,38 +37,12 @@
         </div>
         <div id="totale" class="totale"></div>
         <div class="aggiunte">
-          <div class="aggiunta" id="ketchup">
-            <div class="prop">
-              <div class="nome">Ketchup</div>
-            </div>
-            <div class="aggiunta_quantity">
-              <div class="minus">
-                <img src="../images/minusicon.png" alt="" srcset="" onclick="DecrementaKetchup()"/>
-              </div>
-              <div class="number" id="numeroKetchup">0</div>
-              <div class="plus">
-                <img src="../images/plusicon.svg" alt="" srcset="" onclick="IncrementaKetchup()"/>
-              </div>
-            </div>
+          <div id="containerKetchupMaionese">
+            <!-- CONTENUTO -->
           </div>
-          <div class="aggiunta" id="maionese">
-            <div class="prop">
-              <div class="nome">Maionese</div>
-            </div>
-            <div class="aggiunta_quantity">
-              <div class="minus">
-                <img src="../images/minusicon.png" alt="" srcset="" onclick="DecrementaMaionese()"/>
-              </div>
-              <div class="number" id="numeroMaionese">0</div>
-              <div class="plus">
-                <img src="../images/plusicon.svg" alt="" srcset="" onclick="IncrementaMaionese()"/>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="orario">
           <p>Scegli un orario di ritiro:</p>
-          <input type="time" id="orarioRitiro" />
+          <input type="time" id="orarioRitiro"/>
         </div>
         <div class="buttons">
           <div class="disabled" id="conferma" onclick="PassaggioAvanti()">
