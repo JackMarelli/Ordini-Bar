@@ -13,6 +13,7 @@ urlpatterns = [
     path('index/getitemlist', views.getProdottiView, name = 'get_item_list'),
     path('ordine', views.ordineView, name = 'ordine'),
     path('account', views.accountView, name = 'account'),
+    path('listaOrdini/getListaOrdini', views.getListOrdini, name = "get_order_list"),
     #admin pages
     path('administration', admin_views.indexAdminView, name = 'index_admin'),
     path('administration/orderlist', admin_views.orderListAdminView, name= 'order_list_admin'),
