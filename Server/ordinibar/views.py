@@ -116,16 +116,21 @@ def logoutView(request):
 def ordineConfermatoView(request):
     return render(request=request, template_name="ordinibar/ordine_confirmed.html")
 
+
 @login_required(login_url="/login")
-def getListOrdini(request):
+def cronologiaView(request):
+    return render(request= request, template_name='ordinibar/cronologia.html')
+
+@login_required(login_url="/login")
+def getCronologiaOrdini(request):
     user = request.user
-    lista_ordini = Ordine.objects.filter(nome_utente = user).all()
+    lista_ordini = Ordine.objects.filter(id_utente = user.pk).all()
     return_list = list()
     for ordine in lista_ordini:
-        prodotti_ordine = ordine.lista_prodotti.objects.all()
+        prodotti_ordine = ordine.lista_prodotti.all()
         lista_prodotti = list()
         for prodotto in prodotti_ordine:
-            prodotto_base = prodotto.prodotto
+            prodotto_base = ProdottoDaVendere.objects.filter(pk = prodotto.id_prodotto).last()
             dict_prodotto = dict()
             dict_prodotto['nome'] = prodotto_base.nome
             dict_prodotto['prezzo'] = prodotto_base.prezzo
@@ -137,6 +142,5 @@ def getListOrdini(request):
         return_list.append(dict_ordine)
     
     return JsonResponse(return_list, safe= False)
-
 
         

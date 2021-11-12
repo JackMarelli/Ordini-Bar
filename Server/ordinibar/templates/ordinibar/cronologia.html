@@ -1,0 +1,30 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RedMenu</title>
+    <link rel="stylesheet" href="{% static 'ordinibar/css/general.css'%}" />
+    <link rel="stylesheet" href="{% static 'ordinibar/css/cronologia.css'%}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'ordinibar/js/cronologia.js'%}"></script>
+  </head>
+  <body onload="onLoadFunction()">
+    <div id="content">
+      <div>
+        <a href="javascript:history.back()">
+          <img
+            src="{% static 'ordinibar/img/back-black.png'%}"
+            alt=""
+            onclick="overlayTranslateOut()"
+          />
+        </a>
+        <div id="cronologia">Cronologia</div>
+        <div class="lista">
+            <!-- DONE: script che inserisce la cronologia degli ordini di un account -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

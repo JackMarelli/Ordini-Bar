@@ -1,0 +1,53 @@
+:root {
+  --red: #ff4136;
+  --grayA: #aaaaaa;
+  --grayC: #c4c4c4;
+  --grayD: #dddddd;
+  --grayE: #eeeeee;
+  --black: #000000;
+  --white: #ffffff;
+}
+
+#content {
+  margin: 35px 0 35px 35px;
+  display: flex;
+  flex-flow: column;
+  height: 90%;
+  width: fit-content;
+  justify-content: space-between;
+}
+
+#cronologia {
+  font-size: 44px;
+}
+
+.title {
+  font-size: 24px;
+  color: var(--grayA);
+}
+
+.lista {
+  display: flex;
+  flex-flow: column;
+  margin: 0 40px 0 10px;
+  overflow: auto;
+  height: 100%;
+}
+
+.ordine {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: left;
+  margin-block: 10px;
+  cursor: pointer;
+}
+
+.ordine .nome {
+  font-size: 20px;
+}
+
+.ordine .totale {
+  font-size: 16px;
+  color: gray;
+}

@@ -16,8 +16,8 @@ urlpatterns = [
     path('account', views.accountView, name = 'account'),
     path('ordineconfermato', views.ordineConfermatoView, name = 'ordine_confermato'),
     path('ordineconfermato/getlastpk', views.getLastUserOrder, name = 'get_last_pk'),
-
-    path('listaOrdini/getListaOrdini', views.getListOrdini, name = "get_order_list"),
+    path('cronologia', views.cronologiaView, name = 'cronologia'),
+    path('cronologia/getCronologiaOrdini', views.getCronologiaOrdini, name = "get_cronologia_ordini"),
     #admin pages
     path('administration', admin_views.indexAdminView, name = 'index_admin'),
     path('administration/orderlist', admin_views.orderListAdminView, name= 'order_list_admin'),
