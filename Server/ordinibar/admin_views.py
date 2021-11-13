@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import user_passes_test
 @login_required(login_url="/login")
 @user_passes_test(lambda u: u.is_superuser)
 def indexAdminView(request):
-    return render(request=request, template_name='ordinibar/index_admin.html');
+    return render(request=request, template_name='ordinibar/admin/bivio.html');
 
 @login_required(login_url="/login")
 @user_passes_test(lambda u: u.is_superuser)
@@ -21,5 +21,5 @@ def orderListAdminView(request):
     context = {
         'order_list': order_list
     }
-    return render(request=request, template_name='ordinibar/product_list.html', context=context);
+    return render(request=request, template_name='ordinibar/admin/listaordini.html', context=context);
 

@@ -1,0 +1,21 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RedMenu Admin</title>
+    <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}" />
+    <link rel="stylesheet" href="{% static 'ordinibar/css/admin/bivio.css' %}" />
+    <link rel = "shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
+  </head>
+  <body>
+    <div id="container">
+        <div id="buttons">
+      <div class="button cursorpointer" id="ordini"><a href="/administration/orderlist">Lista ordini</a></div>
+      <div class="button cursorpointer" id="prodotti">Gestisci prodotti</div>
+      <div class="cursorpointer" id="esci"><a href = "/logout">Esci</a></div>
+    </div>
+    </div>
+  </body>
+</html>
