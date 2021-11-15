@@ -59,30 +59,14 @@
   filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
   display: flex;
   flex-flow: column;
-  justify-content: space-between;
 }
 
-.lista {
-  display: flex;
-  flex-flow: column;
-  margin: 0 40px 0 40px;
-  overflow: auto;
-  height: 100%;
+.lista .prodotto:first-child {
+  margin: 35px 0 10px 0;
 }
 
-.lista .gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 50px 50px 0 0;
-  height: 60px;
-  width: 100%;
-  background-image: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 85%,
-    rgba(255, 255, 255, 0.75) 90%,
-    rgba(0, 212, 255, 0) 100%
-  );
+.lista .prodotto:last-child {
+  margin: 10px 0 35px 0;
 }
 
 .prodotto {
@@ -96,9 +80,9 @@
 }
 
 .buttons {
-  position: relative;
-  top: -24px;
-  z-index: 1000;
+  position: absolute;
+  transform: translateY(-50%);
+  z-index: 100;
   width: 100%;
   display: flex;
   flex-flow: row;
