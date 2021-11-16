@@ -121,6 +121,11 @@ function CreazioneCampiKetchupMaionese(idAggiunta, innerNome, onclickImgM, idNum
                 divPlus.appendChild(divImgP);
 }
 
+function OrarioCambiato(){
+    var inputOrario = document.getElementById("conferma");
+    inputOrario.setAttribute("class", "enabled");
+}
+
 function PassaggioAvanti(){
     //Se i dati sono corretti si passa alla pagina successiva
     if(document.getElementById("orarioRitiro").value != "") {
