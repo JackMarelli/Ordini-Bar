@@ -82,3 +82,16 @@
 .todo {
   background-color: rgb(255, 231, 11);
 }
+
+#scansionaqr {
+  position: sticky;
+  bottom: 20px;
+
+  width: fit-content;
+  margin: auto;
+  color: red;
+  text-decoration: underline;
+
+  /* bg-color provvisorio, devo capire come gestirmi la sovrapposizione*/
+  background-color: white;
+}

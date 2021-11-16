@@ -138,15 +138,6 @@
   color: var(--grayA);
 }
 
-.orarioprezzo {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  margin: 0 35px;
-  font-size: 40px;
-  color: var(--grayC);
-}
-
 #qr {
   width: 100%;
   display: flex;
