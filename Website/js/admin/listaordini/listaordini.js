@@ -1,5 +1,5 @@
 //Si riceve il JSON con lo stato degli ordini
-var json = '[{"nome":"Ordine1","prezzo":"2","stato":"todo"},{"nome":"Ordine2","prezzo":"1,50","stato":"doing"},{"nome":"Ordine3","prezzo":"2,50","stato":"todo"},{"nome":"Ordine4","prezzo":"2,5","stato":"todo"}]';
+var json = '[{"nome":"Ordine1", "prezzo":"2", "orario":"12:00", "stato":"todo", "primaryKey":"000"},{"nome":"Ordine2", "prezzo":"1,50", "orario":"13:00", "stato":"doing", "primaryKey":"001"},{"nome":"Ordine3", "prezzo":"2,50", "orario":"14:00", "stato":"todo", "primaryKey":"002"},{"nome":"Ordine4", "prezzo":"2,5", "orario":"15:00", "stato":"todo", "primaryKey":"003"}]';
 
 //Si fa il parse del JSON
 const obj = JSON.parse(json);
@@ -38,7 +38,7 @@ function CaricaPagina(){
             else divStato.setAttribute("class", "doing");
         
         //Si impostano i valori ai DIV
-            var funzione = "PassaggioAvanti('" + nomeAttributo +"', '" + statoAttributo +"')";
+            var funzione = "PassaggioAvanti('" + nomeAttributo + "')";
             divProp.setAttribute("onclick", funzione);
                 divNome.innerHTML = nomeAttributo;
                 divTotale.innerHTML = prezzoAttributo+"€";
@@ -55,10 +55,26 @@ function CaricaPagina(){
     }
 }
 
-function PassaggioAvanti(nome, statoAttributo){
-    //Si salvano nome e stato dell'ordine
-    localStorage.setItem("nome", nome);
+function PassaggioAvanti(nome){
+    //Si recuperano le informazioni dell'ordine in base al nome conosciuto
+    for (let index = 0; index < obj.length; index++) {
+        var nomeAttributo = obj[index].nome;
+
+        if(nomeAttributo == nome) {
+            var prezzoAttributo = obj[index].prezzo;
+            var orarioAttributo = obj[index].orario;
+            var statoAttributo = obj[index].stato;
+            var primaryKeyAttributo = obj[index].primaryKey;
+            break;
+        }
+    }
+
+    //Si salvano le informazioni dell'ordine in base al nome conosciuto
+    localStorage.setItem("nome", nomeAttributo);
+    localStorage.setItem("prezzo", prezzoAttributo);
+    localStorage.setItem("orario", orarioAttributo);
     localStorage.setItem("stato", statoAttributo);
+    localStorage.setItem("primaryKey", primaryKeyAttributo);
 
     //Si passa alla pagina successiva
     window.location.href="ordine.html";
