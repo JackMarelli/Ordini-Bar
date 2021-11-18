@@ -1,52 +1,60 @@
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Red Menu</title>
-  <link rel="stylesheet" href="../css/general.css" />
-  <link rel="stylesheet" href="../css/mainlist.css" />
-  <script src="../js/animazioni.js"></script>
-  <script src="../js/mainlist.js"></script>
-</head>
-
-<body onload="CaricaPagina()">
-  <div id="overlaymenu" class="overlaymenu">
-    <div class="backicon">
-      <img src="../images/back.png" alt="" onclick="overlayTranslateOut()" />
-    </div>
-    <div class="options">
-      <div class="option"><a href="../pages/account.html">Account</a></div>
-      <div class="option">Ordina per</div>
-      <div class="option">Visualizza stati</div>
-    </div>
-  </div>
-  <div class="redcontainer">
-    <div class="menubutton">
-      <img id="menubutton" src="../images/menuicon.svg" alt="" onclick="overlayTranslateIn()" />
-    </div>
-    <div class="searchbar">
-      <input type="text" name="searchbar" id="searchbar" placeholder="Panzerotto, Calzone..." />
-    </div>
-    <div class="whitecontainer">
-      <div class="buttons">
-        <div id="salato">Salato</div>
-        <div id="dolce">Dolce</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Red Menu</title>
+    <link rel="stylesheet" href="../css/general.css" />
+    <link rel="stylesheet" href="../css/mainlist.css" />
+    <script src="../js/animazioni.js"></script>
+    <script src="../js/mainlist.js"></script>
+  </head>
+  <body onload="CaricaPagina()">
+    <div id="overlaymenu" class="overlaymenu">
+      <div class="backicon">
+        <img src="../images/back.png" alt="" onclick="overlayTranslateOut()" />
       </div>
-      <div class="gradient"></div>
-      <div class="lista">
-        <!-- Codice generato in automatico -->
+      <div class="options">
+        <div class="option"><a href="../pages/account.html">Account</a></div>
+        <div class="option">Ordina per</div>
+        <div class="option">Visualizza stati</div>
       </div>
     </div>
-  </div>
-  <div class="done" id="done">
-    <a  href="../pages/ordine.html">
-      <div class="redcircle">
-        <div class="tick"><img src="../images/tick.svg" alt=""/></div>
+    <div class="redcontainer">
+      <div class="icon">
+        <img
+          class="cursorpointer"
+          src="../images/menuicon.svg"
+          alt=""
+          onclick="overlayTranslateIn()"
+        />
       </div>
-    </a>
-  </div>
-</body>
-
+      <div class="searchbar">
+        <input
+          type="text"
+          name="searchbar"
+          id="searchbar"
+          placeholder="Panzerotto, Calzone..."
+        />
+      </div>
+      <div class="whitecontainer">
+        <div class="content">
+          <div class="spalma trans-50">
+            <div class="btn btngray" id="salato">Salato</div>
+            <div class="btn btngray" id="dolce">Dolce</div>
+          </div>
+          <div class="lista">
+            <!-- Codice generato in automatico -->
+          </div>
+        </div>
+      </div>
+      <div class="done" id="done">
+        <a href="../pages/ordine.html">
+          <div class="redcircle cursorpointer2">
+            <div class="tick"><img src="../images/tick.svg" alt="" /></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </body>
 </html>

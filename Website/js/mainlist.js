@@ -44,7 +44,7 @@ function CaricaPagina() { //creazione della pagina web da codice
         const immagineMeno = document.createElement("img");
 
         //imposto le classi ai div in base al CSS 
-        divProdotto.setAttribute("class", "prodotto");
+        divProdotto.setAttribute("class", "prodotto spalma");
         divProp.setAttribute("class", "prop");
         divNome.setAttribute("class", "nome");
         divNome.innerHTML = nomeAttributo;//aggiungo al div del nome il nome del prodotto
