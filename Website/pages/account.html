@@ -6,45 +6,50 @@
     <title>RedMenu</title>
     <link rel="stylesheet" href="../css/general.css" />
     <link rel="stylesheet" href="../css/account.css" />
-    <script src = "../js/account.js"></script>
+    <script src="../js/account.js"></script>
   </head>
-  <body onload = onload_function()>
+  <body onload="onload_function()">
     <div id="content">
-      <div><a href="javascript:history.back()">
-      <img  src="../images/back-black.png" alt="" onclick="overlayTranslateOut()" />
-    </a> <div id="account">Account</div>
+      <div>
+        <a href="javascript:history.back()">
+          <img
+            src="../images/back-black.png"
+            alt=""
+            onclick="overlayTranslateOut()"
+          />
+        </a>
+        <div class="titolo">Account</div>
         <div id="dati">
           <div>
             <p class="title">Email</p>
-            <p class="dato">marelligiacomo@gmail.com</p>
+            <p class="info">marelligiacomo@gmail.com</p>
           </div>
           <div>
             <p class="title">Nome Utente</p>
-            <p class="dato">Giacomo Marelli</p>
+            <p class="info">Giacomo Marelli</p>
           </div>
         </div>
       </div>
       <div id="actions">
-        <p class="action">Visualizza cronologia ordini</p>
-        <p class="action" id = "change_email">Cambia email</p>
-        <p class="action action-red" id = "change_password">Cambia password</p>
-        <p class="action">Log out</p>
+        <p class="underline">Visualizza cronologia ordini</p>
+        <p class="underline" id="change_email">Cambia email</p>
+        <p class="underline cl-red" id="change_password">Cambia password</p>
+        <p class="underline">Log out</p>
       </div>
 
-     <div  class = "modal" id = "email_modal">
-       <div  class = "modal_content" id = "email_modal_content">
-        <span class="close" id = "close_email">&times;</span>
+      <div class="modal" id="email_modal">
+        <div class="modal_content" id="email_modal_content">
+          <span class="close" id="close_email">&times;</span>
           <p>Modale cambio email</p>
-       </div>
-     </div>
-
-     <div  class = "modal" id = "password_modal">
-      <div  class = "modal_content" id = "password_modal_content">
-       <span class="close" id = "close_password">&times;</span>
-         <p>Modale cambio password</p>
+        </div>
       </div>
-    </div>
 
+      <div class="modal" id="password_modal">
+        <div class="modal_content" id="password_modal_content">
+          <span class="close" id="close_password">&times;</span>
+          <p>Modale cambio password</p>
+        </div>
+      </div>
     </div>
   </body>
 </html>
