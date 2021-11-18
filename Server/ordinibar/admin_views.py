@@ -21,5 +21,5 @@ def orderListAdminView(request):
     context = {
         'order_list': order_list
     }
-    return render(request=request, template_name='ordinibar/admin/listaordini.html', context=context);
+    return render(request=request, template_name='ordinibar/admin/listaordini/listaordini.html', context=context);
 

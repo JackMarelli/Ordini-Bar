@@ -17,6 +17,7 @@ body, *{
   box-sizing: border-box;
   user-select: none;
   font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -60,9 +61,156 @@ a {
   cursor: pointer;
 }
 
-.backicon {
-  position: absolute;
-  top: 30px;
-  left: 30px;
+.icon {
+  margin: 30px 0 30px 30px;
+  user-select: none;
+}
+.content {
+  margin: 0 35px 0 35px;
+}
+
+.cursorpointer {
   cursor: pointer;
 }
+
+.gradient {
+  top:0;
+  width: 100%;
+  height: 50px;
+  border-radius: 50px 50px 0 0;
+  background-image: linear-gradient(to bottom, white, transparent);
+}
+
+.lista {
+  display: flex;
+  flex-flow: column;
+  height: fit-content;
+  overflow: auto;
+}
+
+.disabled { /* non cliccabile */
+  opacity: 50%;
+  cursor: default;
+}
+
+.enabled { /* cliccabile */
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.titolo {
+  font-size: 44px;
+  margin: 20px 0 0 0;
+}
+
+.redcontainer {
+  background-color: var(--red);
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.whitecontainer {
+  background-color: var(--white);
+  border-radius: 50px 50px 0 0;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.orarioprezzo {
+  font-size: 40px;
+  color: var(--grayC);
+}
+
+.spalma {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.centra {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.lista .spalma {
+  margin: 10px 0 10px 0;
+}
+
+.btn {
+  height: 47px;
+  width: 45%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 15px;
+}
+
+.prop .nome {
+  font-size: 20px;
+}
+
+.prop .prezzo {
+  font-size: 16px;
+  color: gray;
+}
+
+.quantity {
+  font-size: 26px;
+}
+
+.btnred {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.btngray {
+  background-color: var(--grayE);
+}
+
+.cl-red {
+  color: var(--red);
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+/*
+
+.buttons {
+  display: flex;
+  margin: 50px 20px 0 20px;
+  justify-content: space-between;
+}
+
+#conferma,
+#annulla {
+  height: 47px;
+  width: 45%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 15px;
+
+  font-family: "Poppins", sans-serif;
+
+}
+
+#conferma {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+#annulla {
+  background-color: var(--grayE);
+}
+*/

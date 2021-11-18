@@ -1,9 +1,9 @@
 function vedipsw() {
-    if (document.getElementById("pswinput").type == "password") {
-        document.getElementById("pswinput").type = "text";
+    if (document.getElementById("id_password").type == "password") {
+        document.getElementById("id_password").type = "text";
     }
-    else if (document.getElementById("pswinput").type == "text") {
-        document.getElementById("pswinput").type = "password";
+    else if (document.getElementById("id_password").type == "text") {
+        document.getElementById("id_password").type = "password";
     }
 }
 
