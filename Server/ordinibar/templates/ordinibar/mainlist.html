@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="{%static 'ordinibar/css/mainlist.css'%}" />
   <script src="{% static 'ordinibar/js/animazioni.js' %}"></script>
   <script src="{% static 'ordinibar/js/mainlist.js' %}"></script>
-  <link rel = "shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
+  <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
 </head>
 
 <body onload="load_inizio()">
@@ -27,29 +27,34 @@
     </div>
   </div>
   <div class="redcontainer">
-    <div class="menubutton">
-      <img id="menubutton" src="{%static 'ordinibar/img/menuicon.svg'%}" alt="" onclick="overlayTranslateIn()" />
+    <div class="icon">
+      <img id="menubutton" class="cursorpointer" src="{%static 'ordinibar/img/menuicon.svg'%}" alt=""
+        onclick="overlayTranslateIn()" />
     </div>
     <div class="searchbar">
       <input type="text" name="searchbar" id="searchbar" placeholder="Panzerotto, Calzone..."
         oninput="search_element()" />
     </div>
     <div class="whitecontainer">
-      <div class="buttons">
-        <div id="salato" onclick="cambia_tipologia('salato')">Salato</div>
-        <div id="dolce" onclick="cambia_tipologia('dolce')">Dolce</div>
+      <div class="content">
+        <div class="spalma trans-50">
+          <div id="salato" class="btn btngray" onclick="cambia_tipologia('salato')">Salato</div>
+          <div id="dolce" class="btn btngray" onclick="cambia_tipologia('dolce')">Dolce</div>
+        </div>
       </div>
-      <div class="lista">
+      <div class="content">
+        <div class="lista">
 
+        </div>
       </div>
     </div>
-  </div>
-  <div class="done" id = "done">
-    <a href = "/ordine">
-      <div class="redcircle">
-        <div class="tick"><img src="{% static 'ordinibar/img/tick.svg' %}" alt="" /></div>
-      </div>
-    </a>
+    <div class="done" id="done">
+      <a href="/ordine">
+        <div class="redcircle">
+          <div class="tick"><img src="{% static 'ordinibar/img/tick.svg' %}" alt="" /></div>
+        </div>
+      </a>
+    </div>
   </div>
 </body>
 

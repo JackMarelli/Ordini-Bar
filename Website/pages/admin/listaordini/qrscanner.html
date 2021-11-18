@@ -6,15 +6,18 @@
     <title>RedMenu Scanner</title>
     <link rel="stylesheet" href="../../../css/general.css" />
     <link rel="stylesheet" href="../../../css/admin/listaordini/qrscanner.css">
+    <script src="../../../js/admin/listaordini/qrscanner.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
   </head>
-  <body>
+  <body onload="CaricaQR()">
     <div class="icon">
       <img src="../../../images/back-black.png" alt="back" class="cursorpointer" />
     </div>
     <div class="content">
       <div class="titolo">Inquadra QR</div>
       <!-- scanner qr da mettere -->
-      <div id="qrscanner"></div>
+     
     </div>
+    <div id="qr-reader" style="width: 600px"></div>
   </body>
 </html>
