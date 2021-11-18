@@ -17,9 +17,22 @@ def indexAdminView(request):
 @login_required(login_url="/login")
 @user_passes_test(lambda u: u.is_superuser)
 def orderListAdminView(request):
-    order_list = Ordine.objects.all()
-    context = {
-        'order_list': order_list
-    }
-    return render(request=request, template_name='ordinibar/admin/listaordini/listaordini.html', context=context);
+    return render(request=request, template_name='ordinibar/admin/listaordini/listaordini.html')
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def OrdineAccettatoView(request):
+    return render(request = request, template_name = 'ordinibar/admin/listaordini/ordine_accettato.html')
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def OrdineView(request):
+    return render(request = request, template_name = 'ordinibar/admin/listaordini/ordine.html')
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def QrScannerView(request):
+    return render(request = request, template_name = 'ordinibar/admin/listaordini/qrscanner.html')
+
+
 

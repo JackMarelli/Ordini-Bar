@@ -21,5 +21,8 @@ urlpatterns = [
     #admin pages
     path('administration', admin_views.indexAdminView, name = 'index_admin'),
     path('administration/orderlist', admin_views.orderListAdminView, name= 'order_list_admin'),
+    path('administration/ordineaccettato', admin_views.OrdineAccettatoView, name = 'ordine_accettato_admin'),
+    path('administration/ordine', admin_views.OrdineView , name = 'ordine_admin'),
+    path('administration/qrscanner', admin_views.QrScannerView, name = 'qr_scanner'),
 ]
 

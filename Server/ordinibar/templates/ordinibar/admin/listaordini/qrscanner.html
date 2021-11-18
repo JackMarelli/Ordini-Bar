@@ -1,20 +1,25 @@
+{% load static %}
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RedMenu Scanner</title>
-    <link rel="stylesheet" href="../../../css/general.css" />
-    <link rel="stylesheet" href="../../../css/admin/listaordini/qrscanner.css">
-  </head>
-  <body>
-    <div class="icon">
-      <img src="../../../images/back-black.png" alt="back" class="cursorpointer" />
-    </div>
-    <div class="content">
-      <div class="titolo">Inquadra QR</div>
-      <!-- scanner qr da mettere -->
-      <div id="qrscanner"></div>
-    </div>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RedMenu Scanner</title>
+  <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
+  <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}" />
+  <link rel="stylesheet" href="{%static 'ordinibar/css/admin/listaordini/qrscanner.css' %}">
+</head>
+
+<body>
+  <div class="icon" onclick="window.history.back()">
+    <img class="cursorpointer" src="{% static 'ordinibar/img/back-black.png' %}" alt="back" class="cursorpointer" />
+  </div>
+  <div class="content">
+    <div class="titolo">Inquadra QR</div>
+    <!-- scanner qr da mettere -->
+    <div id="qrscanner"></div>
+  </div>
+</body>
+
 </html>
