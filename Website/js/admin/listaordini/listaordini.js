@@ -17,10 +17,11 @@ function CaricaPagina(){
     */
 
     for (let index = 0; index < obj.length; index++){
-        //Si prendono i valori di nome, prezzo e stato per l'oggetto attuale
+        //Si prendono i valori di nome, prezzo e stato dell'oggetto attuale
         var nomeAttributo = obj[index].nome;
         var prezzoAttributo = obj[index].prezzo;
         var statoAttributo = obj[index].stato;
+        var primaryKeyAttributo = obj[index].primaryKey;
 
         //Si creano i DIV
         const divOrdine = document.createElement("div");
@@ -38,7 +39,7 @@ function CaricaPagina(){
             else divStato.setAttribute("class", "doing");
         
         //Si impostano i valori ai DIV
-            var funzione = "PassaggioAvanti('" + nomeAttributo + "')";
+            var funzione = "PassaggioAvanti('" + primaryKeyAttributo + "')";
             divProp.setAttribute("onclick", funzione);
                 divNome.innerHTML = nomeAttributo;
                 divTotale.innerHTML = prezzoAttributo+"€";
@@ -55,27 +56,25 @@ function CaricaPagina(){
     }
 }
 
-function PassaggioAvanti(nome){
-    //Si recuperano le informazioni dell'ordine in base al nome conosciuto
+function PassaggioAvanti(primaryKey){
+    //Si ricercano le informazioni dell'ordine avente primaryKey indicata
     for (let index = 0; index < obj.length; index++) {
-        var nomeAttributo = obj[index].nome;
-
-        if(nomeAttributo == nome) {
+        if(obj[index].primaryKey == primaryKey) {
+            var nomeAttributo = obj[index].nome;
             var prezzoAttributo = obj[index].prezzo;
             var orarioAttributo = obj[index].orario;
             var statoAttributo = obj[index].stato;
-            var primaryKeyAttributo = obj[index].primaryKey;
             break;
         }
     }
-
-    //Si salvano le informazioni dell'ordine in base al nome conosciuto
+    
+    //Si salvano le informazioni nel localStorage per passarle alla pagina successiva
     localStorage.setItem("nome", nomeAttributo);
     localStorage.setItem("prezzo", prezzoAttributo);
     localStorage.setItem("orario", orarioAttributo);
     localStorage.setItem("stato", statoAttributo);
-    localStorage.setItem("primaryKey", primaryKeyAttributo);
-
+    localStorage.setItem("primaryKey", primaryKey);
+    
     //Si passa alla pagina successiva
     window.location.href="ordine.html";
 }
