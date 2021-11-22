@@ -164,6 +164,7 @@ function Accetta() {
         type: "POST",
         data: JSON.stringify(request_obj),
     });
+    window.location.href="/administration/orderlist";
 }
 
 function Rifiuta() {
@@ -183,6 +184,7 @@ function Rifiuta() {
         type: "POST",
         data: JSON.stringify(request_obj),
     });
+    window.location.href="/administration/orderlist";
 }
 
 function Completa() {
@@ -202,6 +204,7 @@ function Completa() {
         type: "POST",
         data: JSON.stringify(request_obj),
     });
+    window.location.href="/administration/orderlist";
 }
 
 //TODO: Aggiungere le funzioni vere e proprie ai bottoni
