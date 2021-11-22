@@ -9,54 +9,29 @@
   <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
   <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}" />
   <link rel="stylesheet" href="{%static 'ordinibar/css/admin/listaordini/ordine.css'%}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{%static 'ordinibar/js/admin/listaordini/ordine.js'%}"></script>
 </head>
 
-<body>
+<body onload = "loadInizio()">
   <div class="redcontainer">
     <div class="icon" onclick="window.history.back()">
       <img class="cursorpointer" src="{% static 'ordinibar/img/back.png' %}" alt="" />
+
     </div>
     <div class="whitecontainer">
       <div class="content">
-        <div class="titolo">Ordine 1</div>
+        <div class="titolo" id="titoloOrdine"><!-- NOME ORDINE --></div>
         <div class="spalma orarioprezzo">
-          <div id="prezzo">13,50€</div>
-          <div id="orario">12:30</div>
+            <div id="prezzo"><!-- PREZZO ORDINE --></div>
+            <div id="orario"><!-- ORARIO ORDINE --></div>
         </div>
         <div class="lista">
-          <div class="spalma">
-            <div class="prop">
-              <div class="nome">Panzerotto</div>
-              <div class="prezzo">2€</div>
-            </div>
-            <div class="quantity">6</div>
-          </div>
-          <div class="spalma">
-            <div class="prop">
-              <div class="nome">Panzerotto</div>
-              <div class="prezzo">2€</div>
-            </div>
-            <div class="quantity">6</div>
-          </div>
-          <div class="spalma">
-            <div class="prop">
-              <div class="nome">Panzerotto</div>
-              <div class="prezzo">2€</div>
-            </div>
-            <div class="quantity">6</div>
-          </div>
-        </div>
-        <div class="spalma">
-          <div class="btn btnred" id="accetta">
-            <div>Accetta</div>
-          </div>
-          <div class="btn btngray" id="rifiuta">
-            <div>Rifiuta</div>
-          </div>
+          <!-- CONTENUTO PRODOTTI -->
+          <!-- CONTENUTO BOTTONI -->
         </div>
       </div>
     </div>
-  </div>
 </body>
 
 </html>

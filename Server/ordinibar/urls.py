@@ -25,5 +25,7 @@ urlpatterns = [
     path('administration/ordine', admin_views.OrdineView , name = 'ordine_admin'),
     path('administration/qrscanner', admin_views.QrScannerView, name = 'qr_scanner'),
     path('administration/getorderliststatus', admin_views.getOrderListStatus, name = 'order_list_status'),
+    path('administration/getorderproductslist', admin_views.getOrderProductsList, name = 'order_product_list'),
+    path('administration/changeorderstatus', admin_views.changeOrderState, name = "change_order_status"),
 ]
 

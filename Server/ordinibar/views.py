@@ -76,11 +76,11 @@ def inviaOrdine(request):
     ordine.save()
 
     for prodotto in lista_prodotti:
-        print(prodotto)
+        #print(prodotto)
         nome = prodotto["nome"]
         quantita = prodotto["quantita"]
         prodotto_da_vendere = ProdottoDaVendere.objects.filter(nome = nome).last()
-        print(prodotto_da_vendere, quantita)
+        #print(prodotto_da_vendere, quantita)
         # if prodotto_da_vendere == None:
         #     response = dict()
         #     response["result"] = False

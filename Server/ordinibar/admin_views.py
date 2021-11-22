@@ -1,3 +1,4 @@
+from json.decoder import JSONDecodeError
 from django.http import response
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -76,12 +77,38 @@ def getOrderListStatus(request):
 
         order_dict["prezzo"] = prezzo_totale
         order_dict["orario"] = doing_order.orario
-        order_dict["stato"] = "todo"
+        order_dict["stato"] = "doing"
         order_dict["primaryKey"] = "00"+ str(doing_order.pk)
         response.append(order_dict)
 
 
     return JsonResponse(response, safe=False)
 
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def getOrderProductsList(request):
+    #print(request.body.decode('UTF-8'))
+    request_dict = json.loads(request.body.decode('UTF-8'))
+    order = Ordine.objects.filter(pk = request_dict["pk"]).last()
+    
+    product_list = order.lista_prodotti.all()
 
+    response = list()
 
+    for product in product_list:
+        response_dict = dict()
+        response_dict["nome"] = ProdottoDaVendere.objects.filter(pk = product.id_prodotto).last().nome
+        response_dict["prezzo"] = ProdottoDaVendere.objects.filter(pk = product.id_prodotto).last().prezzo
+        response_dict["quantita"] = product.quantita
+        response.append(response_dict)
+
+    return JsonResponse(response, safe=False)
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def changeOrderState(request):
+    request_dict = json.loads(request.body.decode('UTF-8'))
+    order = Ordine.objects.filter(pk = request_dict["pk"]).last()
+    order.stato = request_dict["new_state"]
+    order.save()
+    return HttpResponse("")#return nothing
