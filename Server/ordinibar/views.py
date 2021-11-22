@@ -72,6 +72,7 @@ def inviaOrdine(request):
     ordine.numero_ketchup = numero_ketchup
     ordine.numero_maionesi = numero_maionesi
     ordine.id_utente = request.user.id
+    ordine.stato = "todo"
     ordine.save()
 
     for prodotto in lista_prodotti:

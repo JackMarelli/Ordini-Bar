@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}"/>
     <link rel="stylesheet" href="{% static 'ordinibar/css/admin/listaordini/listaordini.css' %}" />
     <link rel = "shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src = "{%static 'ordinibar/js/admin/listaordini/listaordini.js'%}"></script>
   </head>
-  <body>
+  <body onload="loadAll()">
     <div class="redcontainer">
       <div class="icon" onclick="window.history.back()">
         <img class="cursorpointer" src="{% static 'ordinibar/img/back.png' %}" alt="" />
@@ -18,111 +20,7 @@
         <div class="gradient"></div>
         <div class="content">
         <div class="lista">
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 1</div>
-              <div class="totale">4,50€</div>
-            </div>
-            <div class="stato todo">Da accettare</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 2</div>
-              <div class="totale">64,50€</div>
-            </div>
-            <div class="stato todo">Da accettare</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Ordine 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-            <div class="stato doing">In corso</div>
-          </div>
+          
           <!-- TODO: script che inserisce la lista degli ordini da accettare / in corso -->
         </div>
         <div class="cursorpointer" id="scansionaqr">Scansiona codice QR</div>
