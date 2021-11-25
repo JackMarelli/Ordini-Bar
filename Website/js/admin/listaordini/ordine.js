@@ -7,7 +7,7 @@ function CaricaPagina(){
     document.getElementById("orario").innerHTML = localStorage.getItem("orario");
 
     //SI EFFETTUA LA RICHIESTA AL SERVER PER OTTENERE TUTTI I PRODOTTI DELL'ORDINE AVENTE LA PRIMARYBEY INDICATA
-    var json = '[{"nome":"Panino","prezzo":"2","quantita":"1"},{"nome":"Pizza con patatine","prezzo":"2,50","quantita":"2"},{"nome":"Panzerotto","prezzo":"1,50","quantita":"3"},{"nome":"Focaccia","prezzo":"1","quantita":"1"}]';
+    var json = '{[{"nome":"Panino","prezzo":"2","quantita":"1"},{"nome":"Pizza con patatine","prezzo":"2,50","quantita":"2"},{"nome":"Panzerotto","prezzo":"1,50","quantita":"3"},{"nome":"Focaccia","prezzo":"1","quantita":"1"}]}';
 
     //Si fa il parse del JSON
     const obj = JSON.parse(json);

@@ -122,19 +122,35 @@ function CreazioneCampiKetchupMaionese(idAggiunta, innerNome, onclickImgM, idNum
 }
 
 function OrarioCambiato(){
-    var inputOrario = document.getElementById("conferma");
-    inputOrario.setAttribute("class", "enabled");
+    if(VerificaOrario()) {
+        var inputOrario = document.getElementById("conferma");
+        inputOrario.setAttribute("class", "enabled");
+    }
 }
 
 function PassaggioAvanti(){
     //Se i dati sono corretti si passa alla pagina successiva
-    if(document.getElementById("orarioRitiro").value != "") {
+    if(VerificaOrario()) {
         localStorage.setItem("totale", Totale);
         localStorage.setItem("orario", document.getElementById("orarioRitiro").value);
         localStorage.setItem("ketchup", Ketchup);
         localStorage.setItem("maionese", Maionese);
         window.location.href = "../pages/ordine_confirmed.html";
     }
+}
+
+function VerificaOrario(){
+    //today contiene l'orario attuale
+    today = new Date();
+
+    //orario contiene l'orario inserito dall'utente
+    orario = new Date();
+    orario.setHours(document.getElementById("orarioRitiro").value.split(":")[0]);
+    orario.setMinutes(document.getElementById("orarioRitiro").value.split(":")[1]);
+
+    //Se l'orario indicato è prima di quello attuale, allora non è valido
+    if(orario <= today) return false;
+    else return true;
 }
 
 function PassaggioIndietro(){
