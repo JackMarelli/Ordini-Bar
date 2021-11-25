@@ -93,14 +93,19 @@ def getOrderProductsList(request):
     
     product_list = order.lista_prodotti.all()
 
-    response = list()
+    response_product_list = list()
 
     for product in product_list:
         response_dict = dict()
         response_dict["nome"] = ProdottoDaVendere.objects.filter(pk = product.id_prodotto).last().nome
         response_dict["prezzo"] = ProdottoDaVendere.objects.filter(pk = product.id_prodotto).last().prezzo
         response_dict["quantita"] = product.quantita
-        response.append(response_dict)
+        response_product_list.append(response_dict)
+    
+    response = dict()
+    response["prodotti"] = response_product_list
+    response["ketchup"] = order.numero_ketchup
+    response["maionesi"] = order.numero_maionesi
 
     return JsonResponse(response, safe=False)
 
