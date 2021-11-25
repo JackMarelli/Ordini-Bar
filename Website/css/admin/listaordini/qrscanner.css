@@ -1,7 +1,8 @@
-#qrscanner {
-    margin: 30px 0;
-    background-image: linear-gradient(315deg, rgb(189, 189, 189), rgb(236, 236, 236));
+.qrscanner {
+    margin: auto;
+    margin-top: 20vh;;
     padding-bottom: 100%;
+    width: 70%;
 }
 
 @media screen {
