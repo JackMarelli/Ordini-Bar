@@ -1,3 +1,13 @@
 .lista {
-    margin: 0 0 20px 0;
+  margin: 0 0 20px 0;
+}
+
+#maionese .nome {
+  border-bottom: 2px solid #d3bf70;
+  padding: 0 10px 0 0;
+}
+
+#ketchup .nome {
+  border-bottom: 2px solid var(--red);
+  padding: 0 10px 0 0;
 }

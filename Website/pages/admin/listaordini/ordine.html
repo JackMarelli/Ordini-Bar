@@ -1,37 +1,56 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RedMenu Admin</title>
-    <link rel="stylesheet" href="../../../css/general.css" />
-    <link rel="stylesheet" href="../../../css/admin/listaordini/ordine.css">
-    <script src="../../../js/admin/listaordini/ordine.js"></script>
-  </head>
-  <body onload="CaricaPagina()">
-    <div class="redcontainer">
-      <div class="icon"><img class="cursorpointer" src="../../../images/back.png" alt="" /></div>
-      <div class="whitecontainer">
-        <div class="content">
-          <div class="titolo" id="titoloOrdine"><!-- NOME ORDINE --></div>
-          <div class="spalma orarioprezzo">
-              <div id="prezzo"><!-- PREZZO ORDINE --></div>
-              <div id="orario"><!-- ORARIO ORDINE --></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RedMenu Admin</title>
+  <link rel="stylesheet" href="../../../css/general.css" />
+  <link rel="stylesheet" href="../../../css/admin/listaordini/ordine.css">
+  <script src="../../../js/admin/listaordini/ordine.js"></script>
+</head>
+
+<body onload="CaricaPagina()">
+  <div class="redcontainer">
+    <div class="icon"><img class="cursorpointer" src="../../../images/back.png" alt="" /></div>
+    <div class="whitecontainer">
+      <div class="content">
+        <div class="titolo" id="titoloOrdine">
+          <!-- NOME ORDINE -->
+        </div>
+        <div class="spalma orarioprezzo">
+          <div id="prezzo">
+            <!-- PREZZO ORDINE -->
           </div>
-          <div class="lista">
-            <!-- CONTENUTO PRODOTTI -->
+          <div id="orario">
+            <!-- ORARIO ORDINE -->
           </div>
-          <div>
-            Ketchup
-            <div id="numeroKetchup"><!-- CONTENUTO KETCHUP --></div>
+        </div>
+        <div class="lista">
+          <!-- CONTENUTO PRODOTTI -->
+        </div>
+        <div class="spalma" id="ketchup">
+          <div class="prop">
+            <div class="nome">Ketchup</div>
           </div>
-          <div>
-            Maionese
-            <div id="numeroMaionese"><!-- CONTENUTO MAIONESE--></div>
+          <div class="quantity" id="numeroKetchup">
+            <!-- CONTENUTO KETCHUP -->
           </div>
-          <div id="bottone"><!-- CONTENUTO BOTTONI --></div>
+        </div>
+        <div class="spalma" id="maionese">
+          <div class="prop">
+            <div class="nome">Maionese</div>
+          </div>
+          <div class="quantity" id="numeroMaionese">
+            <!-- CONTENUTO MAIONESE-->
+          </div>
+        </div>
+        <div id="bottone">
+          <!-- CONTENUTO BOTTONI -->
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
