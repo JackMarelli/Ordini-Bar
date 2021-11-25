@@ -6,20 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RedMenu Scanner</title>
-  <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
-  <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}" />
-  <link rel="stylesheet" href="{%static 'ordinibar/css/admin/listaordini/qrscanner.css' %}">
+  <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}" />
+  <link rel="stylesheet" href="{% static 'ordinibar/css/admin/listaordini/qrscanner.css' %}">
+  <script src="{% static 'ordinibar/js/admin/listaordini/qrscanner.js' %}"></script>
+  <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
 </head>
 
-<body>
-  <div class="icon" onclick="window.history.back()">
-    <img class="cursorpointer" src="{% static 'ordinibar/img/back-black.png' %}" alt="back" class="cursorpointer" />
+<body onload="CaricaQR()">
+  <div class="icon">
+    <a href="javascript:history.back()">
+      <img src="{% static 'ordinibar/img/back-black.png' %}" alt="" onclick="overlayTranslateOut()" />
+    </a>
   </div>
   <div class="content">
     <div class="titolo">Inquadra QR</div>
     <!-- scanner qr da mettere -->
-    <div id="qrscanner"></div>
-  </div>
-</body>
 
+  </div>
+  <div id="qr-reader" class="qrscanner""></div>
+  </body>
 </html>

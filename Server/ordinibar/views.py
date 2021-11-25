@@ -11,6 +11,7 @@ from django.contrib import messages
 from django.http.response import JsonResponse
 import json
 from .models import *
+from .forms import *
 
 # Create your views here.
 @login_required(login_url="/login")
@@ -107,7 +108,26 @@ def getLastUserOrder(request):
 
 @login_required(login_url="/login")
 def accountView(request):
-    return render(request=request, template_name='ordinibar/account.html')
+    if request.method == "POST":
+        form = ChangePasswordForm(data=request.POST)
+        if form.is_valid():
+            #form valido
+            vecchia_password = form.cleaned_data.get('vecchia_password')
+            nuova_password = form.cleaned_data.get('nuova_password')
+            conferma_password = form.cleaned_data.get('conferma_password')
+            user = request.user
+            if(nuova_password == conferma_password) and user.check_password(vecchia_password):
+                #change the password
+                user.set_password(nuova_password)  # replace with your real password
+                user.save()
+            else:
+                print("Le due password non coincidono")
+        else:
+            print('Form non valido')
+
+
+    change_password_form = ChangePasswordForm()
+    return render(request=request, template_name='ordinibar/account.html', context={"change_password_form":change_password_form})
 
 def logoutView(request):
     logout(request)
