@@ -49,10 +49,11 @@
     <div class="modal_content" id="password_modal_content">
       <span class="close" id="close_password">&times;</span>
       <p>Cambio password</p>
+      <br>
       <form method="POST">
         {% csrf_token %}
         {{change_password_form}}
-        <input type = "submit">
+        <button type = "submit">Conferma</button>
       </form>
     </div>
   </div>
