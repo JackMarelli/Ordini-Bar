@@ -64,6 +64,8 @@
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    text-align: center;
+    border-radius:  25px;
   }
   
   /* The Close Button */
@@ -80,4 +82,37 @@
     text-decoration: none;
     cursor: pointer;
   }
+
   
+#password_modal label{
+  display: none;
+}
+
+#password_modal input{
+  display: flex;
+  border: none;
+  outline: none;
+  background-color: var(--grayE);
+  padding-inline: 40px;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  color: var(--black);
+  border-radius: 12px;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  width: 90%;
+}
+
+#password_modal button{
+  margin-top: 15px;
+  width: 152px;
+  height: 30px;
+  border: none;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  border-radius: 8px;
+  color: white;
+  background-color: #ff4126;
+}
