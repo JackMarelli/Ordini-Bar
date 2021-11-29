@@ -12,26 +12,50 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="{%static 'ordinibar/js/admin/listaordini/ordine.js'%}"></script>
 </head>
-
+<!-- {% static 'ordinibar/img/back.png' %} -->
 <body onload = "loadInizio()">
   <div class="redcontainer">
     <div class="icon" onclick="window.history.back()">
       <img class="cursorpointer" src="{% static 'ordinibar/img/back.png' %}" alt="" />
-
     </div>
     <div class="whitecontainer">
       <div class="content">
-        <div class="titolo" id="titoloOrdine"><!-- NOME ORDINE --></div>
+        <div class="titolo" id="titoloOrdine">
+          <!-- NOME ORDINE -->
+        </div>
         <div class="spalma orarioprezzo">
-            <div id="prezzo"><!-- PREZZO ORDINE --></div>
-            <div id="orario"><!-- ORARIO ORDINE --></div>
+          <div id="prezzo">
+            <!-- PREZZO ORDINE -->
+          </div>
+          <div id="orario">
+            <!-- ORARIO ORDINE -->
+          </div>
         </div>
         <div class="lista">
           <!-- CONTENUTO PRODOTTI -->
+        </div>
+        <div class="spalma" id="ketchup">
+          <div class="prop">
+            <div class="nome">Ketchup</div>
+          </div>
+          <div class="quantity" id="numeroKetchup">
+            <!-- CONTENUTO KETCHUP -->
+          </div>
+        </div>
+        <div class="spalma" id="maionese">
+          <div class="prop">
+            <div class="nome">Maionese</div>
+          </div>
+          <div class="quantity" id="numeroMaionese">
+            <!-- CONTENUTO MAIONESE-->
+          </div>
+        </div>
+        <div id="bottone">
           <!-- CONTENUTO BOTTONI -->
         </div>
       </div>
     </div>
+  </div>
 </body>
 
 </html>

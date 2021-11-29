@@ -150,19 +150,9 @@ function DecrementaMaionese() {
 var correct_time = false;
 
 function time_changed() {
-    var time_input = document.getElementById('orarioRitiro');
-    var btn_conferma = document.getElementById('conferma');
-    if (time_input.value != null && time_input.value != '') {
-        correct_time = true;
-        btn_conferma.classList.remove('disabled');
-        btn_conferma.classList.add('enabled');
-        console.log("orario valido");
-    }
-    else {
-        correct_time = false;
-        btn_conferma.classList.add('disabled');
-        btn_conferma.classList.remove('enabled');
-        console.log("orario non valido");
+    if(VerificaOrario()) {
+        var inputOrario = document.getElementById("conferma");
+        inputOrario.setAttribute("class", "enabled");
     }
 }
 
@@ -228,4 +218,18 @@ function getCookie(name) {
         end = dc.length;
     }
     return unescape(dc.substring(begin + prefix.length, end));
+}
+
+function VerificaOrario(){
+    //today contiene l'orario attuale
+    today = new Date();
+
+    //orario contiene l'orario inserito dall'utente
+    orario = new Date();
+    orario.setHours(document.getElementById("orarioRitiro").value.split(":")[0]);
+    orario.setMinutes(document.getElementById("orarioRitiro").value.split(":")[1]);
+
+    //Se l'orario indicato è prima di quello attuale, allora non è valido
+    if(orario <= today) return false;
+    else return true;
 }

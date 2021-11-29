@@ -46,7 +46,8 @@ def getOrderListStatus(request):
     todo_orders = Ordine.objects.filter(stato = "todo").all()
     for todo_order in todo_orders:
         order_dict = dict()
-        order_dict["nome"] = "Ordine " + str(todo_order.pk)
+        username = User.objects.filter(pk = todo_order.id_utente).last().username
+        order_dict["nome"] = username#"Ordine " + str(todo_order.pk)
         #calcolo il prezzo totale
 
         lista_prodotti = todo_order.lista_prodotti.all()
@@ -66,7 +67,8 @@ def getOrderListStatus(request):
     doing_orders = Ordine.objects.filter(stato = "doing").all()
     for doing_order in doing_orders:
         order_dict = dict()
-        order_dict["nome"] = "Ordine " + str(doing_order.pk)
+        username = User.objects.filter(pk = todo_order.id_utente).last().username
+        order_dict["nome"] = username
         #calcolo il prezzo totale
 
         lista_prodotti = doing_order.lista_prodotti.all()
