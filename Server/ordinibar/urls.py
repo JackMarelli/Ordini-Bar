@@ -16,6 +16,7 @@ urlpatterns = [
     path('account', views.accountView, name = 'account'),
     path('ordineconfermato', views.ordineConfermatoView, name = 'ordine_confermato'),
     path('ordineconfermato/getlastpk', views.getLastUserOrder, name = 'get_last_pk'),
+    path('ordineconfermato/getlastorderinformations', views.getLastUserOrderInformations, name = 'get_last_order_informations'),
     path('cronologia', views.cronologiaView, name = 'cronologia'),
     path('cronologia/getCronologiaOrdini', views.getCronologiaOrdini, name = "get_cronologia_ordini"),
     #admin pages
