@@ -30,8 +30,6 @@ a {
   height: 0;
 }
 
-
-
 /* overlay menu */
 .overlaymenu {
   position: absolute;
@@ -97,6 +95,11 @@ a {
   margin: 20px 0 0 0;
 }
 
+.titolo2 {
+  font-size: 28px;
+  margin: 20px 0 0 0;
+}
+
 .redcontainer {
   background-color: var(--red);
   width: 100%;
@@ -130,6 +133,15 @@ a {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.d-row {
+  display: flex;
+  flex-flow: row;
+}
+
+.d-row input {
+  margin: 7px 0 0 10px;
 }
 
 .trans-50 {
@@ -180,3 +192,5 @@ a {
 .underline {
   text-decoration: underline;
 }
+
+/* ALTRO */

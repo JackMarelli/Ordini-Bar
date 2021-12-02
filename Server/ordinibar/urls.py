@@ -29,5 +29,8 @@ urlpatterns = [
     path('administration/getorderliststatus', admin_views.getOrderListStatus, name = 'order_list_status'),
     path('administration/getorderproductslist', admin_views.getOrderProductsList, name = 'order_product_list'),
     path('administration/changeorderstatus', admin_views.changeOrderState, name = "change_order_status"),
+    path('administration/productlist', admin_views.productListView, name = "order_list_view"),
+    path('administration/productdetails', admin_views.viewProductDetailsView, name = "product_details"),
+    path('administration/addproduct',admin_views.aggiungiProdotto, name = "add_product"),
 ]
 

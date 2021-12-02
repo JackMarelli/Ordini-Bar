@@ -119,3 +119,20 @@ def changeOrderState(request):
     order.stato = request_dict["new_state"]
     order.save()
     return HttpResponse("")#return nothing
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def productListView(request):
+    lista_prodotti = ProdottoDaVendere.objects.all()
+    context = {"lista_prodotti":lista_prodotti,}
+    return render(request = request, template_name = 'ordinibar/admin/gestioneprodotti/listaprodotti.html', context=context)
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def viewProductDetailsView(request):
+    return render(request = request, template_name = 'ordinibar/admin/gestioneprodotti/prodotto.html')
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def aggiungiProdotto(request):
+    return render(request = request, template_name = 'ordinibar/admin/gestioneprodotti/aggiungiprodotto.html')

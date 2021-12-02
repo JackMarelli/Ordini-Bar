@@ -213,5 +213,4 @@ def registerView(request):
 
     user_register_form = UserRegisterForm()
     return render(request = request, template_name='ordinibar/register.html', context= {"user_register_form":user_register_form}) 
-
-        
+  

@@ -1,79 +1,44 @@
+{% load static %}
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RedMenu Admin</title>
-    <link rel="stylesheet" href="../../../css/general.css"/>
-    <link rel="stylesheet" href="../../../css/admin/listaordini/listaordini.css" />
-  </head>
-  <body>
-    <div class="redcontainer">
-      <div class="icon">
-        <img class="cursorpointer" src="../../../images/back.png" alt="" />
-      </div>
-      <div class="whitecontainer">
-        <div class="content">
-        <div class="lista">
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Prodotto 1</div>
-              <div class="totale">4,50€</div>
-            </div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Prodotto 2</div>
-              <div class="totale">64,50€</div>
-            </div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Prodotto 3</div>
-              <div class="totale">10,50€</div>
-            </div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Prodotto 4</div>
-              <div class="totale">4,50€</div>
-            </div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Prodotto 5</div>
-              <div class="totale">64,50€</div>
-            </div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Prodotto 6</div>
-              <div class="totale">10,50€</div>
-            </div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Prodotto 7</div>
-              <div class="totale">4,50€</div>
-            </div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Prodotto 8</div>
-              <div class="totale">64,50€</div>
-            </div>
-          </div>
-          <div class="ordine">
-            <div class="prop cursorpointer">
-              <div class="nome">Prodotto 9</div>
-              <div class="totale">10,50€</div>
-            </div>
-          </div>
-          <!-- TODO: script che inserisce la lista degli ordini da accettare / in corso -->
-        </div>
-        <div class="cursorpointer" id="scansionaqr">Aggiungi prodotto</div>
-      </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RedMenu Admin</title>
+  <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}" />
+  <link rel="stylesheet" href="{% static 'ordinibar/css/admin/listaordini/listaordini.css' %}" />
+  <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
+  <script src = "{% static 'ordinibar/js/admin/gestioneprodotti/listaprodotti.js'%}"></script>
+</head>
+
+<body>
+  <div class="redcontainer">
+    <div class="icon">
+      <div class="icon" onclick="window.history.back()">
+        <img class="cursorpointer" src="{% static 'ordinibar/img/back.png' %}" alt="" />
       </div>
     </div>
-  </body>
+    <div class="whitecontainer">
+      <div class="content">
+        <div class="lista">
+
+          {% for prodotto in lista_prodotti%}
+          <div class="ordine"
+            onclick="selectProduct('{{prodotto.pk}}', '{{prodotto.nome}}', '{{prodotto.prezzo}}')">
+            <div class="prop cursorpointer">
+              <div class="nome">{{prodotto.nome}}</div>
+              <div class="totale">{{prodotto.prezzo}}€</div>
+            </div>
+          </div>
+          {% endfor %}
+
+          <!-- TODO: script che inserisce la lista degli ordini da accettare / in corso -->
+        </div>
+        <div class="cursorpointer" id="scansionaqr" onclick="window.location = '/administration/addproduct'">Aggiungi prodotto</div>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
