@@ -1,0 +1,34 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedMenu</title>
+    <link rel="stylesheet" href="{%static 'ordinibar/css/general.css'%}" />
+    <link rel="stylesheet" href="{%static 'ordinibar/css/account.css'%}" />
+    <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
+</head>
+
+<body>
+    <div class="redcontainer">
+        <div class="icon"><img src="{% static 'ordinibar/img/back.png' %}" alt=""
+                onclick="document.location.href = '/';"></div>
+        <div class="whitecontainer">
+            <div class="content">
+                <form method="POST" class = "user_reg_form">
+                    {% csrf_token %}
+                    {{user_register_form}}
+   
+                    <div class="spalma">
+                        <button type = "submit" class = "btn btnred submit_button">Conferma</button>
+                        <div class="btn btngray" onclick="document.location.href = '/';">Indietro</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

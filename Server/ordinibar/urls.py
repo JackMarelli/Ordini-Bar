@@ -7,6 +7,7 @@ app_name = "ordinibar"
 
 urlpatterns = [
     path('logout', views.logoutView, name = "logout"),
+    path('register', views.registerView, name = "register"),
     #user pages
     path("", views.indexView, name = "index"),
     path('login', views.loginView, name = 'login' ),

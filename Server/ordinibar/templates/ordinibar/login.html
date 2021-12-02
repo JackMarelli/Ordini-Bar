@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href='{% static "ordinibar/css/login.css"%}'>
     <script src='{% static "ordinibar/js/animazioni.js"%}'></script>
-    <link rel = "shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
+    <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
 </head>
 
 <body>
@@ -71,8 +71,8 @@
 
                 <div class="loginbuttons">
 
-                    <button id="login" type="submit">Log in</button><button id="registrati"
-                        type="button">Registrati</button>
+                    <button id="login" type="submit">Log in</button>
+                    <button id="registrati" type="button" onclick="document.location.href = '/register';">Registrati</button>
                 </div>
                 {% if messages %}
                 {% for message in messages %}

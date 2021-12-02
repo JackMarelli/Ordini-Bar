@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.utils.regex_helper import flatten_result
 from .forms import UserLoginForm
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http.response import JsonResponse
 import json
@@ -18,11 +19,11 @@ from .forms import *
 def indexView(request):
     #Se l'utente ha un ordine attivo visualizzo solo la schermata con i qr
     user_last_status = Ordine.objects.filter(id_utente = request.user.pk).last()
-    last_order_status = user_last_status.stato
-    if last_order_status == "todo" or last_order_status == "doing":
-        return render(request=request, template_name="ordinibar/ordine_confirmed.html")
-    else:
-        return render(request=request, template_name="ordinibar/mainlist.html")
+    if not(user_last_status == None):
+        last_order_status = user_last_status.stato
+        if last_order_status == "todo" or last_order_status == "doing":
+            return render(request=request, template_name="ordinibar/ordine_confirmed.html")
+    return render(request=request, template_name="ordinibar/mainlist.html")
     
 @csrf_exempt
 def getProdottiView(request):
@@ -186,5 +187,31 @@ def getCronologiaOrdini(request):
         return_list.append(dict_ordine)
     
     return JsonResponse(return_list, safe= False)
+
+def registerView(request):
+    if request.method == "POST":
+        form = UserRegisterForm(data=request.POST)
+        if form.is_valid():
+            #form valido
+            nuova_password = form.cleaned_data.get('password')
+            conferma_password = form.cleaned_data.get('conferma_password')
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+
+            if(nuova_password == conferma_password):
+                #la password  è corretta
+                #registro l'utente
+                user = User.objects.create_user(username=username,email=email,password=nuova_password)
+                user.save()
+                login(request, user)
+                return render(request=request, template_name="ordinibar/mainlist.html")
+            else:
+                print("Le due password non coincidono")
+        else:
+            print('Form non valido')
+
+
+    user_register_form = UserRegisterForm()
+    return render(request = request, template_name='ordinibar/register.html', context= {"user_register_form":user_register_form}) 
 
         
