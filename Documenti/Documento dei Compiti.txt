@@ -5,7 +5,7 @@ Agnello
 	Presentazione PowerPoint del progetto al termine della sua realizzazione.
 	
 Bianchi
-	Realizzazione del database del il progetto.
+	Realizzazione del database del progetto.
 
 Lucidera
 	Programmazione in JavaScript delle funzioni delle pagine HTML.

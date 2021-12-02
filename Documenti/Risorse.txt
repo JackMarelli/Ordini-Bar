@@ -1,5 +1,0 @@
-TO-DO List per l'elenco dei prodotti
-	https://www.w3schools.com/howto/howto_js_todolist.asp
-
-Informazioni generari
-	devdocs.io/javascript
