@@ -1,0 +1,57 @@
+:root {
+    --red: #ff4136;
+    --grayA: #aaaaaa;
+    --grayC: #c4c4c4;
+    --grayD: #dddddd;
+    --grayE: #eeeeee;
+    --black: #000000;
+    --white: #ffffff;
+  }
+  
+  .whitecontainer {
+    filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
+  } 
+
+  .lista{
+      height: 100%;
+  }
+
+  .lista .ordine:first-child {
+    margin: 35px 0 10px 0;
+  }
+  
+  .lista .ordine:last-child {
+    margin: 10px 0 35px 0;
+  }
+  
+  .ordine {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-block: 10px;
+  }
+  
+  .ordine .nome {
+    font-size: 20px;
+  }
+  
+  .ordine .totale {
+    font-size: 16px;
+    color: gray;
+  }
+#aggiungiprodotto{
+    text-decoration: underline;
+    color:red;
+    text-align: center;
+    width: 100%;
+}
+
+.bottom_menu{
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    bottom: 0px;
+    position: fixed;
+}

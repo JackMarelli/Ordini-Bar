@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+
+input, label{
+    font-size: 16px;
+}
+
+#addproductform{
+    padding: 30px;
+}
+
+form input[type = "text"],
+form input[type = "number"],
+form input[type = "text"]:focus,
+form input[type = "number"]:focus{
+    border-radius: 10px;
+    border:none;
+    background-color: #eeeeee;
+    padding: 10px;
+    -webkit-tap-highlight-color: transparent; 
+}

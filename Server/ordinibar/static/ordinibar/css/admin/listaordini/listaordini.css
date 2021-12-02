@@ -95,3 +95,8 @@
   /* bg-color provvisorio, devo capire come gestirmi la sovrapposizione*/
   background-color: white;
 }
+
+a{
+  color:red;
+  text-decoration: underline;
+}

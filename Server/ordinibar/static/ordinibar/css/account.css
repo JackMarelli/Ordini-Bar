@@ -76,7 +76,9 @@ input:active {
 }
 
 .user_reg_form{
-  margin-top: 50px;;
+  margin-top: 50px;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .submit_button{

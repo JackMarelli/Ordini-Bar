@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.http.response import JsonResponse
 import json
 from .models import *
+from .forms import *
 from django.contrib.auth.decorators import user_passes_test
 
 @login_required(login_url="/login")
@@ -135,4 +136,18 @@ def viewProductDetailsView(request):
 @login_required(login_url="/login")
 @user_passes_test(lambda u: u.is_superuser)
 def aggiungiProdotto(request):
-    return render(request = request, template_name = 'ordinibar/admin/gestioneprodotti/aggiungiprodotto.html')
+    if request.method == "POST":
+        form = AddProductForm(data=request.POST)
+        if form.is_valid():
+            print("Form valido")
+            #aggiungo il prodotto
+            nome = form.cleaned_data.get('nome')
+            prezzo = form.cleaned_data.get('prezzo')
+            tipo = form.cleaned_data.get('tipo')
+            print(tipo)
+        else:
+            print('Form non valido')
+
+
+    add_product_form =  AddProductForm()
+    return render(request = request, template_name = 'ordinibar/admin/gestioneprodotti/aggiungiprodotto.html', context= {"add_product_form":add_product_form})
