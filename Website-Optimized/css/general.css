@@ -42,10 +42,10 @@
 
 .content {
   margin: 30px;
-  flex-grow: 1;
 
   display: flex;
   flex-flow: column;
+  flex-grow: 1;
 
   overflow: hidden;
 }
@@ -230,4 +230,16 @@
   height: fit-content;
   padding: 0 30px;
   transform: translateY(-50%);
+}
+
+.stato {
+  border-radius: 12px;
+}
+
+.todo {
+  background-color: #1ec545;
+}
+
+.doing {
+  background-color: #ffd517;
 }
