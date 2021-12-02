@@ -46,6 +46,8 @@
 
   display: flex;
   flex-flow: column;
+
+  overflow: hidden;
 }
 
 .icon {
@@ -80,7 +82,6 @@
 
 .justify-between {
   display: flex;
-  flex-flow: row nowrap;
   justify-content: space-between;
 }
 
@@ -163,6 +164,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
 }
 
 .btn-red {
