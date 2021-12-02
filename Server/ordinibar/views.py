@@ -16,7 +16,13 @@ from .forms import *
 # Create your views here.
 @login_required(login_url="/login")
 def indexView(request):
-    return render(request=request, template_name="ordinibar/mainlist.html")
+    #Se l'utente ha un ordine attivo visualizzo solo la schermata con i qr
+    user_last_status = Ordine.objects.filter(id_utente = request.user.pk).last()
+    last_order_status = user_last_status.stato
+    if last_order_status == "todo" or last_order_status == "doing":
+        return render(request=request, template_name="ordinibar/ordine_confirmed.html")
+    else:
+        return render(request=request, template_name="ordinibar/mainlist.html")
     
 @csrf_exempt
 def getProdottiView(request):
@@ -104,6 +110,23 @@ def getLastUserOrder(request):
 
     response_dict = dict()
     response_dict['primary_key'] = pk
+    return JsonResponse(response_dict, safe=False)
+
+@login_required(login_url="/login")
+def getLastUserOrderInformations(request):
+    user = request.user
+    ordine = Ordine.objects.filter(id_utente = user.pk).last()
+
+    response_dict = dict()
+    response_dict['orario'] = ordine.orario
+
+    lista_prodotti = ordine.lista_prodotti.all()
+    prezzo = 0
+
+    for prodotto in lista_prodotti:
+        prezzo += ProdottoDaVendere.objects.filter(pk = prodotto.id_prodotto).last().prezzo * prodotto.quantita
+
+    response_dict['prezzo'] = prezzo
     return JsonResponse(response_dict, safe=False)
 
 @login_required(login_url="/login")

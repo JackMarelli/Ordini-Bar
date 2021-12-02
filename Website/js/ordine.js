@@ -122,10 +122,8 @@ function CreazioneCampiKetchupMaionese(idAggiunta, innerNome, onclickImgM, idNum
 }
 
 function OrarioCambiato(){
-    if(VerificaOrario()) {
-        var inputOrario = document.getElementById("conferma");
-        inputOrario.setAttribute("class", "enabled");
-    }
+    if(VerificaOrario()) document.getElementById("conferma").setAttribute("class", "enabled");
+    else document.getElementById("conferma").setAttribute("class", "disabled");
 }
 
 function PassaggioAvanti(){

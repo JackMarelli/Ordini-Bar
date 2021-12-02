@@ -1,7 +1,4 @@
 function CaricaPagina() {
-  //Visualizzazione di prezzo e orario
-  document.getElementById("prezzo").innerHTML = localStorage.getItem("totale") + "€";
-  document.getElementById("orario").innerHTML = localStorage.getItem("orario");
 
   $.ajaxSetup({
     headers: {
@@ -9,11 +6,22 @@ function CaricaPagina() {
     }
   });
 
-  return $.ajax({
+  $.ajax({
     url: "/ordineconfermato/getlastpk",
     type: "POST",
     success: function (response) {
-      new QRCode(document.getElementById("qr"), "00"+response.primary_key);//-->DA SISTEMARE
+      new QRCode(document.getElementById("qr"), "00" + response.primary_key);//-->DA SISTEMARE
+    }
+  });
+
+  //get informations
+  $.ajax({
+    url: "/ordineconfermato/getlastorderinformations",
+    type: "POST",
+    success: function (response) {
+      //Visualizzazione di prezzo e orario
+      document.getElementById("prezzo").innerHTML = response.prezzo + "€";
+      document.getElementById("orario").innerHTML = response.orario;
     }
   });
 
@@ -30,14 +38,14 @@ function getCookie(name) {
   var prefix = name + "=";
   var begin = dc.indexOf("; " + prefix);
   if (begin == -1) {
-      begin = dc.indexOf(prefix);
-      if (begin != 0) return null;
+    begin = dc.indexOf(prefix);
+    if (begin != 0) return null;
   } else {
-      begin += 2;
+    begin += 2;
   }
   var end = document.cookie.indexOf(";", begin);
   if (end == -1) {
-      end = dc.length;
+    end = dc.length;
   }
   return unescape(dc.substring(begin + prefix.length, end));
 }
