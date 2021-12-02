@@ -1,31 +1,31 @@
 DOCUMENTO DEI REQUISITI
 
 Requisiti funzionali:
-	- [MUST] L'utente crea un account.
-	- [MUST] L'utente accede all'account amministratore o cliente.
-	- [MUST] L'utente può cambiare la password associata al proprio account.
-	- [MUST] L'utente visualizza l'elenco dei prodotti acquistabili.
-	- [MUST] L'utente inserisce nel carrello i prodotti che intende acquistare.
-	- [MUST] L'utente può rimuovere dal carrello i prodotti inseriti.
-	- [SHOULD] L'utente può scegliere eventuali aggiunte ai prodotti acquistabili (ketchup, maionese, ..).
-	- [MUST] L'utente sceglie l'orario di ritiro dell'ordine.
-	- [MUST] L'utente conferma l'ordine.
-	- [MUST] L'utente visualizza lo stato dell'ordine (in arrivo, preso in carico, completato).
-	- [SHOULD] L'utente visualizza l'elenco degli ordini effettuati in precedenza.
-	- [SHOULD] L'utente ordina un ordine effettuato in precedenza.
+✅	- [MUST] L'utente crea un account.
+✅	- [MUST] L'utente accede all'account amministratore o cliente. 
+✅	- [MUST] L'utente può cambiare la password associata al proprio account.
+✅	- [MUST] L'utente visualizza l'elenco dei prodotti acquistabili.
+✅	- [MUST] L'utente inserisce nel carrello i prodotti che intende acquistare.
+✅	- [MUST] L'utente può rimuovere dal carrello i prodotti inseriti.
+✅	- [SHOULD] L'utente può scegliere eventuali aggiunte ai prodotti acquistabili (ketchup, maionese, ..).
+✅	- [MUST] L'utente sceglie l'orario di ritiro dell'ordine.
+✅	- [MUST] L'utente conferma l'ordine.
+✅	- [MUST] L'utente visualizza lo stato dell'ordine (in arrivo, preso in carico, completato).
+✅	- [SHOULD] L'utente visualizza l'elenco degli ordini effettuati in precedenza.
+✅	- [SHOULD] L'utente ordina un ordine effettuato in precedenza.
 	- [SHOULD] L'utente amministratore può aggiungere e togleire un prodotto presente nell'elenco dei prodotti acquistabili.
-	- [MUST] L'utente amministratore visualizza gli ordini in arrivo.
-	- [MUST] L'utente amministratore può prendere in carico o rifiutare un ordine in arrivo.
+✅	- [MUST] L'utente amministratore visualizza gli ordini in arrivo.
+✅	- [MUST] L'utente amministratore può prendere in carico o rifiutare un ordine in arrivo.
 	- [SHOULD] L'utente amministratore visualizza il guadagno complessivo in un determinato periodo di tempo.
-	- [SHOULD] L'utente amministratore inquadra il codice QR associato all'ordine.
+✅	- [SHOULD] L'utente amministratore inquadra il codice QR associato all'ordine.
 
 Requisiti Non-Funzionali:
-	- [MUST] L'elenco dei prodotti nel carrello visualizza la quantità di ogni prodotto e il costo complessivo dell'ordine.
-	- [MUST] E' richiesta la conferma dell'email (del numero di telefono o dell'indirizzo ip).
-	- [MUST] Nell'elenco i prodotti acquistabili sono visualizzati in ordine alfabetico.
+✅	- [MUST] L'elenco dei prodotti nel carrello visualizza la quantità di ogni prodotto e il costo complessivo dell'ordine.
+	- [MAY] E' richiesta la conferma dell'email (del numero di telefono o dell'indirizzo ip).
+	- [MAY] Nell'elenco i prodotti acquistabili sono visualizzati in ordine alfabetico.
 	- [MAY] Nell'elenco i prodotti acquistabili sono visualizzati in ordine cronologico di acquisto.
 	- [MUST] L'utente amministratore visualizza gli ordini in arrivo in ordine cronologico o di quantità.
-	- [SHOULD] Ad ogni ordine è associato un codice QR.
+✅	- [SHOULD] Ad ogni ordine è associato un codice QR.
 
 Requisiti Tecnologici:
 	- [MUST] Web app in HTML5, CSS3 e JavaScript.
