@@ -7,18 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RedMenu Admin</title>
   <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}" />
-  <link rel="stylesheet" href="{% static 'ordinibar/css/admin/listaordini/listaordini.css' %}" />
+  <!-- <link rel="stylesheet" href="{% static 'ordinibar/css/admin/listaordini/listaordini.css' %}" /> -->
+  <link rel="stylesheet" href="{% static 'ordinibar/css/admin/gestioneprodotti/lista_prodotti.css' %}" />
   <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
   <script src = "{% static 'ordinibar/js/admin/gestioneprodotti/listaprodotti.js'%}"></script>
 </head>
 
 <body>
   <div class="redcontainer">
-    <div class="icon">
-      <div class="icon" onclick="window.history.back()">
-        <img class="cursorpointer" src="{% static 'ordinibar/img/back.png' %}" alt="" />
-      </div>
-    </div>
+    <div class="icon cursorpointer"><a href = "javascript:history.back()"><img src="{% static 'ordinibar/img/back.png' %}" alt="back" /></a></div>
     <div class="whitecontainer">
       <div class="content">
         <div class="lista">
@@ -35,7 +32,7 @@
 
           <!-- TODO: script che inserisce la lista degli ordini da accettare / in corso -->
         </div>
-        <div class="cursorpointer" id="scansionaqr" onclick="window.location = '/administration/addproduct'">Aggiungi prodotto</div>
+        <div class="bottom_menu" id="aggiungiprodotto" onclick="window.location = '/administration/addproduct'">Aggiungi prodotto</div>
       </div>
     </div>
   </div>

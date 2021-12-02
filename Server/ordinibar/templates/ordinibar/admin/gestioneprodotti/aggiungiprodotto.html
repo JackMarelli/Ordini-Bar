@@ -1,46 +1,36 @@
 {% load static %}
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RedMenu Admin</title>
-    <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}" />
-    <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
-  </head>
-  <body>
-    <div class="redcontainer">
-      <div class="icon cursorpointer"><a href = "javascript:history.back()"><img src="{% static 'ordinibar/img/back.png' %}" alt="back" /></a></div>
-      <div class="whitecontainer">
-        <div class="content">
-          <div class="titolo2">Aggiungi Prodotto</div>
-          <div class="nome">
-            <div>Nome:</div>
-            <div><input type="text" name="" id="" /></div>
-            <div>Prezzo:</div>
-            <div><input type="number" step="0.1" name="" id="" /></div>
-            <div class="d-row">
-              <div>Aggiunte:</div>
-              <div><input type="checkbox" name="" id="" /></div>
-            </div>
-            <div>Categoria:</div> 
-            <div class="spalma">
-                <div class="d-row">
-                    <div >Salato</div>
-                    <input type="radio" name="" id="">
-                </div>
-                <div class="d-row">
-                    <div>Dolce</div>
-                    <input type="radio" name="" id="">
-                </div>
-            </div>
-            <div class="spalma">
-              <div class="btn btnred">Conferma</div>
-              <div class="btn btngray" onclick="history.back()">Annulla</div>
-            </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RedMenu Admin</title>
+  <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}" />
+  <link rel = "stylesheet" href = "{% static 'ordinibar/css/admin/gestioneprodotti/aggiungiprodotto.css' %}"/>
+  <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
+</head>
+
+<body>
+  <div class="redcontainer">
+    <div class="icon cursorpointer"><a href="javascript:history.back()"><img src="{% static 'ordinibar/img/back.png' %}"
+          alt="back" /></a></div>
+    <div class="whitecontainer">
+      <div class="content">
+        <div class="titolo2">Aggiungi Prodotto</div>
+        <div class="nome">
+          <form method="post" id = "addproductform">
+            {% csrf_token %}
+            {{add_product_form}}
+          </form>
+          <div class="spalma">
+            <div class="btn btnred">Conferma</div>
+            <div class="btn btngray" onclick="history.back()">Annulla</div>
           </div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
