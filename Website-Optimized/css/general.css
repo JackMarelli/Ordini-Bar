@@ -243,3 +243,13 @@
 .doing {
   background-color: #ffd517;
 }
+
+.v-hidden {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.v-visible {
+  visibility: visible;
+}
