@@ -33,5 +33,6 @@ urlpatterns = [
     path('administration/productdetails', admin_views.viewProductDetailsView, name = "product_details"),
     path('administration/addproduct',admin_views.aggiungiProdotto, name = "add_product"),
     path('administration/modificaprodotto/<id>/', admin_views.modificaProdottoView, name = "modifica_prodotto"),
+    path('administration/removeproduct', admin_views.rimuoviProdotto, name = "rimuovi_prodotto"),
 ]
 

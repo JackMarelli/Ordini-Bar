@@ -160,6 +160,8 @@ def aggiungiProdotto(request):
     add_product_form =  AddProductForm()
     return render(request = request, template_name = 'ordinibar/admin/gestioneprodotti/aggiungiprodotto.html', context= {"add_product_form":add_product_form})
 
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
 def modificaProdottoView(request, id):
     prodotto = get_object_or_404(ProdottoDaVendere, pk=id)
     if request.method == "POST":
@@ -185,3 +187,10 @@ def modificaProdottoView(request, id):
             print('Form non valido')
 
     return render(request=request, template_name="ordinibar/admin/gestioneprodotti/modificaprodotto.html", context={"prodotto":prodotto})
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def rimuoviProdotto(request):
+    pk = json.loads(request.body.decode('UTF-8'))["pk"]
+    ProdottoDaVendere.objects.filter(pk = pk).last().delete()
+    return HttpResponse("")
