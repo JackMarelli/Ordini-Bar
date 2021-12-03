@@ -9,23 +9,23 @@
   <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}" />
   <link rel="stylesheet" href="{% static 'ordinibar/css/admin/gestioneprodotti/aggiungiprodotto.css' %}" />
   <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
-  <!-- <script src = "{% static 'ordinibar/js/admin/gestioneprodotti/aggiungiprodotto.js' %}"></script> -->
+   <script src = "{% static 'ordinibar/js/admin/gestioneprodotti/modificaprodotto.js' %}"></script>
 </head>
 
-<body onload="load_data()">
+<body onload="loadCheckbox('{{prodotto.tipo}}', '{{prodotto.aggiunte}}')">
   <div class="redcontainer">
     <div class="icon cursorpointer"><a href="javascript:history.back()"><img src="{% static 'ordinibar/img/back.png' %}"
           alt="back" /></a></div>
     <div class="whitecontainer">
       <div class="content">
-        <div class="titolo2" id ="titolo2">Aggiungi Prodotto</div>
+        <div class="titolo2" id ="titolo2">Modifica Prodotto</div>
         <div class="nome">
           <form method="post" id="addproductform">
             {% csrf_token %}
             <p class="form_input"><label for="id_nome">Nome:</label><input type="text" name="nome" required=""
-                id="id_nome"></p>
+                id="id_nome" value = "{{prodotto.nome}}"></p>
             <p class="form_input"><label for="id_prezzo">Prezzo:</label><input type="number" name="prezzo" required=""
-                id="id_prezzo" step="0.01"></p>
+                id="id_prezzo" step="0.01" value = "{{prodotto.prezzo}}"></p>
 
             <div class="selezione_tipo">
               <label for="id_tipo_0" class="tipo_prodotto">

@@ -6,5 +6,5 @@ function loadDetails(){
 
 function modifica(){
     localStorage.setItem('modifica', true);
-    window.location.href = "/administration/addproduct";
+    window.location.href = "/administration/modificaprodotto/"+localStorage.getItem('pk')+"/";
 }

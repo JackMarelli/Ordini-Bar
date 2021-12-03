@@ -1,6 +1,6 @@
 from json.decoder import JSONDecodeError
 from django.http import response
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404,render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -159,3 +159,29 @@ def aggiungiProdotto(request):
 
     add_product_form =  AddProductForm()
     return render(request = request, template_name = 'ordinibar/admin/gestioneprodotti/aggiungiprodotto.html', context= {"add_product_form":add_product_form})
+
+def modificaProdottoView(request, id):
+    prodotto = get_object_or_404(ProdottoDaVendere, pk=id)
+    if request.method == "POST":
+        #aggiorno il prodotto
+        form = AddProductForm(data=request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data.get('nome')
+            prezzo = form.cleaned_data.get('prezzo')
+            tipo = form.cleaned_data.get('tipo')
+            aggiunte = form.cleaned_data.get('aggiunte')
+
+            prodotto.nome = nome
+            prodotto.prezzo = prezzo
+            prodotto.tipo = tipo
+
+            if(len(aggiunte) > 0):
+                prodotto.aggiunte = True
+            else:
+                prodotto.aggiunte = False
+            prodotto.save()
+            return redirect('/administration/productlist')
+        else:
+            print('Form non valido')
+
+    return render(request=request, template_name="ordinibar/admin/gestioneprodotti/modificaprodotto.html", context={"prodotto":prodotto})

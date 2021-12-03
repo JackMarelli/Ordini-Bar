@@ -22,7 +22,7 @@
 
           {% for prodotto in lista_prodotti%}
           <div class="ordine"
-            onclick="selectProduct('{{prodotto.pk}}', '{{prodotto.nome}}', '{{prodotto.prezzo}}', false)">
+            onclick="selectProduct('{{prodotto.pk}}', '{{prodotto.nome}}', '{{prodotto.prezzo}}','{{prodotto.tipo}}','{{prodotto.aggiunte}}', false)">
             <div class="prop cursorpointer">
               <div class="nome">{{prodotto.nome}}</div>
               <div class="totale">{{prodotto.prezzo}}€</div>
