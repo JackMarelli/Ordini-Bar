@@ -172,20 +172,26 @@ def getCronologiaOrdini(request):
     lista_ordini = Ordine.objects.filter(id_utente = user.pk).all()
     return_list = list()
     for ordine in lista_ordini:
-        prodotti_ordine = ordine.lista_prodotti.all()
-        lista_prodotti = list()
-        for prodotto in prodotti_ordine:
-            prodotto_base = ProdottoDaVendere.objects.filter(pk = prodotto.id_prodotto).last()
-            dict_prodotto = dict()
-            dict_prodotto['nome'] = prodotto_base.nome
-            dict_prodotto['prezzo'] = prodotto_base.prezzo
-            dict_prodotto['aggiunte'] = prodotto_base.aggiunte
-            dict_prodotto['quantita'] = prodotto.quantita
-            lista_prodotti.append(dict_prodotto)
-        dict_ordine = dict()
-        dict_ordine['ordine'] = lista_prodotti
-        return_list.append(dict_ordine)
-    
+        try:
+            prodotti_ordine = ordine.lista_prodotti.all()
+            lista_prodotti = list()
+            
+            for prodotto in prodotti_ordine:
+                    prodotto_base = ProdottoDaVendere.objects.filter(pk = prodotto.id_prodotto).last()
+                    dict_prodotto = dict()
+                    dict_prodotto['nome'] = prodotto_base.nome
+                    dict_prodotto['prezzo'] = prodotto_base.prezzo
+                    dict_prodotto['aggiunte'] = prodotto_base.aggiunte
+                    dict_prodotto['quantita'] = prodotto.quantita
+                    lista_prodotti.append(dict_prodotto)
+                
+            dict_ordine = dict()
+            dict_ordine['ordine'] = lista_prodotti
+            if(len(lista_prodotti)>0):
+                return_list.append(dict_ordine)
+                print(lista_prodotti)
+        except:
+            pass
     return JsonResponse(return_list, safe= False)
 
 def registerView(request):
