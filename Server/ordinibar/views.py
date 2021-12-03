@@ -63,6 +63,12 @@ def loginView(request):
 
 @login_required(login_url="/login")
 def ordineView(request):
+    #Se l'utente ha un ordine attivo visualizzo solo la schermata con i qr
+    user_last_status = Ordine.objects.filter(id_utente = request.user.pk).last()
+    if not(user_last_status == None):
+        last_order_status = user_last_status.stato
+        if last_order_status == "todo" or last_order_status == "doing":
+            return render(request=request, template_name="ordinibar/ordine_confirmed.html")
     return render(request=request, template_name="ordinibar/ordine.html")
 
 @login_required(login_url="/login")
