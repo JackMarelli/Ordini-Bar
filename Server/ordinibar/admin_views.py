@@ -138,13 +138,21 @@ def viewProductDetailsView(request):
 def aggiungiProdotto(request):
     if request.method == "POST":
         form = AddProductForm(data=request.POST)
+        
         if form.is_valid():
-            print("Form valido")
             #aggiungo il prodotto
             nome = form.cleaned_data.get('nome')
             prezzo = form.cleaned_data.get('prezzo')
             tipo = form.cleaned_data.get('tipo')
-            print(tipo)
+            aggiunte = form.cleaned_data.get('aggiunte')
+
+            if(len(aggiunte) > 0):
+                prodotto = ProdottoDaVendere.objects.create(nome = nome, prezzo = prezzo, tipo = tipo, aggiunte = True)
+                prodotto.save()
+            else:
+                prodotto = ProdottoDaVendere.objects.create(nome = nome, prezzo = prezzo, tipo = tipo, aggiunte = False)
+                prodotto.save()
+            return redirect('/administration/productlist')
         else:
             print('Form non valido')
 

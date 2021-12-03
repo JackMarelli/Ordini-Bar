@@ -15,14 +15,14 @@
 
 <body>
   <div class="redcontainer">
-    <div class="icon cursorpointer"><a href = "javascript:history.back()"><img src="{% static 'ordinibar/img/back.png' %}" alt="back" /></a></div>
+    <div class="icon cursorpointer"><a href = "/administration"><img src="{% static 'ordinibar/img/back.png' %}" alt="back" /></a></div>
     <div class="whitecontainer">
       <div class="content">
         <div class="lista">
 
           {% for prodotto in lista_prodotti%}
           <div class="ordine"
-            onclick="selectProduct('{{prodotto.pk}}', '{{prodotto.nome}}', '{{prodotto.prezzo}}')">
+            onclick="selectProduct('{{prodotto.pk}}', '{{prodotto.nome}}', '{{prodotto.prezzo}}', false)">
             <div class="prop cursorpointer">
               <div class="nome">{{prodotto.nome}}</div>
               <div class="totale">{{prodotto.prezzo}}€</div>
@@ -30,11 +30,11 @@
           </div>
           {% endfor %}
 
-          <!-- TODO: script che inserisce la lista degli ordini da accettare / in corso -->
         </div>
-        <div class="bottom_menu" id="aggiungiprodotto" onclick="window.location = '/administration/addproduct'">Aggiungi prodotto</div>
+        
       </div>
     </div>
+    <div class="bottom_menu" id="aggiungiprodotto" onclick="window.location = '/administration/addproduct'">Aggiungi prodotto</div>
   </div>
 </body>
 

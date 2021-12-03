@@ -7,26 +7,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RedMenu Admin</title>
   <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}" />
-  <link rel = "stylesheet" href = "{% static 'ordinibar/css/admin/gestioneprodotti/aggiungiprodotto.css' %}"/>
+  <link rel="stylesheet" href="{% static 'ordinibar/css/admin/gestioneprodotti/aggiungiprodotto.css' %}" />
   <link rel="shortcut icon" href="{%static 'ordinibar/img/favicon.ico'%}">
+  <script src = "{% static 'ordinibar/js/admin/gestioneprodotti/aggiungiprodotto.js' %}"></script>
 </head>
 
-<body>
+<body onload="load_data()">
   <div class="redcontainer">
     <div class="icon cursorpointer"><a href="javascript:history.back()"><img src="{% static 'ordinibar/img/back.png' %}"
           alt="back" /></a></div>
     <div class="whitecontainer">
       <div class="content">
-        <div class="titolo2">Aggiungi Prodotto</div>
+        <div class="titolo2" id ="titolo2">Aggiungi Prodotto</div>
         <div class="nome">
-          <form method="post" id = "addproductform">
+          <form method="post" id="addproductform">
             {% csrf_token %}
-            {{add_product_form}}
-          </form>
-          <div class="spalma">
-            <div class="btn btnred">Conferma</div>
-            <div class="btn btngray" onclick="history.back()">Annulla</div>
-          </div>
+            <p class="form_input"><label for="id_nome">Nome:</label><input type="text" name="nome" required=""
+                id="id_nome"></p>
+            <p class="form_input"><label for="id_prezzo">Prezzo:</label><input type="number" name="prezzo" required=""
+                id="id_prezzo" step="0.01"></p>
+
+            <div class="selezione_tipo">
+              <label for="id_tipo_0" class="tipo_prodotto">
+                <input type="radio" name="tipo" value="Dolce" required="" id="id_tipo_0">
+                Dolce
+              </label>
+
+              <label for="id_tipo_1" class="tipo_prodotto">
+                <input type="radio" name="tipo" value="Salato" required="" id="id_tipo_1">
+                Salato
+              </label>
+            </div>
+
+            <div class = "aggiunte">
+              <ul id="id_aggiunte">
+                <label for="id_aggiunte_0">
+                  <input type="checkbox" name="aggiunte" value="Aggiunte" id="id_aggiunte_0">
+                  Aggiunte
+                </label>
+            </div>
+
+            <div class="spalma">
+              <button class="btn btnred" type="submit" id = "sbm_button">Conferma</button>
+              <div class="btn btngray" onclick="history.back()">Annulla</div>
+            </div>
+            </form>
         </div>
       </div>
     </div>
