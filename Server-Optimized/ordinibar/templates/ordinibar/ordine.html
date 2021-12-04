@@ -1,0 +1,40 @@
+{% extends 'ordinibar/base_templates/redbase.html' %}
+{% load static %}
+
+{% block extrahead %}
+<script src="{% static 'ordinibar/js/ordine.js' %}"></script>
+{% endblock %}
+
+{% block extra_redcontainer %}
+{% endblock %}
+
+{% block extra_body_params %}
+onload = "CaricaPagina()"
+{% endblock %}
+
+{% block extra_whitecontainer %}
+<div class="content">
+    <div class="t2">Il tuo ordine:</div>
+    <div class="list m1">
+        <div class = "lista">
+        <!-- <div class="justify-between">
+            
+                <div class="d-col">
+                    <div class="t3">Panzerotto</div>
+                    <div class="t4 t-grey-dark">2,00€</div>
+                </div>
+                <div class="t2">2</div>
+            
+        </div> -->
+    </div>
+    </div>
+    <div class="t1 mb-1">4,00€</div>
+    <div class="t3 m1">Scegli un orario di ritiro:</div>
+    <div id = "containerKetchupMaionese"></div>
+    <div class="input mb-1"><input class="p2" type="time" id = "orarioRitiro" onchange="OrarioCambiato()"/></div>
+    <div class="w-100 justify-between">
+        <div class="btn btn-red w-45" id = "conferma">Conferma</div>
+        <div class="btn btn-grey w-45">Annulla</div>
+    </div>
+</div>
+{% endblock %}

@@ -45,3 +45,7 @@ def indexView(request):
 
     json_string = json.dumps(json_array)
     return render(request=request, template_name="ordinibar/index.html", context={'product_list':json_string})
+
+@login_required(login_url="/login")
+def ordineView(request):
+    return render(request=request, template_name="ordinibar/ordine.html")

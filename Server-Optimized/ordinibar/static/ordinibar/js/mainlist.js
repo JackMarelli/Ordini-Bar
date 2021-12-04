@@ -39,7 +39,7 @@ function show_list(product_list) {
           </div>\
           <div class="d-row center">\
             <div class = "minus" onclick = "minus_function(' + product.pk + ')"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 12h20v2h-24z"/></svg></div>\
-            <div class="t3 quantita" style = "padding-left:10px; padding-right:10px;">'+ product.quantita +'</div>\
+            <div class="t3 quantita" style = "padding-left:10px; padding-right:10px;">'+ product.quantita + '</div>\
             <div class = "plus" onclick = "plus_function(' + product.pk + ')"><svg fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path fill-rule="evenodd" d="M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z"/></svg></div>\
           </div>\
         </div>\
@@ -97,14 +97,14 @@ function minus_function(pk) {
 }
 
 /* Funzione per caricare gli elementi salati */
-function load_salato(){
+function load_salato() {
     document.getElementById('product_list').innerHTML = "";
     show_list(prodotti_salati);
     salato = true;
 }
 
 /* Funzione per caricare gli elementi dolci */
-function load_dolce(){
+function load_dolce() {
     document.getElementById('product_list').innerHTML = "";
     show_list(prodotti_dolci);
     salato = false;
@@ -137,28 +137,37 @@ function search_element() {
 }
 
 /* Funzione per completare l'ordine */
-function completa(){
+function completa() {
     var result = [];
+    var elementi_totali = 0;
     prodotti_salati.forEach(product => {
-        if(product.quantita > 0){
+        if (product.quantita > 0) {
             result.push(product);
+            elementi_totali += product.quantita;
         }
     });
 
     prodotti_dolci.forEach(product => {
-        if(product.quantita > 0){
+        if (product.quantita > 0) {
             result.push(product);
+            elementi_totali += product.quantita;
         }
     });
 
-    var jsonDaX = JSON.stringify(result);
-    localStorage.setItem("json", jsonDaX);
-    localStorage.setItem("caricaDaLocalStorage",false);
+    if (elementi_totali > 0) {
+        var jsonDaX = JSON.stringify(result);
+        localStorage.setItem("json", jsonDaX);
+        localStorage.setItem("caricaDaLocalStorage", false);
+        window.location.href = "/ordine";
+    }
+    else{
+        alert("Non sono stati selezionati prodotti");
+    }
 }
 
 /* Funzione per caricare gli elementi dalla pagina ordine */
 function caricaDaPagOrdine() {
-    
+
     var carica = localStorage.getItem("caricaDaLocalStorage");
     if (carica == "true") {
         localStorage.setItem("caricaDaLocalStorage", false);
@@ -169,7 +178,7 @@ function caricaDaPagOrdine() {
                 //se l'elemento è salato
                 if (obj.tipo == 'Salato') {
                     for (let i = 0; i < prodotti_salati.length; i++) {
-                        if(prodotti_salati[i].pk == obj.pk){
+                        if (prodotti_salati[i].pk == obj.pk) {
                             prodotti_salati[i].quantita = obj.quantita;
                         }
                     }
@@ -177,7 +186,7 @@ function caricaDaPagOrdine() {
                 //se l'elemento è dolce
                 if (obj.tipo == 'Dolce') {
                     for (let i = 0; i < prodotti_dolci.length; i++) {
-                        if(prodotti_dolci[i].pk == obj.pk){
+                        if (prodotti_dolci[i].pk == obj.pk) {
                             prodotti_dolci[i].quantita = obj.quantita;
                         }
                     }

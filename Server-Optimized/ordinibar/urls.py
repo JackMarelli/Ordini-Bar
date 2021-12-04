@@ -6,4 +6,5 @@ urlpatterns = [
     #Urls
     path("login", views.loginView, name = "login"),
     path("", views.indexView, name = "index"),
+    path("ordine",views.ordineView, name = "ordine"),
 ]
