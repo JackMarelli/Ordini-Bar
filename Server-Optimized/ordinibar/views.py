@@ -5,6 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.http.response import HttpResponse, JsonResponse
 import json
+from .models import *
 
 # Create your views here.
 def loginView(request):
@@ -30,4 +31,17 @@ def loginView(request):
 
 @login_required(login_url="/login")
 def indexView(request):
-    return HttpResponse("CIao")
+    products_list = ProdottoDaVendere.objects.all()
+
+    json_array = list()
+    for product in products_list:
+        json_obj = dict()
+        json_obj["nome"] = product.nome
+        json_obj["prezzo"] = product.prezzo
+        json_obj["tipo"] = product.tipo
+        json_obj["aggiunte"] = product.aggiunte
+        json_obj["pk"] = product.pk
+        json_array.append(json_obj)
+
+    json_string = json.dumps(json_array)
+    return render(request=request, template_name="ordinibar/index.html", context={'product_list':json_string})

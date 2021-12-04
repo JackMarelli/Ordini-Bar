@@ -1,0 +1,29 @@
+{% extends 'ordinibar/base_templates/redbase.html' %}
+{% load static %}
+
+{% block extrahead %}
+<script src="{% static 'ordinibar/js/mainlist.js' %}"></script>
+{% endblock %}
+
+{% block extra_redcontainer %}
+<div id="div-searchbar" class="input">
+    <input class="p2" type="text" placeholder="Panzerotto, Pizza..." id = "searchbar" oninput="search_element()"/>
+</div>
+{% endblock %}
+
+{% block extra_body_params %}
+onload = "load_product_list('{{product_list}}')"
+{% endblock %}
+
+{% block extra_whitecontainer %}
+<div class="w-100" id="dolce-salato">
+    <div class="btn w-45 btn-grey" onclick="load_salato()">Salato</div>
+    <div class="btn w-45 btn-grey" onclick="load_dolce()">Dolce</div>
+</div>
+<div class="content" >
+    <div id = "product_list"></div>
+    <div class="w-100 justify-between">
+        <div class="btn w-100 btn-red" onclick="completa()">Completa</div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% load static %}
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RedMenu</title>
+    <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}">
+    <link rel="shortcuticon" href="{% static 'ordinibar/img/logo_small.png' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {% block extrahead %}
+    {% endblock %}
+</head>
+
+<body {%block extra_body_params %}{% endblock %}>
+    <div class="redcontainer">
+        <div class="icon"><img src="{% static 'ordinibar/img/menu-white.svg' %}" alt="" /></div>
+        {% block extra_redcontainer %}
+        {% endblock %}
+        <div class="whitecontainer">
+            {% block extra_whitecontainer %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+
+</html>
