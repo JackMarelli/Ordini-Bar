@@ -1,0 +1,51 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedMenu</title>
+    <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}">
+    <script src="{% static 'ordinibar/js/animazioni.js' %}"></script>
+</head>
+
+<body onload="loginOverlayDisappear()">
+    <div class="login-overlay" id="login-overlay">
+        <div class="w-100 h-100 center">
+            <div class="login-overlay-logo center"><img src="{% static 'ordinibar/img/logo_small.png' %}" alt=""></div>
+        </div>
+    </div>
+    <div class="w-100 h-100 center d-col">
+        <div>
+            <div class="login-logo w-100 center m3"><img src="{% static 'ordinibar/img/logo_small.png' %}" alt="no img">
+            </div>
+            <form method="post">
+
+                {% csrf_token %}
+                <div class="input m2">
+                    <input type="text" class="p2" placeholder="username" type="text" name="username" id="id_username"
+                        autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="">
+                </div>
+                <div class="input m2">
+                    <input type="password" class="p2" placeholder="password" id="id_password" name="password"
+                        autocomplete="current-password" required="">
+                </div>
+
+                <div class="w-100 justify-between">
+                    <button class="btn btn-red w-45" style="border: none;" type="submit">Log in</button>
+                    <div class="btn btn-grey w-45">Registrati</div>
+                </div>
+
+                {% if messages %}
+                {% for message in messages %}
+                <div class="center w-100 m2 t4 pointer">Username o password errati</div>
+                {% endfor %}
+                {% endif %}
+                <div class="center w-100 m2 t4 underlined t-red pointer">Password dimenticata</div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
