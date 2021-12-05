@@ -50,7 +50,8 @@ def indexView(request):
 def ordineView(request):
     return render(request=request, template_name="ordinibar/ordine.html")
 
-def addOrdineView(request):
+@login_required(login_url="/login")
+def addOrdineView(request):   
     user = request.user
     request_dict = json.loads(request.body.decode('UTF-8'))
     ordine = Ordine()
@@ -82,4 +83,21 @@ def addOrdineView(request):
 
 @login_required(login_url="/login")
 def ordineConfirmedView(request):
-    return render(request=request, template_name="ordinibar/ordine_confirmed.html")
+    user = request.user
+    ordine = Ordine.objects.filter(id_utente = user.pk).last()
+
+    response_dict = dict()
+    response_dict['orario'] = ordine.orario
+    response_dict['stato'] = ordine.stato
+    response_dict['pk'] = ordine.pk
+
+    lista_prodotti = ordine.lista_prodotti.all()
+    prezzo = 0
+
+    for prodotto in lista_prodotti:
+        prezzo += ProdottoDaVendere.objects.filter(pk = prodotto.id_prodotto).last().prezzo * prodotto.quantita
+
+    response_dict['prezzo'] = prezzo
+    return render(request=request, template_name="ordinibar/ordine_confirmed.html",context={"ordine":response_dict})
+
+
