@@ -1,0 +1,42 @@
+{% extends 'ordinibar/base_templates/whitebase.html' %}
+{% load static %}
+
+{% block extra_head %}
+<script src="{% static 'ordinibar/js/modal.js' %}"></script>
+{% endblock %}
+
+{% block extra_icon %}
+onclick = "window.history.back()"
+{%endblock%}
+
+{%block extra_body_params %}{% endblock %}
+
+{% block content %}
+<div class="d-col h-100 justify-between">
+    <div>
+        <div class="t2 t-grey-dark">Email</div>
+        <div class="t4 mb-1">{{user.email}}</div>
+        <div class="t2 t-grey-dark">Nome utente</div>
+        <div class="t4 mb-1">{{user.username}}</div>
+    </div>
+    <div>
+        <div class="t4 underlined">Visualizza cronologia ordini</div>
+        <div id="cambia_email" class="t4 underlined">Cambia email</div>
+        <div id="cambia_psw" class="t4 t-red underlined">Cambia password</div>
+        <div class="t4 underlined">Log out</div>
+    </div>
+    <div class="modal" id="email_modal">
+        <div class="modal_content" id="email_modal_content">
+            <span class="close" id="close_email">&times;</span>
+            <p>Modale cambio email</p>
+        </div>
+    </div>
+
+    <div class="modal" id="password_modal">
+        <div class="modal_content" id="password_modal_content">
+            <span class="close" id="close_password">&times;</span>
+            <p>Modale cambio password</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

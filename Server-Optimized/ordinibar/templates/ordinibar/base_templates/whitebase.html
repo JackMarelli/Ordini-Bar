@@ -1,0 +1,25 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ordini bar</title>
+    <link rel="stylesheet" href="{% static 'ordinibar/css/general.css'%}" />
+    {% block extra_head %}
+
+    {% endblock %}
+
+  </head>
+  <body {%block extra_body_params %}{% endblock %}>
+    <div class="h-100 d-col">
+      <div class="icon"><img src="{% static 'ordinibar/img/back-black.png' %}" alt="" {% block extra_icon %}{%endblock%} /></div>
+      <div class="t1 p3">Account</div>
+      <div class="content">
+        {% block content %}
+
+        {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>
