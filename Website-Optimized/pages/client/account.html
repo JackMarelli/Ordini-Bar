@@ -1,31 +1,45 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Account - RedMenu</title>
-    <link rel="stylesheet" href="../../css/general.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../../css/general.css" />
+    <script src="../../js/modal.js"></script>
+  </head>
+  <body>
     <div class="h-100 d-col">
-    <div class="icon"><img src="../../images/back-black.png" alt=""></div>
-    <div class="t1 p3">Account</div>    
-    <div class="content">
-            <div class="d-col h-100 justify-between">
-                <div>
-                    <div class="t2 t-grey-dark">Email</div>
-                    <div class="t4 mb-1">marelligiacomo@gmail.com</div>
-                    <div class="t2 t-grey-dark">Nome utente</div>
-                    <div class="t4">Giacomo Marelli</div>
-                </div>
-                <div>
-                    <div class="t4 underlined">Visualizza cronologia ordini</div>
-                    <div class="t4 underlined">Cambia email</div>
-                    <div class="t4 t-red underlined">Cambia password</div>
-                    <div class="t4 underlined">Log out</div>
-                </div>
+      <div class="icon"><img src="../../images/back-black.png" alt="" /></div>
+      <div class="t1 p3">Account</div>
+      <div class="content">
+        <div class="d-col h-100 justify-between">
+          <div>
+            <div class="t2 t-grey-dark">Email</div>
+            <div class="t4 mb-1">marelligiacomo@gmail.com</div>
+            <div class="t2 t-grey-dark">Nome utente</div>
+            <div class="t4 mb-1">Giacomo Marelli</div>
+          </div>
+          <div>
+            <div class="t4 underlined">Visualizza cronologia ordini</div>
+            <div id="cambia_email" class="t4 underlined">Cambia email</div>
+            <div id="cambia_psw" class="t4 t-red underlined">Cambia password</div>
+            <div class="t4 underlined">Log out</div>
+          </div>
+          <div class="modal" id="email_modal">
+            <div class="modal_content" id="email_modal_content">
+              <span class="close" id="close_email">&times;</span>
+              <p>Modale cambio email</p>
             </div>
+          </div>
+    
+          <div class="modal" id="password_modal">
+            <div class="modal_content" id="password_modal_content">
+              <span class="close" id="close_password">&times;</span>
+              <p>Modale cambio password</p>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
