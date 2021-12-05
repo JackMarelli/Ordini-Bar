@@ -14,16 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.shortcuts import render
 from django.urls import path, include
-
-def resource_not_found(request, exception, template_name="ordinibar/404.html"):
-    response = render(None, template_name = template_name)
-    response.status_code = 404
-    return response
-
-handler404 = resource_not_found
-# handler500 = 'my_app.views.handler500'
 
 urlpatterns = [
     path('admin/', admin.site.urls),

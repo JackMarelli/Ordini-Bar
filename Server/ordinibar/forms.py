@@ -22,8 +22,8 @@ class UserRegisterForm(forms.Form):
 
 #form per aggiungere un prodotto
 class AddProductForm(forms.Form):
-    nome = forms.CharField()
-    prezzo = forms.IntegerField()
-    CHOICES=[('dolce','dolce'),('salato','salato'),]
-    tipo = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)
-    #aggiunte = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)
+    nome = forms.CharField(required=True)
+    prezzo = forms.FloatField(required=False)
+    TIPO_CHOICES=[('Dolce','Dolce'),('Salato','Salato'),]
+    tipo = forms.ChoiceField(choices=TIPO_CHOICES, widget=forms.RadioSelect, required=True)
+    aggiunte = forms.MultipleChoiceField(choices=[('Aggiunte', 'Aggiunte')], widget=forms.CheckboxSelectMultiple, required=False)

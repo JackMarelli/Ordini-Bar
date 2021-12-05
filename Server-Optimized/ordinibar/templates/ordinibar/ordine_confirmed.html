@@ -1,0 +1,26 @@
+{% extends 'ordinibar/base_templates/redbase.html' %}
+{% load static %}
+
+{% block extrahead %}
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<script src = "{% static 'ordinibar/js/ordine_confirmed.js' %}"></script>
+{% endblock %}
+
+{% block extra_redcontainer %}
+{% endblock %}
+
+{% block extra_body_params %}
+onload = "set_status('{{ordine.stato}}');draw_qr({{ordine.pk}})"
+{% endblock %}
+
+{% block extra_whitecontainer %}
+<div class="content">
+    <div class="t2">Il tuo ordine:</div>
+    <div class="justify-between">
+        <div class="t1 t-grey-dark">{{ordine.prezzo}}€</div>
+        <div class="t1 t-grey-dark">{{ordine.orario|date:"H:i"}}</div>
+    </div>
+    <div id="qr" class="w-100" style = "display: flex;justify-content: center;padding-bottom: 30px;"></div>
+    <div class="center stato" id = "status"></div>
+</div>
+{% endblock %}

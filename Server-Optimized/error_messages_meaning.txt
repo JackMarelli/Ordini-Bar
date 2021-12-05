@@ -1,0 +1,1 @@
+LOGERR --> errore login (username o password sbagliati)
