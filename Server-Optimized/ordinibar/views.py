@@ -49,3 +49,37 @@ def indexView(request):
 @login_required(login_url="/login")
 def ordineView(request):
     return render(request=request, template_name="ordinibar/ordine.html")
+
+def addOrdineView(request):
+    user = request.user
+    request_dict = json.loads(request.body.decode('UTF-8'))
+    ordine = Ordine()
+
+    lista_prodotti = request_dict['lista_prodotti']
+    orario = request_dict['orario']
+    numero_ketchup = request_dict['ketchup']
+    numero_maionesi = request_dict['maionesi']
+
+    ordine.orario = orario
+    ordine.numero_ketchup = numero_ketchup
+    ordine.numero_maionesi = numero_maionesi
+    ordine.id_utente = request.user.id
+    ordine.stato = "todo"
+    ordine.save()
+
+    for prodotto in lista_prodotti:
+        #print(prodotto)
+        nome = prodotto["nome"]
+        quantita = prodotto["quantita"]
+        prodotto_da_vendere = ProdottoDaVendere.objects.filter(nome = nome).last()
+        p = ProdottoOrdinato.objects.create(id_prodotto = prodotto_da_vendere.pk, quantita = quantita)
+        ordine.lista_prodotti.add(p)
+
+    response = dict()
+    response["result"] = True
+    
+    return JsonResponse(response, safe=False)
+
+@login_required(login_url="/login")
+def ordineConfirmedView(request):
+    return render(request=request, template_name="ordinibar/ordine_confirmed.html")

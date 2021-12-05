@@ -129,12 +129,8 @@ function OrarioCambiato() {
 function PassaggioAvanti() {
     //Se i dati sono corretti si passa alla pagina successiva
     if (VerificaOrario()) {
-        localStorage.setItem("totale", Totale);
-        localStorage.setItem("orario", document.getElementById("orarioRitiro").value);
-        localStorage.setItem("ketchup", Ketchup);
-        localStorage.setItem("maionese", Maionese);
-        alert("OK");
-        window.location.href = "../pages/ordine_confirmed.html";
+        sendOrder();
+        
     }
 }
 
@@ -190,4 +186,46 @@ function DecrementaMaionese() {
         Maionese--;
         document.querySelector("#numeroMaionese").textContent = Maionese;
     }
+}
+
+function sendOrder(){
+    var request_obj = []
+
+        for (let i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+                request_obj.push(obj[i]);
+            }
+        }
+
+        var request_data = {
+            orario: document.getElementById("orarioRitiro").value,
+            ketchup: Ketchup,
+            maionesi: Maionese,
+            lista_prodotti: request_obj,
+        };
+
+        var request_string = JSON.stringify(request_data);
+        //alert(request_string);
+
+        $.ajaxSetup({
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken")
+            }
+        });
+
+        $.ajax({
+            url: "/ordine/addordine",
+            type: "POST",
+            data: request_string,
+            success: function (ajax_results) {
+                if (ajax_results.result == true) {
+                    localStorage.setItem("totale", Totale);
+                    localStorage.setItem("orario", document.getElementById("orarioRitiro").value);
+                    localStorage.setItem("ketchup", Ketchup);
+                    localStorage.setItem("maionese", Maionese);
+                    localStorage.setItem("primaryKey", "001");
+                    window.location.href = "ordineconfirmed";
+                }
+            }
+        });
 }

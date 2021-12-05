@@ -1,0 +1,23 @@
+{% extends 'ordinibar/base_templates/redbase.html' %}
+{% load static %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block extra_redcontainer %}
+{% endblock %}
+
+{% block extra_body_params %}
+{% endblock %}
+
+{% block extra_whitecontainer %}
+<div class="content">
+    <div class="t2">Il tuo ordine:</div>
+    <div class="justify-between">
+        <div class="t1 t-grey-dark">4,00€</div>
+        <div class="t1 t-grey-dark">12:45</div>
+    </div>
+    <div id="qr"></div>
+    <div class="center stato todo">In esecuzione</div>
+</div>
+{% endblock %}
