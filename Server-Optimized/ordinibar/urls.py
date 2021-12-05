@@ -9,4 +9,5 @@ urlpatterns = [
     path("ordine",views.ordineView, name = "ordine"),
     path("ordine/addordine", views.addOrdineView, name = "add_ordine"),
     path("ordineconfirmed", views.ordineConfirmedView, name="ordine_confirmed"),
+    path("account", views.accountView, name = "account"),
 ]

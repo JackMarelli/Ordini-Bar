@@ -100,4 +100,8 @@ def ordineConfirmedView(request):
     response_dict['prezzo'] = prezzo
     return render(request=request, template_name="ordinibar/ordine_confirmed.html",context={"ordine":response_dict})
 
+@login_required(login_url="/login")
+def accountView(request):
+    return render(request=request, template_name="ordinibar/account.html")
+
 
