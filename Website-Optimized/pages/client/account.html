@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../css/general.css" />
     <script src="../../js/modal.js"></script>
   </head>
-  <body>
+  <body onload="onload_function()">
     <div class="h-100 d-col">
       <div class="icon"><img src="../../images/back-black.png" alt="" /></div>
       <div class="t1 p3">Account</div>
@@ -21,21 +21,108 @@
           </div>
           <div>
             <div class="t4 underlined">Visualizza cronologia ordini</div>
-            <div id="cambia_email" class="t4 underlined">Cambia email</div>
-            <div id="cambia_psw" class="t4 t-red underlined">Cambia password</div>
+            <div id="change_email" class="t4 underlined">Cambia email</div>
+            <div id="change_password" class="t4 t-red underlined">
+              Cambia password
+            </div>
             <div class="t4 underlined">Log out</div>
           </div>
+
           <div class="modal" id="email_modal">
-            <div class="modal_content" id="email_modal_content">
-              <span class="close" id="close_email">&times;</span>
-              <p>Modale cambio email</p>
+            <div class="modal-content" id="email_modal_content">
+              <div class="content">
+                <div class="t2">Cambia email</div>
+                <div class="m1">
+                  <div class="t3">Email attuale:</div>
+                  <div class="input">
+                    <input
+                      class="p2"
+                      placeholder="redmenu@example.com"
+                      type="text"
+                      name=""
+                      id=""
+                    />
+                  </div>
+                </div>
+                <div class="m1">
+                  <div class="t3">Nuova email:</div>
+                  <div class="input">
+                    <input
+                      class="p2"
+                      placeholder="redmenu@example.com"
+                      type="text"
+                      name=""
+                      id=""
+                    />
+                  </div>
+                </div>
+                <div class="m1">
+                  <div class="t3">Conferma email:</div>
+                  <div class="input mb-1">
+                    <input
+                      class="p2"
+                      placeholder="redmenu@example.com"
+                      type="text"
+                      name=""
+                      id=""
+                    />
+                  </div>
+                </div>
+                <div class="w-100 justify-between">
+                  <div class="btn btn-red w-45">Conferma</div>
+                  <div id="close_email" class="btn btn-grey w-45">Annulla</div>
+                </div>
+              </div>
             </div>
           </div>
-    
+
           <div class="modal" id="password_modal">
-            <div class="modal_content" id="password_modal_content">
-              <span class="close" id="close_password">&times;</span>
-              <p>Modale cambio password</p>
+            <div class="modal-content" id="password_modal_content">
+              <div class="content">
+                <div class="t2">Cambia password</div>
+                <div class="m1">
+                  <div class="t3">Password attuale:</div>
+                  <div class="input">
+                    <input
+                      class="p2"
+                      placeholder="redmenu@example.com"
+                      type="password"
+                      name=""
+                      id=""
+                    />
+                  </div>
+                </div>
+                <div class="m1">
+                  <div class="t3">Nuova password:</div>
+                  <div class="input">
+                    <input
+                      class="p2"
+                      placeholder="redmenu@example.com"
+                      type="password"
+                      name=""
+                      id=""
+                    />
+                  </div>
+                </div>
+                <div class="m1">
+                  <div class="t3">Conferma password:</div>
+                  <div class="input mb-1">
+                    <input
+                      class="p2"
+                      placeholder="redmenu@example.com"
+                      type="password"
+                      name=""
+                      id=""
+                    />
+                  </div>
+                </div>
+                <div class="w-100 justify-between">
+                  <div class="btn btn-red w-45">Conferma</div>
+                  <div id="close_password" class="btn btn-grey w-45">
+                    Annulla
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
