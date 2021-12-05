@@ -92,16 +92,23 @@ function CreazioneCampiKetchupMaionese(idAggiunta, innerNome, onclickImgM, idNum
     const divImgP = document.createElement("img");
 
     //Si impostano le classi ai DIV
-    divAggiunta.setAttribute("class", "aggiunta");
+
+    divAggiunta.setAttribute("class", "justify-between mb-1 ");
     divAggiunta.setAttribute("id", idAggiunta);
-    divProp.setAttribute("class", "prop");
-    divNome.setAttribute("class", "nome");
+    if (idAggiunta == "maionese") {
+        divProp.setAttribute("class", "t3 t-ketchup");
+    }
+    else{
+        divProp.setAttribute("class", "t3 t-maionese");
+    }
+    divNome.setAttribute("class", "t2");
     divNome.innerHTML = innerNome;
-    divAggiuntaQuantity.setAttribute("class", "aggiunta_quantity");
+    divAggiuntaQuantity.setAttribute("class", "t2 d-row center");
     divMinus.setAttribute("class", "minus");
     divMinus.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 12h20v2h-24z"/></svg>';
     divMinus.setAttribute("onclick", onclickImgM);
     divNumber.setAttribute("class", "number");
+    divNumber.style = "padding-left:10px;padding-right:10px";
     divNumber.setAttribute("id", idNumber);
     divNumber.innerHTML = "0";
     divPlus.setAttribute("class", "plus");
@@ -130,7 +137,7 @@ function PassaggioAvanti() {
     //Se i dati sono corretti si passa alla pagina successiva
     if (VerificaOrario()) {
         sendOrder();
-        
+
     }
 }
 
@@ -149,7 +156,7 @@ function VerificaOrario() {
         else return true;
     }
     else
-    return false;
+        return false;
 }
 
 function PassaggioIndietro() {
@@ -188,44 +195,44 @@ function DecrementaMaionese() {
     }
 }
 
-function sendOrder(){
+function sendOrder() {
     var request_obj = []
 
-        for (let i = 0; i < obj.length; i++) {
-            if (obj[i] != null) {
-                request_obj.push(obj[i]);
+    for (let i = 0; i < obj.length; i++) {
+        if (obj[i] != null) {
+            request_obj.push(obj[i]);
+        }
+    }
+
+    var request_data = {
+        orario: document.getElementById("orarioRitiro").value,
+        ketchup: Ketchup,
+        maionesi: Maionese,
+        lista_prodotti: request_obj,
+    };
+
+    var request_string = JSON.stringify(request_data);
+    //alert(request_string);
+
+    $.ajaxSetup({
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+        }
+    });
+
+    $.ajax({
+        url: "/ordine/addordine",
+        type: "POST",
+        data: request_string,
+        success: function (ajax_results) {
+            if (ajax_results.result == true) {
+                localStorage.setItem("totale", Totale);
+                localStorage.setItem("orario", document.getElementById("orarioRitiro").value);
+                localStorage.setItem("ketchup", Ketchup);
+                localStorage.setItem("maionese", Maionese);
+                localStorage.setItem("primaryKey", "001");
+                window.location.href = "ordineconfirmed";
             }
         }
-
-        var request_data = {
-            orario: document.getElementById("orarioRitiro").value,
-            ketchup: Ketchup,
-            maionesi: Maionese,
-            lista_prodotti: request_obj,
-        };
-
-        var request_string = JSON.stringify(request_data);
-        //alert(request_string);
-
-        $.ajaxSetup({
-            headers: {
-                "X-CSRFToken": getCookie("csrftoken")
-            }
-        });
-
-        $.ajax({
-            url: "/ordine/addordine",
-            type: "POST",
-            data: request_string,
-            success: function (ajax_results) {
-                if (ajax_results.result == true) {
-                    localStorage.setItem("totale", Totale);
-                    localStorage.setItem("orario", document.getElementById("orarioRitiro").value);
-                    localStorage.setItem("ketchup", Ketchup);
-                    localStorage.setItem("maionese", Maionese);
-                    localStorage.setItem("primaryKey", "001");
-                    window.location.href = "ordineconfirmed";
-                }
-            }
-        });
+    });
 }
