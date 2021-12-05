@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block extra_body_params %}
-onload = "CaricaPagina()"
+onload = "CaricaPagina();OrarioCambiato();"
 {% endblock %}
 
 {% block extra_whitecontainer %}
@@ -28,13 +28,13 @@ onload = "CaricaPagina()"
         </div> -->
     </div>
     </div>
-    <div class="t1 mb-1">4,00€</div>
-    <div class="t3 m1">Scegli un orario di ritiro:</div>
+    <div class="t1 mb-1" id = "totale"></div>
     <div id = "containerKetchupMaionese"></div>
+    <div class="t3 m1">Scegli un orario di ritiro:</div>
     <div class="input mb-1"><input class="p2" type="time" id = "orarioRitiro" onchange="OrarioCambiato()"/></div>
     <div class="w-100 justify-between">
-        <div class="btn btn-red w-45" id = "conferma">Conferma</div>
-        <div class="btn btn-grey w-45">Annulla</div>
+        <div class="btn btn-red w-45" id = "conferma" onclick = "PassaggioAvanti()">Conferma</div>
+        <div class="btn btn-grey w-45" onclick="PassaggioIndietro()">Annulla</div>
     </div>
 </div>
 {% endblock %}

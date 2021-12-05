@@ -122,8 +122,8 @@ function CreazioneCampiKetchupMaionese(idAggiunta, innerNome, onclickImgM, idNum
 }
 
 function OrarioCambiato() {
-    if (VerificaOrario()) document.getElementById("conferma").setAttribute("class", "enabled");//-->to change
-    else document.getElementById("conferma").setAttribute("class", "disabled");
+    if (VerificaOrario()) document.getElementById("conferma").style = "opacity: 100%;cursor: pointer;";
+    else document.getElementById("conferma").style = "opacity: 50%;cursor: default;";
 }
 
 function PassaggioAvanti() {
@@ -133,6 +133,7 @@ function PassaggioAvanti() {
         localStorage.setItem("orario", document.getElementById("orarioRitiro").value);
         localStorage.setItem("ketchup", Ketchup);
         localStorage.setItem("maionese", Maionese);
+        alert("OK");
         window.location.href = "../pages/ordine_confirmed.html";
     }
 }
@@ -142,20 +143,24 @@ function VerificaOrario() {
     today = new Date();
 
     //orario contiene l'orario inserito dall'utente
-    orario = new Date();
-    orario.setHours(document.getElementById("orarioRitiro").value.split(":")[0]);
-    orario.setMinutes(document.getElementById("orarioRitiro").value.split(":")[1]);
+    if (document.getElementById("orarioRitiro").value != "" && document.getElementById("orarioRitiro").value != null) {
+        orario = new Date();
+        orario.setHours(document.getElementById("orarioRitiro").value.split(":")[0]);
+        orario.setMinutes(document.getElementById("orarioRitiro").value.split(":")[1]);
 
-    //Se l'orario indicato è prima di quello attuale, allora non è valido
-    if (orario <= today) return false;
-    else return true;
+        //Se l'orario indicato è prima di quello attuale, allora non è valido
+        if (orario <= today) return false;
+        else return true;
+    }
+    else
+    return false;
 }
 
 function PassaggioIndietro() {
     //Indico alla pagina precedente di caricare il JSON per non perdere i prodotti già inseriti
     localStorage.setItem("caricaDaLocalStorage", true);
     //Ritorno alla pagina precedente
-    window.location.href = "../pages/mainlist.html";
+    window.location.href = "/";
 }
 
 //Funzioni per incrementare e decrementare le quantità di Ketchup e Maionese -> Il valore massimo è il complessivo dei due

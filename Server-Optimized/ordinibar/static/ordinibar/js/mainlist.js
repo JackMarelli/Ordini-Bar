@@ -132,6 +132,16 @@ function search_element() {
             result_list.push(obj[i]);
         }
     }
+    var not_found_div = document.getElementById("not_found_div");
+    if (result_list.length > 0) {
+        not_found_div.classList.add("v-hidden");
+        not_found_div.classList.remove("v-visible");
+    }
+    else {
+        not_found_div.classList.remove("v-hidden");
+        not_found_div.classList.add("v-visible");
+    }
+
     document.getElementById('product_list').innerHTML = "";
     show_list(result_list);
 }
@@ -160,7 +170,7 @@ function completa() {
         localStorage.setItem("caricaDaLocalStorage", false);
         window.location.href = "/ordine";
     }
-    else{
+    else {
         alert("Non sono stati selezionati prodotti");
     }
 }
