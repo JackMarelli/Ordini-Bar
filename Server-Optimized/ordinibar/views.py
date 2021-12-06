@@ -159,3 +159,38 @@ def accountView(request):
 def logoutView(request):
     logout(request)
     return redirect("ordinibar:index")
+
+def cronologiaView(request):
+    lista_ordini = Ordine.objects.filter(id_utente = request.user.id).all()
+
+    json_array = list()
+    
+
+    for ordine in lista_ordini:
+        #try:
+        prezzo_ordine = 0
+        json_dict = dict()
+        json_dict["orario"] = ordine.orario
+        json_dict["data"] = ordine.data
+        json_lista_prodotti = list()
+        lista_prodotti = ordine.lista_prodotti.all()
+        for prodotto in lista_prodotti:
+            json_dict_prodotto = dict()
+            json_dict_prodotto["quantita"] = prodotto.quantita
+            prodotto_base = ProdottoDaVendere.objects.filter(pk = prodotto.id_prodotto).last()
+            json_dict_prodotto["prezzo"] = prodotto_base.prezzo
+            json_dict_prodotto["nome"] = prodotto_base.nome
+            json_dict_prodotto["aggiunte"] = prodotto_base.aggiunte
+            prezzo_ordine += prodotto_base.prezzo * prodotto.quantita
+            json_lista_prodotti.append(json_dict_prodotto)
+        json_dict["prodotti"] = lista_prodotti
+        json_dict["prezzo_ordine"] = prezzo_ordine
+        json_array.append(json_dict)
+        # except:
+        #     print("exception has occurred")
+
+    context = dict()
+    context["json_object"] = json.dumps(json_array, default=str)
+    context["lista_ordini"] = json_array
+
+    return render(request=request, template_name="ordinibar/cronologia.html", context=context)

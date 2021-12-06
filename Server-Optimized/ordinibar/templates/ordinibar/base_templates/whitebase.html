@@ -16,7 +16,7 @@
   <body {%block extra_body_params %}{% endblock %}>
     <div class="h-100 d-col">
       <div class="icon"><img src="{% static 'ordinibar/img/back-black.png' %}" alt="" {% block extra_icon %}{%endblock%} /></div>
-      <div class="t1 p3">Account</div>
+      {% block extrabodyhead %}{% endblock %}
       <div class="content">
         {% block content %}
 

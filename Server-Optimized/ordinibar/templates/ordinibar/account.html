@@ -12,7 +12,10 @@ onclick = "window.history.back();"
 
 {%block extra_body_params %}onload = "load_account_modals();check_errors('{{errors}}')"{% endblock %}
 
+{% block extrabodyhead %}<div class="t1 p3">Account</div>{% endblock %}
+
 {% block content %}
+
 <div class="d-col h-100 justify-between">
     <div>
         <div class="t2 t-grey-dark">Email</div>
@@ -21,7 +24,7 @@ onclick = "window.history.back();"
         <div class="t4 mb-1">{{user.username}}</div>
     </div>
     <div>
-        <div class="t4 underlined">Visualizza cronologia ordini</div>
+        <div class="t4 underlined" onclick="window.location.href = 'cronologia'">Visualizza cronologia ordini</div>
         <div id="change_email" class="t4 underlined">Cambia email</div>
         <div id="change_password" class="t4 t-red underlined">
             Cambia password
