@@ -15,9 +15,9 @@ onclick = "window.history.back()"
 <div class="d-col h-100 justify-between">
     <div>
         <div class="t2 t-grey-dark">Email</div>
-        <div class="t4 mb-1">marelligiacomo@gmail.com</div>
+        <div class="t4 mb-1">{{user.email}}</div>
         <div class="t2 t-grey-dark">Nome utente</div>
-        <div class="t4 mb-1">Giacomo Marelli</div>
+        <div class="t4 mb-1">{{user.username}}</div>
     </div>
     <div>
         <div class="t4 underlined">Visualizza cronologia ordini</div>
@@ -33,26 +33,27 @@ onclick = "window.history.back()"
             <div class="content">
                 <form method="post">
                     {% csrf_token %}
+                    <!-- {{change_email_form}} -->
                     <!-- DA SISTEMARE -->
-                    <input type="text" value = "email_change" style="visibility: hidden;height: 0;" name = "request_type">
+                    <input type="text" value = "email_change" style="visibility: hidden;height: 0;" name = "request_type" required>
                     <!-- {{change_email_form}} -->
                     <div class="t2">Cambia email</div>
                     <div class="m1">
-                        <div class="t3">Email attuale:</div>
+                        <div class="t3">Password:</div>
                         <div class="input">
-                            <input class="p2" placeholder="redmenu@example.com" type="text" name="vecchia_email" id="" />
+                            <input class="p2" placeholder="Password" type="password" name="password" id="" />
                         </div>
                     </div>
                     <div class="m1">
                         <div class="t3">Nuova email:</div>
                         <div class="input">
-                            <input class="p2" placeholder="redmenu@example.com" type="text" name="nuova_password" id="" />
+                            <input class="p2" placeholder="redmenu@example.com" type="text" name="nuova_email" id="" />
                         </div>
                     </div>
                     <div class="m1">
                         <div class="t3">Conferma email:</div>
                         <div class="input mb-1">
-                            <input class="p2" placeholder="redmenu@example.com" type="text" name="conferma_password" id="" />
+                            <input class="p2" placeholder="redmenu@example.com" type="text" name="conferma_email" id="" />
                         </div>
                     </div>
                     <div class="w-100 justify-between">

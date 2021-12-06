@@ -105,20 +105,44 @@ def ordineConfirmedView(request):
 def accountView(request):
     change_password_form = ChangePasswordForm()
     change_email_form = ChangeEmailForm()
+    user = request.user
+    errors = dict()
+    errors["EMAILERR"] = False 
+    errors["PASSERR"] = False 
 
-    # if request.method == "POST":
-    #     change_password_form = ChangePasswordForm(request, data=request.POST)
-    #     print("change_password_form")
-
-    # if request.method == "POST" and not change_password_form.isvalid():
-    #     print("change_email_form")
     if request.method == "POST":
         form_type = request.POST['request_type']
+        if form_type == 'email_change':
+            #cambio email
+            change_email_form = ChangeEmailForm(data=request.POST)
+            if change_email_form.is_valid():
+                password = change_email_form.cleaned_data.get('password')
+                if user.check_password(password):
+                    email = change_email_form.cleaned_data.get('nuova_email')
+                    conferma_email = change_email_form.cleaned_data.get('conferma_email')
+
+                    #cambio la email
+                    if email == conferma_email:
+                        #cambio l'email
+                        user.email = email
+                        user.save()
+                        errors["EMAILERR"] = False
+                        errors["PASSERR"] = False 
+                    else:
+                        errors["EMAILERR"] = True
+                        errors["PASSERR"] = False 
+                else:
+                    errors["EMAILERR"] = True  
+                    errors["PASSERR"] = True       
+        else:
+            #cambio password
+            pass
         
 
     context = dict()
     context["change_password_form"] = change_password_form
     context["change_email_form"] = change_email_form
+    context["errors"] = errors
     return render(request=request, template_name="ordinibar/account.html", context=context)
 
 
