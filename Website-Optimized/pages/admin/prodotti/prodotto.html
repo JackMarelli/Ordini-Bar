@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RedMenu - Admin</title>
     <link rel="stylesheet" href="../../../css/general.css">
+    <script src="../../../js/modal.js"></script>
 </head>
-<body>
+<body onload="load_prodotto_modals()">
     <div class="redcontainer">
         <div class="icon"><img src="../../../images/back-white.png" alt=""></div>
         <div class="whitecontainer">
             <div class="content">
                 <div class="t1">Prodotto</div>
                 <div class="t2 t-grey-dark mb-1">0,00€</div>
-                <div class="t4 underlined">Cambia nome</div>
-                <div class="t4 underlined">Cambia prezzo</div>
+                <div class="t4 underlined" id="change_nome">Cambia nome</div>
+                <div class="t4 underlined" id="change_prezzo">Cambia prezzo</div>
                 <!-- class: v-visible/v-hidden in base alla presenza delle aggiunte -->
                 <div class="t4 underlined v-hidden">Attiva aggiunte</div>
                 <div class="t4 underlined v-visible">Togli aggiunte</div>
@@ -22,5 +23,57 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="nome_modal">
+        <div class="modal-content" id="nome_modal_content">
+          <div class="content">
+            <div class="t2">Cambia nome</div>
+            <div class="m1">
+              <div class="input">
+                <input
+                  class="p2"
+                  placeholder="nuovo nome"
+                  type="password"
+                  name=""
+                  id=""
+                />
+              </div>
+            </div>
+            <div class="w-100 justify-between">
+              <div class="btn btn-red w-45">Conferma</div>
+              <div id="close_nome" class="btn btn-grey w-45">
+                Annulla
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal" id="prezzo_modal">
+        <div class="modal-content" id="prezzo_modal_content">
+          <div class="content">
+            <div class="t2">Cambia prezzo</div>
+            <div class="m1">
+              <div class="input">
+                <input
+                  class="p2"
+                  placeholder="nuovo prezzo"
+                  type="number"
+                  step="0.1"
+                  name=""
+                  id=""
+                />
+              </div>
+            </div>
+            <div class="w-100 justify-between">
+              <div class="btn btn-red w-45">Conferma</div>
+              <div id="close_prezzo" class="btn btn-grey w-45">
+                Annulla
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
 </body>
 </html>
