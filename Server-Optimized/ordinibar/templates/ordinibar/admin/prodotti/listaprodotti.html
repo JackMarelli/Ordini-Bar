@@ -14,7 +14,7 @@
             <div class="content">
                 <div class="list m1">
                     {% for prodotto in lista_prodotti%}
-                    <div class="d-col w-100 mb-1">
+                    <div class="d-col w-100 mb-1" onclick="window.location.href = '/prodotto/{{prodotto.pk}}'">
                         <div class="t3">{{prodotto.nome}}</div>
                         <div class="t4 t-grey-dark">{{prodotto.prezzo}}€</div>
                     </div>
