@@ -1,0 +1,28 @@
+{% load static %}
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedMenu - Admin</title>
+    <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}">
+</head>
+<body>
+    <div class="redcontainer">
+        <div class="icon" onclick="window.history.back()"><img src="{% static 'ordinibar/img/back-white.png'%}" alt=""></div>
+        <div class="whitecontainer">
+            <div class="content">
+                <div class="list m1">
+                    {% for prodotto in lista_prodotti%}
+                    <div class="d-col w-100 mb-1">
+                        <div class="t3">{{prodotto.nome}}</div>
+                        <div class="t4 t-grey-dark">{{prodotto.prezzo}}€</div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="t4 center m1 t-red underlined pointer">Aggiungi prodotto</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -127,3 +127,18 @@ def changeOrderStatus(request):
 
 def QrScannerView(request):
     return render(request=request, template_name="ordinibar/admin/ordini/qrscanner.html")
+
+def ListaProdottiView(request):
+
+    prodotti = ProdottoDaVendere.objects.all()
+
+    lista_prodotti = list()
+
+    for prodotto in prodotti:
+        prodotto_dict = dict()
+        prodotto_dict["nome"] = prodotto.nome
+        prodotto_dict["prezzo"] = prodotto.prezzo
+        prodotto_dict["pk"] = prodotto.pk
+        lista_prodotti.append(prodotto_dict)
+
+    return render(request=request, template_name="ordinibar/admin/prodotti/listaprodotti.html", context={"lista_prodotti":lista_prodotti})
