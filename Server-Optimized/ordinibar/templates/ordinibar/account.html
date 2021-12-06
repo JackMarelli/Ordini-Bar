@@ -3,13 +3,14 @@
 
 {% block extra_head %}
 <script src="{% static 'ordinibar/js/modal.js' %}"></script>
+<script src = "{% static 'ordinibar/js/account.js' %}"></script>
 {% endblock %}
 
 {% block extra_icon %}
-onclick = "window.history.back()"
+onclick = "window.history.back();"
 {%endblock%}
 
-{%block extra_body_params %}onload = "load_account_modals()"{% endblock %}
+{%block extra_body_params %}onload = "load_account_modals();check_errors('{{errors}}')"{% endblock %}
 
 {% block content %}
 <div class="d-col h-100 justify-between">
@@ -25,7 +26,7 @@ onclick = "window.history.back()"
         <div id="change_password" class="t4 t-red underlined">
             Cambia password
         </div>
-        <div class="t4 underlined">Log out</div>
+        <div class="t4 underlined" onclick="window.location.href = 'logout'">Log out</div>
     </div>
 
     <div class="modal" id="email_modal">
@@ -47,17 +48,18 @@ onclick = "window.history.back()"
                     <div class="m1">
                         <div class="t3">Nuova email:</div>
                         <div class="input">
-                            <input class="p2" placeholder="redmenu@example.com" type="text" name="nuova_email" id="" />
+                            <input class="p2" placeholder="redmenu@example.com" type="email" name="nuova_email" id="new_email" oninput="check_emails()" value = ""/>
                         </div>
                     </div>
                     <div class="m1">
                         <div class="t3">Conferma email:</div>
                         <div class="input mb-1">
-                            <input class="p2" placeholder="redmenu@example.com" type="text" name="conferma_email" id="" />
+                            <input class="p2" placeholder="redmenu@example.com" type="email" name="conferma_email" id="confirm_email" oninput="check_emails()" value = ""/>
                         </div>
                     </div>
+                    <div class = "w-100 t-red" id = "email_error_div" style = "margin: 10px;"></div>
                     <div class="w-100 justify-between">
-                        <button class="btn btn-red w-45" type="submit" style="border: none;">Conferma</button>
+                        <button class="btn btn-red w-45" type="submit" style="border: none;" id = "submit_email">Conferma</button>
                         <div id="close_email" class="btn btn-grey w-45">Annulla</div>
                     </div>
                 </form>
@@ -87,18 +89,19 @@ onclick = "window.history.back()"
                         <div class="t3">Nuova password:</div>
                         <div class="input">
                             <input class="p2" placeholder="redmenu@example.com" type="password" name="nuova_password"
-                                id="" />
+                                id="nuova_password" oninput="check_passwords()"/>
                         </div>
                     </div>
                     <div class="m1">
                         <div class="t3">Conferma password:</div>
                         <div class="input mb-1">
                             <input class="p2" placeholder="redmenu@example.com" type="password" name="conferma_password"
-                                id="" />
+                                id="conferma_password" oninput="check_passwords()"/>
                         </div>
                     </div>
+                    <div class = "w-100 t-red" id = "password_error_div" style = "margin: 10px;"></div>
                     <div class="w-100 justify-between">
-                        <button class="btn btn-red w-45" type="submit" style="border: none;">Conferma</button>
+                        <button class="btn btn-red w-45" type="submit" style="border: none;" id = "submit_password" disabled>Conferma</button>
                         <div id="close_password" class="btn btn-grey w-45">
                             Annulla
                         </div>

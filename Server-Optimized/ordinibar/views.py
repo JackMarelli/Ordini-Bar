@@ -107,8 +107,8 @@ def accountView(request):
     change_email_form = ChangeEmailForm()
     user = request.user
     errors = dict()
-    errors["EMAILERR"] = False 
-    errors["PASSERR"] = False 
+    # errors["EMAILERR"] = False 
+    # errors["PASSERR"] = False 
 
     if request.method == "POST":
         form_type = request.POST['request_type']
@@ -136,13 +136,26 @@ def accountView(request):
                     errors["PASSERR"] = True       
         else:
             #cambio password
-            pass
-        
+            change_password_form = ChangePasswordForm(data = request.POST)
+            if change_password_form.is_valid():
+                vecchia_password = change_password_form.cleaned_data.get('vecchia_password')
+                nuova_password = change_password_form.cleaned_data.get('nuova_password')
+                conferma_password = change_password_form.cleaned_data.get('conferma_password')
+
+                if user.check_password(vecchia_password):
+                    #se la vecchia password è corretta
+                    if nuova_password == conferma_password:
+                        #se le 2 password corrispondono
+                        user.set_password(nuova_password)  # replace with your real password
+                        user.save()
+                        return redirect("ordinibar:index")
 
     context = dict()
     context["change_password_form"] = change_password_form
     context["change_email_form"] = change_email_form
-    context["errors"] = errors
+    context["errors"] = json.dumps(errors)
     return render(request=request, template_name="ordinibar/account.html", context=context)
 
-
+def logoutView(request):
+    logout(request)
+    return redirect("ordinibar:index")
