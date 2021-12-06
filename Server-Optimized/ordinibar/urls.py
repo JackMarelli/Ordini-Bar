@@ -20,4 +20,6 @@ urlpatterns = [
     path("ordinedaaccettare/<id>/",admin_views.viewOrdineDaAccettareDetail, name = "ordine_da_accettare"),
     path("changeorderstatus", admin_views.changeOrderStatus, name = "change_order_status"),
     path("qrscanner", admin_views.QrScannerView, name = "qr_scanner"),
+    path("listaprodotti", admin_views.ListaProdottiView, name = "lista_prodotti"),
+    path("prodotto/<id>/", admin_views.ChangeProductView, name = "cambia_prodotto"),
 ]

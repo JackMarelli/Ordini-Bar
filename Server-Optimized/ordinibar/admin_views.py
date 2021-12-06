@@ -125,5 +125,35 @@ def changeOrderStatus(request):
     order.save()
     return HttpResponse("")#return nothing
 
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
 def QrScannerView(request):
     return render(request=request, template_name="ordinibar/admin/ordini/qrscanner.html")
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def ListaProdottiView(request):
+
+    prodotti = ProdottoDaVendere.objects.all()
+
+    lista_prodotti = list()
+
+    for prodotto in prodotti:
+        prodotto_dict = dict()
+        prodotto_dict["nome"] = prodotto.nome
+        prodotto_dict["prezzo"] = prodotto.prezzo
+        prodotto_dict["pk"] = prodotto.pk
+        lista_prodotti.append(prodotto_dict)
+
+    return render(request=request, template_name="ordinibar/admin/prodotti/listaprodotti.html", context={"lista_prodotti":lista_prodotti})
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def ChangeProductView(request,id):
+    prodotto = ProdottoDaVendere.objects.filter(pk = id).last()
+    prodotto_dict = dict()
+    prodotto_dict["nome"] = prodotto.nome
+    prodotto_dict["prezzo"] = prodotto.prezzo
+    prodotto_dict["aggiunte"] = prodotto.aggiunte
+    prodotto_dict["tipo"] = prodotto.tipo
+    return render(request=request, template_name="ordinibar/admin/prodotti/prodotto.html", context={"prodotto":prodotto_dict})
