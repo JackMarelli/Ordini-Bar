@@ -291,3 +291,7 @@
 .test-border {
   border: 1px solid black;
 }
+
+.qrscanner *{
+  color: #000000;
+}

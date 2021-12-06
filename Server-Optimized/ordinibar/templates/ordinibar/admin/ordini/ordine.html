@@ -17,6 +17,19 @@
 </div>
 {% endfor %}
 
+<!-- DIV Maionese e Ketchup -->
+<div class="justify-between mb-1">
+    <div class="t3 t-ketchup">Ketchup</div>
+    <div class="d-row center">
+      <div class="t2">{{ordine.ketchup}}</div>
+    </div>
+  </div>
+  <div class="justify-between mb-1">
+    <div class="t3 t-maionese">Maionese</div>
+    <div class="d-row center">
+      <div class="t2">{{ordine.maionesi}}</div>
+    </div>
+  </div>
 {% endblock %}
 
 
@@ -24,7 +37,7 @@
 {% ifequal ordine.stato "todo" %}
 <div class="justify-between">
     <div class="btn btn-red w-45" onclick="cambia_stato_ordine('{{ordine.pk}}','doing')">Accetta</div>
-    <div class="btn btn-grey w-45">Rifiuta</div>
+    <div class="btn btn-grey w-45" onclick="cambia_stato_ordine('{{ordine.pk}}','refused')">Rifiuta</div>
 </div>
 {% endifequal%}
 

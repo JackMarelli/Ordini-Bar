@@ -1,0 +1,29 @@
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RedMenu Scanner</title>
+  <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}" />
+  <!-- <link rel="stylesheet" href="{% static 'ordinibar/css/admin/listaordini/qrscanner.css' %}"> -->
+  <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+  <script src="{% static 'ordinibar/js/admin/ordini/qrscanner.js' %}"></script>
+  
+</head>
+
+<body onload="CaricaQR()">
+  <div class="icon">
+    <a href="javascript:history.back()">
+      <img src="{% static 'ordinibar/img/back-black.png' %}" alt="" onclick="overlayTranslateOut()" />
+    </a>
+  </div>
+  <div class="content">
+    <div class="t1">Inquadra QR</div>
+    <!-- scanner qr da mettere -->
+
+  </div>
+  <div class="center w-100"><div id="qr-reader" class="qrscanner w-45 "></div></div>
+  </body>
+</html>

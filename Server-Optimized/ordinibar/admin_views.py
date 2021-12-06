@@ -91,6 +91,8 @@ def viewOrdineDaAccettareDetail(request, id):
         dict_ordine["orario"] = ordine.orario
         dict_ordine["data"] = ordine.data
         dict_ordine["stato"] = ordine.stato
+        dict_ordine["maionesi"] = ordine.numero_maionesi
+        dict_ordine["ketchup"] = ordine.numero_ketchup
         json_lista_prodotti = list()
         lista_prodotti = ordine.lista_prodotti.all()
         for prodotto in lista_prodotti:
@@ -122,3 +124,6 @@ def changeOrderStatus(request):
     order.stato = request_dict["new_status"]
     order.save()
     return HttpResponse("")#return nothing
+
+def QrScannerView(request):
+    return render(request=request, template_name="ordinibar/admin/ordini/qrscanner.html")
