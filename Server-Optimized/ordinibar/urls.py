@@ -16,4 +16,5 @@ urlpatterns = [
     path("cronologia", views.cronologiaView, name ="cronologia"),
     #ADMIN URLS
     path("bivio", admin_views.bivioView, name = "bivio"),
+    path("listaordini",admin_views.listaOrdiniView, name = "lista_ordini"),
 ]

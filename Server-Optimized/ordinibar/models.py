@@ -33,3 +33,5 @@ class Ordine(models.Model):#lista dei prodotti presenti in un ordine
     class Meta:
         verbose_name = 'Ordine'
         verbose_name_plural = 'Ordini'
+
+Ordine.objects.order_by("orario")
