@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.http.response import HttpResponse, JsonResponse
 import json
 from .models import *
+from .forms import *
 
 # Create your views here.
 def loginView(request):
@@ -102,6 +103,22 @@ def ordineConfirmedView(request):
 
 @login_required(login_url="/login")
 def accountView(request):
-    return render(request=request, template_name="ordinibar/account.html")
+    change_password_form = ChangePasswordForm()
+    change_email_form = ChangeEmailForm()
+
+    # if request.method == "POST":
+    #     change_password_form = ChangePasswordForm(request, data=request.POST)
+    #     print("change_password_form")
+
+    # if request.method == "POST" and not change_password_form.isvalid():
+    #     print("change_email_form")
+    if request.method == "POST":
+        form_type = request.POST['request_type']
+        
+
+    context = dict()
+    context["change_password_form"] = change_password_form
+    context["change_email_form"] = change_email_form
+    return render(request=request, template_name="ordinibar/account.html", context=context)
 
 
