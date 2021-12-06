@@ -17,4 +17,6 @@ urlpatterns = [
     #ADMIN URLS
     path("bivio", admin_views.bivioView, name = "bivio"),
     path("listaordini",admin_views.listaOrdiniView, name = "lista_ordini"),
+    path("ordinedaaccettare/<id>/",admin_views.viewOrdineDaAccettareDetail, name = "ordine_da_accettare"),
+    path("changeorderstatus", admin_views.changeOrderStatus, name = "change_order_status"),
 ]

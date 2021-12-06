@@ -1,0 +1,35 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedMenu - Admin</title>
+    <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src = "{% static 'ordinibar/js/general.js' %}"></script>
+    <script src = "{% static 'ordinibar/js/admin/ordini/ordine.js' %}"></script>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div class="redcontainer">
+        <div class="icon" onclick="window.location.href = '/listaordini' ">
+            <img src="{% static 'ordinibar/img/back-white.png' %}" alt="" />
+          </div>
+        <div class="whitecontainer">
+            <div class="content">
+                <div class="t1">Ordine</div>
+                <div class="justify-between">
+                    <div class="t1 t-grey-dark">{% block prezzo %}{% endblock %}</div>
+                    <div class="t1 t-grey-dark">{% block orario %}{% endblock %}</div>
+                </div>
+                <div class = "t2"><span class="underlined">Utente:</span> {{user.username}}</div>
+                <div class="list m1">
+                    {% block lista_prodotti %}{% endblock %}
+                </div>
+                {% block pulsanti %}{% endblock %}           
+            </div>
+        </div>
+    </div>
+</body>
+</html>
