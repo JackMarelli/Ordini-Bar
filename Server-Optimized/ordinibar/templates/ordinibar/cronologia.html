@@ -2,19 +2,21 @@
 {% load static %}
 
 {% block extra_head %}
+<script src = "{% static 'ordinibar/js/cronologia.js' %}"></script>
 {% endblock %}
 
 {% block extra_icon %}
 onclick = "window.location.href = '/account'"
 {%endblock%}
 
-{%block extra_body_params %}{% endblock %}
+{%block extra_body_params %}onload = "load_json_object('{{json_object}}')"{% endblock %}
+
 {% block extrabodyhead %}<div class="t1 p3">Cronologia</div> {% endblock %}
 {% block content %}
        <div class="list">
             {% for ordine in lista_ordini%}
 
-                <div class="d-col">
+                <div class="d-col" onclick="load_ordine('{{ordine.pk}}')">
                 <div class="t3">{{ordine.data|date:"d/m/y"}} - {{ordine.orario|date:"H:i"}}</div>
                 <div class="t4 t-grey-dark">{{ordine.prezzo_ordine}}€</div>
                 </div>

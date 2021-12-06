@@ -167,28 +167,31 @@ def cronologiaView(request):
     
 
     for ordine in lista_ordini:
-        #try:
-        prezzo_ordine = 0
-        json_dict = dict()
-        json_dict["orario"] = ordine.orario
-        json_dict["data"] = ordine.data
-        json_lista_prodotti = list()
-        lista_prodotti = ordine.lista_prodotti.all()
-        for prodotto in lista_prodotti:
-            json_dict_prodotto = dict()
-            json_dict_prodotto["quantita"] = prodotto.quantita
-            prodotto_base = ProdottoDaVendere.objects.filter(pk = prodotto.id_prodotto).last()
-            json_dict_prodotto["prezzo"] = prodotto_base.prezzo
-            json_dict_prodotto["nome"] = prodotto_base.nome
-            json_dict_prodotto["aggiunte"] = prodotto_base.aggiunte
-            prezzo_ordine += prodotto_base.prezzo * prodotto.quantita
-            json_lista_prodotti.append(json_dict_prodotto)
-        json_dict["prodotti"] = lista_prodotti
-        json_dict["prezzo_ordine"] = prezzo_ordine
-        json_array.append(json_dict)
-        # except:
-        #     print("exception has occurred")
+        try:
+            prezzo_ordine = 0
+            json_dict = dict()
+            json_dict["pk"] = ordine.pk
+            json_dict["orario"] = ordine.orario
+            json_dict["data"] = ordine.data
+            json_lista_prodotti = list()
+            lista_prodotti = ordine.lista_prodotti.all()
+            for prodotto in lista_prodotti:
+                json_dict_prodotto = dict()
+                json_dict_prodotto["quantita"] = prodotto.quantita
+                prodotto_base = ProdottoDaVendere.objects.filter(pk = prodotto.id_prodotto).last()
+                json_dict_prodotto["prezzo"] = prodotto_base.prezzo
+                json_dict_prodotto["nome"] = prodotto_base.nome
+                json_dict_prodotto["aggiunte"] = prodotto_base.aggiunte
+                prezzo_ordine += prodotto_base.prezzo * prodotto.quantita
+                json_lista_prodotti.append(json_dict_prodotto)
+            json_dict["prodotti"] = json_lista_prodotti
+            json_dict["prezzo_ordine"] = prezzo_ordine
+            json_array.append(json_dict)
+        
+        except:
+             print("exception has occurred")
 
+    json_array.reverse()#inverto la lista
     context = dict()
     context["json_object"] = json.dumps(json_array, default=str)
     context["lista_ordini"] = json_array
