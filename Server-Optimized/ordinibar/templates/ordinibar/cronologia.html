@@ -16,7 +16,7 @@ onclick = "window.location.href = '/account'"
        <div class="list">
             {% for ordine in lista_ordini%}
 
-                <div class="d-col" onclick="load_ordine('{{ordine.pk}}')">
+                <div class="d-col" onclick="load_ordine('{{ordine.pk}}')" style = "padding-bottom: 20px;">
                 <div class="t3">{{ordine.data|date:"d/m/y"}} - {{ordine.orario|date:"H:i"}}</div>
                 <div class="t4 t-grey-dark">{{ordine.prezzo_ordine}}€</div>
                 </div>

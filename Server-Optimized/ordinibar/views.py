@@ -18,10 +18,10 @@ def loginView(request):
                 user = authenticate(username=username, password=password)
                 if user is not None:
                     login(request, user)
-                    # if(request.user.is_superuser):
-                    #     return redirect("ordinibar:index_admin")
-                    # else:
-                    return redirect("ordinibar:index")
+                    if(request.user.is_superuser):
+                         return redirect("ordinibar:bivio")
+                    else:
+                        return redirect("ordinibar:index")
                 else:
                     messages.error(request,'LOGERR')
             else:

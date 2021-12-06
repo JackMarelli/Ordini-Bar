@@ -1,4 +1,6 @@
+from ordinibar import admin_views
 from . import views
+from . import admin_views
 from django.urls import path
 
 app_name = 'ordinibar'
@@ -12,4 +14,6 @@ urlpatterns = [
     path("ordineconfirmed", views.ordineConfirmedView, name="ordine_confirmed"),
     path("account", views.accountView, name = "account"),
     path("cronologia", views.cronologiaView, name ="cronologia"),
+    #ADMIN URLS
+    path("bivio", admin_views.bivioView, name = "bivio"),
 ]
