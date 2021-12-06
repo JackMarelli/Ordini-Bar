@@ -21,8 +21,16 @@
 
 
 {% block pulsanti %}
+{% ifequal ordine.stato "todo" %}
 <div class="justify-between">
     <div class="btn btn-red w-45" onclick="cambia_stato_ordine('{{ordine.pk}}','doing')">Accetta</div>
     <div class="btn btn-grey w-45">Rifiuta</div>
 </div>
+{% endifequal%}
+
+{% ifequal ordine.stato "doing" %}
+<div class="justify-between">
+    <div class="btn btn-red w-100" onclick="cambia_stato_ordine('{{ordine.pk}}','closed')">Completa</div>
+</div>
+{% endifequal%}
 {% endblock %}

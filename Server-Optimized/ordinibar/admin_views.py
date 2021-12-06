@@ -90,6 +90,7 @@ def viewOrdineDaAccettareDetail(request, id):
         dict_ordine["pk"] = ordine.pk
         dict_ordine["orario"] = ordine.orario
         dict_ordine["data"] = ordine.data
+        dict_ordine["stato"] = ordine.stato
         json_lista_prodotti = list()
         lista_prodotti = ordine.lista_prodotti.all()
         for prodotto in lista_prodotti:

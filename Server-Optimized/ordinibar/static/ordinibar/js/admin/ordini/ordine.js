@@ -16,7 +16,7 @@ function cambia_stato_ordine(pk,nuovo_stato){
         type: "POST",
         data: JSON.stringify(data),
         success: function (response) {
-          //Visualizzazione di prezzo e orario
+          window.location.href = "/listaordini";
         }
       });
 }
