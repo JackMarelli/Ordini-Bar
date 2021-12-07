@@ -113,6 +113,7 @@ def ordineConfirmedView(request):
                 except:
                     ordine.stato = "refused"
                     ordine.save()
+                    send_order_refused_email(user.email, user.username)
                     return redirect("ordinibar:index")
 
             response_dict['prezzo'] = prezzo

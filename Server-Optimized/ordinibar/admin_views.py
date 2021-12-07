@@ -7,6 +7,7 @@ from django.http.response import HttpResponse, JsonResponse
 import json
 from .models import *
 from .forms import *
+from .send_emails import *
 
 @login_required(login_url="/login")
 @user_passes_test(lambda u: u.is_superuser)
@@ -123,6 +124,9 @@ def changeOrderStatus(request):
     order = Ordine.objects.filter(pk = request_dict["pk"]).last()
     order.stato = request_dict["new_status"]
     order.save()
+    if request_dict["new_status"] == "refused":
+        user = User.objects.filter(pk = order.id_utente).last()
+        send_order_refused_email(user.email, user.username)
     return HttpResponse("")#return nothing
 
 @login_required(login_url="/login")
@@ -163,6 +167,16 @@ def ChangeProductView(request,id):
 @user_passes_test(lambda u: u.is_superuser)
 def deleteProduct(request):
     id = json.loads(request.body.decode('UTF-8'))["pk"]
+    ordini_to_do = Ordine.objects.filter(stato = "todo").filter(lista_prodotti__id_prodotto = id).all()
+    for ordine in ordini_to_do:
+        user = User.objects.filter(pk = ordine.id_utente).last()
+        send_order_refused_email(user.email, user.username)
+    
+    ordini_doing = Ordine.objects.filter(stato = "doing").filter(lista_prodotti__id_prodotto = id).all()
+    for ordine in ordini_doing:
+        user = User.objects.filter(pk = ordine.id_utente).last()
+        send_order_refused_email(user.email, user.username)
+
     ProdottoDaVendere.objects.filter(pk = id).delete()
     return HttpResponse("")
 
