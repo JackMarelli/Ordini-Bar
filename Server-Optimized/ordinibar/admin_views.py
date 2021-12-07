@@ -198,3 +198,29 @@ def setAggiunte(request):
     prodotto.aggiunte = aggiunte
     prodotto.save()
     return HttpResponse("")
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def AggiungiProdottoView(request):
+    return render(request=request, template_name="ordinibar/admin/prodotti/aggiungiprodotto.html")
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def AddNewProduct(request):
+    json_dict = json.loads(request.body.decode('UTF-8'))
+    nome = json_dict["nome"]
+    prezzo = json_dict["prezzo"]
+    tipo = json_dict["tipo"]
+    aggiunte = json_dict["aggiunte"]
+    
+    if not ProdottoDaVendere.objects.filter(nome = nome).exists():
+        prodotto = ProdottoDaVendere(nome = nome, prezzo = prezzo, tipo = tipo, aggiunte = aggiunte)
+        prodotto.save()
+        dict_risposta = dict()
+        dict_risposta["risposta"] = True
+        return JsonResponse(dict_risposta,safe=False)
+    else:
+        dict_risposta = dict()
+        dict_risposta["risposta"] = False
+        return JsonResponse(dict_risposta,safe=False)
+    
