@@ -127,6 +127,12 @@ def changeOrderStatus(request):
     if request_dict["new_status"] == "refused":
         user = User.objects.filter(pk = order.id_utente).last()
         send_order_refused_email(user.email, user.username)
+    if request_dict["new_status"] == "doing":
+        user = User.objects.filter(pk = order.id_utente).last()
+        send_email_ordine_accettato(user.email, user.username)
+    if request_dict["new_status"] == "closed":
+        user = User.objects.filter(pk = order.id_utente).last()
+        send_email_ordine_pronto(user.email, user.username)
     return HttpResponse("")#return nothing
 
 @login_required(login_url="/login")
