@@ -22,4 +22,6 @@ urlpatterns = [
     path("qrscanner", admin_views.QrScannerView, name = "qr_scanner"),
     path("listaprodotti", admin_views.ListaProdottiView, name = "lista_prodotti"),
     path("prodotto/<id>/", admin_views.ChangeProductView, name = "cambia_prodotto"),
+    path("eliminaprodotto",admin_views.deleteProduct, name = "elimina_prodotto"),
+    path("cambianomeprodotto", admin_views.cambiaNome, name = "cambia_nome_prodotto"),
 ]

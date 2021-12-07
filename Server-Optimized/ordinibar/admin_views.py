@@ -156,4 +156,23 @@ def ChangeProductView(request,id):
     prodotto_dict["prezzo"] = prodotto.prezzo
     prodotto_dict["aggiunte"] = prodotto.aggiunte
     prodotto_dict["tipo"] = prodotto.tipo
+    prodotto_dict["pk"] = prodotto.pk
     return render(request=request, template_name="ordinibar/admin/prodotti/prodotto.html", context={"prodotto":prodotto_dict})
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def deleteProduct(request):
+    id = json.loads(request.body.decode('UTF-8'))["pk"]
+    ProdottoDaVendere.objects.filter(pk = id).delete()
+    return HttpResponse("")
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def cambiaNome(request):
+    json_dict = json.loads(request.body.decode("UTF-8"))
+    id = json_dict["pk"]
+    nome = json_dict["nome"]
+    prodotto = ProdottoDaVendere.objects.filter(pk = id).last()
+    prodotto.nome = nome
+    prodotto.save()
+    return HttpResponse("")

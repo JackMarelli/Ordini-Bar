@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RedMenu - Admin</title>
     <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'ordinibar/js/modal.js' %}"></script>
+    <script src="{% static 'ordinibar/js/general.js' %}"></script>
+    <script src="{% static 'ordinibar/js/admin/prodotti/prodotto.js' %}"></script>
 </head>
 <body onload="load_prodotto_modals()">
     <div class="redcontainer">
@@ -20,7 +23,7 @@
                 <!-- class: v-visible/v-hidden in base alla presenza delle aggiunte -->
                 <div class="t4 underlined v-hidden">Attiva aggiunte</div>
                 <div class="t4 underlined v-visible">Togli aggiunte</div>
-                <div class="t4 underlined t-red">Elimina prodotto</div>
+                <div class="t4 underlined t-red" onclick="eliminaProdotto('{{prodotto.pk}}')">Elimina prodotto</div>
             </div>
         </div>
     </div>
@@ -34,14 +37,14 @@
                 <input
                   class="p2"
                   placeholder="nuovo nome"
-                  type="password"
+                  type="text"
                   name=""
-                  id=""
+                  id="nuovo_nome"
                 />
               </div>
             </div>
             <div class="w-100 justify-between">
-              <div class="btn btn-red w-45">Conferma</div>
+              <div class="btn btn-red w-45" onclick="cambiaNomeProdotto('{{prodotto.pk}}')">Conferma</div>
               <div id="close_nome" class="btn btn-grey w-45">
                 Annulla
               </div>
