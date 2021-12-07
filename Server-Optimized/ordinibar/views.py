@@ -7,6 +7,7 @@ from django.http.response import HttpResponse, JsonResponse
 import json
 from .models import *
 from .forms import *
+from .send_emails import *
 
 # Create your views here.
 def loginView(request):
@@ -33,8 +34,7 @@ def loginView(request):
 @login_required(login_url="/login")
 def indexView(request):
     user_last_status = Ordine.objects.filter(id_utente = request.user.pk).last()
-    print(user_last_status.stato)
-    if not(user_last_status == None):
+    if Ordine.objects.filter(id_utente = request.user.pk).exists():
         last_order_status = user_last_status.stato
         if last_order_status == "todo" or last_order_status == "doing":
             return redirect("ordinibar:ordine_confirmed")
@@ -234,6 +234,7 @@ def registerView(request):
                     #registro l'utente
                     user = User.objects.create_user(username=username,email=email,password=nuova_password)
                     user.save()
+                    send_new_user_email(email, username)
                     login(request, user)
                     return redirect("ordinibar:index")
                 else:
