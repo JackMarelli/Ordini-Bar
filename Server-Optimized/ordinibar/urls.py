@@ -24,4 +24,6 @@ urlpatterns = [
     path("prodotto/<id>/", admin_views.ChangeProductView, name = "cambia_prodotto"),
     path("eliminaprodotto",admin_views.deleteProduct, name = "elimina_prodotto"),
     path("cambianomeprodotto", admin_views.cambiaNome, name = "cambia_nome_prodotto"),
+    path("cambiaprezzoprodotto", admin_views.cambiaPrezzo, name = "cambia_prezzo_prodotto"),
+    path("setaggiunte", admin_views.setAggiunte, name = "set_aggiunte"),
 ]

@@ -176,3 +176,25 @@ def cambiaNome(request):
     prodotto.nome = nome
     prodotto.save()
     return HttpResponse("")
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def cambiaPrezzo(request):
+    json_dict = json.loads(request.body.decode("UTF-8"))
+    id = json_dict["pk"]
+    prezzo = json_dict["prezzo"]
+    prodotto = ProdottoDaVendere.objects.filter(pk = id).last()
+    prodotto.prezzo = prezzo
+    prodotto.save()
+    return HttpResponse("")
+
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def setAggiunte(request):
+    json_dict = json.loads(request.body.decode("UTF-8"))
+    id = json_dict["pk"]
+    aggiunte = json_dict["aggiunte"]
+    prodotto = ProdottoDaVendere.objects.filter(pk = id).last()
+    prodotto.aggiunte = aggiunte
+    prodotto.save()
+    return HttpResponse("")

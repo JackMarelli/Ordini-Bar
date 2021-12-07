@@ -1,83 +1,73 @@
 {% load static %}
 <html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RedMenu - Admin</title>
-    <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{% static 'ordinibar/js/modal.js' %}"></script>
-    <script src="{% static 'ordinibar/js/general.js' %}"></script>
-    <script src="{% static 'ordinibar/js/admin/prodotti/prodotto.js' %}"></script>
-</head>
-<body onload="load_prodotto_modals()">
-    <div class="redcontainer">
-      <div class="icon" onclick="window.history.back()"><img src="{% static 'ordinibar/img/back-white.png'%}" alt=""></div>
-        <div class="whitecontainer">
-            <div class="content">
-                <div class="t1">{{prodotto.nome}}</div>
-                <div class="t2 t-grey-dark mb-1">{{prodotto.prezzo}}€</div>
-                <div class="t4 underlined" id="change_nome">Cambia nome</div>
-                <div class="t4 underlined" id="change_prezzo">Cambia prezzo</div>
-                <!-- class: v-visible/v-hidden in base alla presenza delle aggiunte -->
-                <div class="t4 underlined v-hidden">Attiva aggiunte</div>
-                <div class="t4 underlined v-visible">Togli aggiunte</div>
-                <div class="t4 underlined t-red" onclick="eliminaProdotto('{{prodotto.pk}}')">Elimina prodotto</div>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal" id="nome_modal">
-        <div class="modal-content" id="nome_modal_content">
-          <div class="content">
-            <div class="t2">Cambia nome</div>
-            <div class="m1">
-              <div class="input">
-                <input
-                  class="p2"
-                  placeholder="nuovo nome"
-                  type="text"
-                  name=""
-                  id="nuovo_nome"
-                />
-              </div>
-            </div>
-            <div class="w-100 justify-between">
-              <div class="btn btn-red w-45" onclick="cambiaNomeProdotto('{{prodotto.pk}}')">Conferma</div>
-              <div id="close_nome" class="btn btn-grey w-45">
-                Annulla
-              </div>
-            </div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RedMenu - Admin</title>
+  <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{% static 'ordinibar/js/modal.js' %}"></script>
+  <script src="{% static 'ordinibar/js/general.js' %}"></script>
+  <script src="{% static 'ordinibar/js/admin/prodotti/prodotto.js' %}"></script>
+</head>
+
+<body onload="load_prodotto_modals();setAggiunte('{{prodotto.aggiunte}}')">
+  <div class="redcontainer">
+    <div class="icon" onclick="window.history.back()"><img src="{% static 'ordinibar/img/back-white.png'%}" alt="">
+    </div>
+    <div class="whitecontainer">
+      <div class="content">
+        <div class="t1">{{prodotto.nome}}</div>
+        <div class="t2 t-grey-dark mb-1">{{prodotto.prezzo}}€</div>
+        <div class="t4 underlined" id="change_nome">Cambia nome</div>
+        <div class="t4 underlined" id="change_prezzo">Cambia prezzo</div>
+        <!-- class: v-visible/v-hidden in base alla presenza delle aggiunte -->
+        <div class="t4 underlined" id = "aggiunte" onclick="reverseAggiunte('{{prodotto.pk}}')">Attiva aggiunte</div>
+        <div class="t4 underlined t-red" onclick="eliminaProdotto('{{prodotto.pk}}')">Elimina prodotto</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="nome_modal">
+    <div class="modal-content" id="nome_modal_content">
+      <div class="content">
+        <div class="t2">Cambia nome</div>
+        <div class="m1">
+          <div class="input">
+            <input class="p2" placeholder="nuovo nome" type="text" name="" id="nuovo_nome" />
+          </div>
+        </div>
+        <div class="w-100 justify-between">
+          <div class="btn btn-red w-45" onclick="cambiaNomeProdotto('{{prodotto.pk}}')">Conferma</div>
+          <div id="close_nome" class="btn btn-grey w-45">
+            Annulla
           </div>
         </div>
       </div>
-      
-      <div class="modal" id="prezzo_modal">
-        <div class="modal-content" id="prezzo_modal_content">
-          <div class="content">
-            <div class="t2">Cambia prezzo</div>
-            <div class="m1">
-              <div class="input">
-                <input
-                  class="p2"
-                  placeholder="nuovo prezzo"
-                  type="number"
-                  step="0.1"
-                  name=""
-                  id=""
-                />
-              </div>
-            </div>
-            <div class="w-100 justify-between">
-              <div class="btn btn-red w-45">Conferma</div>
-              <div id="close_prezzo" class="btn btn-grey w-45">
-                Annulla
-              </div>
-            </div>
+    </div>
+  </div>
+
+  <div class="modal" id="prezzo_modal">
+    <div class="modal-content" id="prezzo_modal_content">
+      <div class="content">
+        <div class="t2">Cambia prezzo</div>
+        <div class="m1">
+          <div class="input">
+            <input class="p2" placeholder="nuovo prezzo" type="number" step="0.1" name="" id="nuovo_prezzo" />
+          </div>
+        </div>
+        <div class="w-100 justify-between">
+          <div class="btn btn-red w-45" onclick="cambiaPrezzoProdotto('{{prodotto.pk}}')">Conferma</div>
+          <div id="close_prezzo" class="btn btn-grey w-45">
+            Annulla
           </div>
         </div>
       </div>
-      
+    </div>
+  </div>
+
 </body>
+
 </html>
