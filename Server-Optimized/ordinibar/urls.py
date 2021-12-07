@@ -8,6 +8,7 @@ urlpatterns = [
     #Urls
     path("login", views.loginView, name = "login"),
     path("logout", views.logoutView, name = "logout"),
+    path("register", views.registerView, name = "register"),
     path("", views.indexView, name = "index"),
     path("ordine",views.ordineView, name = "ordine"),
     path("ordine/addordine", views.addOrdineView, name = "add_ordine"),

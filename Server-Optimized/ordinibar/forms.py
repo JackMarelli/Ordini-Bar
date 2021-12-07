@@ -14,3 +14,10 @@ class ChangeEmailForm(forms.Form):
     password =  forms.CharField(widget=PasswordInput(attrs={'placeholder':'Password'}))
     nuova_email = forms.EmailField()
     conferma_email = forms.EmailField()
+
+#form per la registrazione dell'utente
+class UserRegisterForm(forms.Form):
+    username = forms.CharField(widget=TextInput(attrs={'placeholder': 'Username'}))
+    email = forms.EmailField(widget=TextInput(attrs={'placeholder': 'Email'}))
+    password = forms.CharField(widget=PasswordInput(attrs={'placeholder': 'Password'}))
+    conferma_password = forms.CharField(widget=PasswordInput(attrs={'placeholder': 'Conferma password'}))

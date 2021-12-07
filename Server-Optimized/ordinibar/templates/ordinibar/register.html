@@ -1,0 +1,44 @@
+{% load static %}
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RedMenu</title>
+  <script src="{% static 'ordinibar/js/general.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}">
+</head>
+
+<body>
+  <div class="icon"><img src="{% static 'ordinibar/img/back-black.png' %}" alt="" onclick="window.history.back()" />
+  </div>
+  <div class="content">
+    <div class="t1 mb-1">Registrati</div>
+    <form method="post">
+      {% csrf_token %}
+      <div class="t2">Email:</div>
+      <div class="input m1">
+        <input type="email" class="p2" placeholder="redmenu@example.com" name="email" />
+      </div>
+      <div class="t2">Username:</div>
+      <div class="input m1">
+        <input type="text" class="p2" placeholder="example.username" name="username" />
+      </div>
+      <div class="t2">Password</div>
+      <div class="input m1">
+        <input type="password" class="p2" placeholder="your password here..." name="password" />
+      </div>
+      <div class="t2">Conferma password</div>
+      <div class="input m1">
+        <input type="password" class="p2" placeholder="your password here..." name="conferma_password" />
+      </div>
+      <div class="w-100 justify-between m1">
+        <button class="btn btn-red w-45" style="border: none;" type = "submit">Conferma</button>
+        <div class="btn btn-grey w-45" onclick="window.history.back()">Indietro</div>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

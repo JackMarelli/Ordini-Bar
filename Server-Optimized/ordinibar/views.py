@@ -197,3 +197,31 @@ def cronologiaView(request):
     context["lista_ordini"] = json_array
 
     return render(request=request, template_name="ordinibar/cronologia.html", context=context)
+
+def registerView(request):
+    if request.method == "POST":
+        form = UserRegisterForm(data=request.POST)
+        if form.is_valid():
+            #form valido
+            nuova_password = form.cleaned_data.get('password')
+            conferma_password = form.cleaned_data.get('conferma_password')
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            if not User.objects.filter(username=username).exists():
+                if(nuova_password == conferma_password):
+                    #la password  è corretta
+                    #registro l'utente
+                    user = User.objects.create_user(username=username,email=email,password=nuova_password)
+                    user.save()
+                    login(request, user)
+                    return redirect("ordinibar:index")
+                else:
+                    print("Le due password non coincidono")
+            else:
+                print("Username already exists")
+        else:
+            print('Form non valido')
+
+
+    user_register_form = UserRegisterForm()
+    return render(request=request, template_name="ordinibar/register.html", context={"user_register_form":user_register_form})
