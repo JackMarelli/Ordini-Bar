@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
@@ -32,6 +32,12 @@ def loginView(request):
 
 @login_required(login_url="/login")
 def indexView(request):
+    user_last_status = Ordine.objects.filter(id_utente = request.user.pk).last()
+    print(user_last_status.stato)
+    if not(user_last_status == None):
+        last_order_status = user_last_status.stato
+        if last_order_status == "todo" or last_order_status == "doing":
+            return redirect("ordinibar:ordine_confirmed")
     products_list = ProdottoDaVendere.objects.all()
 
     json_array = list()
@@ -49,6 +55,11 @@ def indexView(request):
 
 @login_required(login_url="/login")
 def ordineView(request):
+    user_last_status = Ordine.objects.filter(id_utente = request.user.pk).last()
+    if not(user_last_status == None):
+        last_order_status = user_last_status.stato
+        if last_order_status == "todo" or last_order_status == "doing":
+            return redirect("ordinibar:ordine_confirmed")
     return render(request=request, template_name="ordinibar/ordine.html")
 
 @login_required(login_url="/login")
@@ -86,20 +97,30 @@ def addOrdineView(request):
 def ordineConfirmedView(request):
     user = request.user
     ordine = Ordine.objects.filter(id_utente = user.pk).last()
+    if Ordine.objects.filter(id_utente = user.pk).exists():  
+        if ordine.stato == "doing" or ordine.stato == "todo":
+            response_dict = dict()
+            response_dict['orario'] = ordine.orario
+            response_dict['stato'] = ordine.stato
+            response_dict['pk'] = ordine.pk
 
-    response_dict = dict()
-    response_dict['orario'] = ordine.orario
-    response_dict['stato'] = ordine.stato
-    response_dict['pk'] = ordine.pk
+            lista_prodotti = ordine.lista_prodotti.all()
+            prezzo = 0
 
-    lista_prodotti = ordine.lista_prodotti.all()
-    prezzo = 0
+            for prodotto in lista_prodotti:
+                try:
+                    prezzo += ProdottoDaVendere.objects.filter(pk = prodotto.id_prodotto).last().prezzo * prodotto.quantita
+                except:
+                    ordine.stato = "refused"
+                    ordine.save()
+                    return redirect("ordinibar:index")
 
-    for prodotto in lista_prodotti:
-        prezzo += ProdottoDaVendere.objects.filter(pk = prodotto.id_prodotto).last().prezzo * prodotto.quantita
-
-    response_dict['prezzo'] = prezzo
-    return render(request=request, template_name="ordinibar/ordine_confirmed.html",context={"ordine":response_dict})
+            response_dict['prezzo'] = prezzo
+            return render(request=request, template_name="ordinibar/ordine_confirmed.html",context={"ordine":response_dict})
+        else:
+            return redirect("ordinibar:index")
+    else:
+        return redirect("ordinibar:index")
 
 @login_required(login_url="/login")
 def accountView(request):
