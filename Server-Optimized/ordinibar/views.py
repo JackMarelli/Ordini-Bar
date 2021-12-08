@@ -33,6 +33,10 @@ def loginView(request):
 
 @login_required(login_url="/login")
 def indexView(request):
+
+    if(request.user.is_superuser):
+        return redirect("ordinibar:bivio")
+
     user_last_status = Ordine.objects.filter(id_utente = request.user.pk).last()
     if Ordine.objects.filter(id_utente = request.user.pk).exists():
         last_order_status = user_last_status.stato

@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RedMenu</title>
   <script src="{% static 'ordinibar/js/general.js' %}"></script>
+  <script src="{% static 'ordinibar/js/register.js' %}"></script>
   <link rel="stylesheet" href="{% static 'ordinibar/css/general.css' %}">
 </head>
 
@@ -27,14 +28,15 @@
       </div>
       <div class="t2">Password</div>
       <div class="input m1">
-        <input type="password" class="p2" placeholder="your password here..." name="password" />
+        <input type="password" class="p2" placeholder="your password here..." name="password" id = "password" oninput="check_password()"/>
       </div>
       <div class="t2">Conferma password</div>
       <div class="input m1">
-        <input type="password" class="p2" placeholder="your password here..." name="conferma_password" />
+        <input type="password" class="p2" placeholder="your password here..." name="conferma_password" id = "conferma_password" oninput="check_password()"//>
       </div>
+      <p id = "errore_password" class="t-red"></p>
       <div class="w-100 justify-between m1">
-        <button class="btn btn-red w-45" style="border: none;" type = "submit">Conferma</button>
+        <button class="btn btn-red w-45" style="border: none;" type = "submit" id = "submit_password">Conferma</button>
         <div class="btn btn-grey w-45" onclick="window.history.back()">Indietro</div>
       </div>
     </form>

@@ -22,46 +22,32 @@ def thread_send_email_new_user(receiver_email, username):
     # Create the plain-text and HTML version of your message
 
     html = """\
-    <html>
+<html>
     <body>
-        <div class = "container">
-            <div class="title">Red Menu</div>
-            <div class = "content">
+        <div class = "container" style = 
+            "border-radius: 15px;
+            margin: auto;
+            width: 80%;
+            border:solid rgb(207, 206, 206) 1px;
+            height: 100%;">
+            <div class="title" style = "border-radius: 15px;
+            background-color: #ff4136;
+            width: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            color: white;
+            font-family: 'Poppins';
+            font-size: 30px;">Red Menu</div>
+            <div class = "content" style = "font-family: 'Poppins';
+            font-size: 16px;
+            text-align: center;">
                 Ciao """ + username + """,<br>
                 RedMenu &copy; d&agrave; il benvenuto.<br>
                 RedMenu è un'applicazione per ordinare prodotti al bar in modo semplice e veloce.
             </div>
         </div>
     </body>
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-        .container{
-            border-radius: 15px;
-            margin: auto;
-            width: 80%;
-            border:solid rgb(207, 206, 206) 1px;
-            height: 100%;
-        }
-
-        .title{
-            border-radius: 15px;
-            background-color: ff4136;
-            width: 100%;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            text-align: center;
-            color: white;
-            font-family: "Poppins";
-            font-size: 30px;
-        }
-
-        .content{
-            font-family: "Poppins";
-            font-size: 16px;
-            text-align: center;
-        }
-
-    </style>
 </html>
     """
 
@@ -94,50 +80,36 @@ def thread_send_order_refused(receiver_email, username):
 
         html = """\
         <html>
-        <body>
-            <div class = "container">
-                <div class="title">Red Menu</div>
-                <div class = "content">
-                    Ciao """ + username + """,<br>
+    <body>
+        <div class = "container" style = 
+            "border-radius: 15px;
+            margin: auto;
+            width: 80%;
+            border:solid rgb(207, 206, 206) 1px;
+            height: 100%;">
+            <div class="title" style = "border-radius: 15px;
+            background-color: #ff4136;
+            width: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            color: white;
+            font-family: 'Poppins';
+            font-size: 30px;">Red Menu</div>
+            <div class = "content" style = "font-family: 'Poppins';
+            font-size: 16px;
+            text-align: center;">
+                Ciao """ + username + """,<br>
                     RedMenu &copy; ti avvisa che il tuo ultimo ordine è stato rifiutato dal bar<br>
                     L'ordine può essere stato rifiutato per le seguenti motivazioni:
                     <ul>
                     <li>L'amministratore ha rimosso un prodotto che era presente nel tuo ordine</li>
                     <li>Il bar ha rifiutato il suo ordine perchè non riesce a gestirlo</li>
                     </ul>
-                </div>
             </div>
-        </body>
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-            .container{
-                border-radius: 15px;
-                margin: auto;
-                width: 80%;
-                border:solid rgb(207, 206, 206) 1px;
-                height: 100%;
-            }
-
-            .title{
-                border-radius: 15px;
-                background-color: ff4136;
-                width: 100%;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                text-align: center;
-                color: white;
-                font-family: "Poppins";
-                font-size: 30px;
-            }
-
-            .content{
-                font-family: "Poppins";
-                font-size: 16px;
-                text-align: center;
-            }
-
-        </style>
-        </html>
+        </div>
+    </body>
+</html>
         """
 
         # Turn these into plain/html MIMEText objects
@@ -168,46 +140,32 @@ def thread_send_ordine_accettato(receiver_email, username):
         # Create the plain-text and HTML version of your message
 
         html = """\
-        <html>
-        <body>
-            <div class = "container">
-                <div class="title">Red Menu</div>
-                <div class = "content">
-                    Ciao """ + username + """,<br>
+                <html>
+    <body>
+        <div class = "container" style = 
+            "border-radius: 15px;
+            margin: auto;
+            width: 80%;
+            border:solid rgb(207, 206, 206) 1px;
+            height: 100%;">
+            <div class="title" style = "border-radius: 15px;
+            background-color: #ff4136;
+            width: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            color: white;
+            font-family: 'Poppins';
+            font-size: 30px;">Red Menu</div>
+            <div class = "content" style = "font-family: 'Poppins';
+            font-size: 16px;
+            text-align: center;">
+                Ciao """ + username + """,<br>
                     RedMenu &copy; ti avvisa che il tuo ultimo ordine è stato preso in carico
-                </div>
             </div>
-        </body>
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-            .container{
-                border-radius: 15px;
-                margin: auto;
-                width: 80%;
-                border:solid rgb(207, 206, 206) 1px;
-                height: 100%;
-            }
-
-            .title{
-                border-radius: 15px;
-                background-color: ff4136;
-                width: 100%;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                text-align: center;
-                color: white;
-                font-family: "Poppins";
-                font-size: 30px;
-            }
-
-            .content{
-                font-family: "Poppins";
-                font-size: 16px;
-                text-align: center;
-            }
-
-        </style>
-        </html>
+        </div>
+    </body>
+</html>
         """
 
         # Turn these into plain/html MIMEText objects
@@ -238,46 +196,32 @@ def thread_send_ordine_pronto(receiver_email, username):
         # Create the plain-text and HTML version of your message
 
         html = """\
-        <html>
-        <body>
-            <div class = "container">
-                <div class="title">Red Menu</div>
-                <div class = "content">
-                    Ciao """ + username + """,<br>
+                    <html>
+    <body>
+        <div class = "container" style = 
+            "border-radius: 15px;
+            margin: auto;
+            width: 80%;
+            border:solid rgb(207, 206, 206) 1px;
+            height: 100%;">
+            <div class="title" style = "border-radius: 15px;
+            background-color: #ff4136;
+            width: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            color: white;
+            font-family: 'Poppins';
+            font-size: 30px;">Red Menu</div>
+            <div class = "content" style = "font-family: 'Poppins';
+            font-size: 16px;
+            text-align: center;">
+                Ciao """ + username + """,<br>
                     RedMenu &copy; ti avvisa che il tuo ultimo ordine è pronto e quindi puoi andare a ritirarlo, se non lo hai ancora fatto
-                </div>
             </div>
-        </body>
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-            .container{
-                border-radius: 15px;
-                margin: auto;
-                width: 80%;
-                border:solid rgb(207, 206, 206) 1px;
-                height: 100%;
-            }
-
-            .title{
-                border-radius: 15px;
-                background-color: ff4136;
-                width: 100%;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                text-align: center;
-                color: white;
-                font-family: "Poppins";
-                font-size: 30px;
-            }
-
-            .content{
-                font-family: "Poppins";
-                font-size: 16px;
-                text-align: center;
-            }
-
-        </style>
-        </html>
+        </div>
+    </body>
+</html>
         """
 
         # Turn these into plain/html MIMEText objects
