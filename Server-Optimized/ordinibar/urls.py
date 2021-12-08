@@ -29,4 +29,5 @@ urlpatterns = [
     path("setaggiunte", admin_views.setAggiunte, name = "set_aggiunte"),
     path("aggiungiprodotto",admin_views.AggiungiProdottoView, name = "aggiungi_prodotto"),
     path("addnewproduct",admin_views.AddNewProduct, name = "add_new_product"),
+    path("cronologiaordini", admin_views.cronologiaView, name = "cronologia_ordini"),
 ]

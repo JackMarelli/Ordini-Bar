@@ -1,3 +1,4 @@
+from django.http import response
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import login, authenticate, logout
@@ -243,4 +244,32 @@ def AddNewProduct(request):
         dict_risposta = dict()
         dict_risposta["risposta"] = False
         return JsonResponse(dict_risposta,safe=False)
+
+    
+@login_required(login_url="/login")
+@user_passes_test(lambda u: u.is_superuser)
+def cronologiaView(request):
+    ordini = Ordine.objects.all()
+    response_list = list()
+    for ordine in ordini:
+        if User.objects.filter(pk = ordine.id_utente).exists():
+            try:
+                ordine_dict = dict()
+                ordine_dict["username"] = User.objects.filter(pk = ordine.id_utente).last().username
+                ordine_dict["data"] = ordine.data
+                ordine_dict["orario"] = ordine.orario
+                ordine_dict["stato"] = ordine.stato
+                ordine_dict["pk"] = ordine.pk
+                lista_prodotti = ordine.lista_prodotti.all()
+                prezzo_ordine = 0
+                for prodotto in lista_prodotti:
+                    prodotto_base = ProdottoDaVendere.objects.filter(pk = prodotto.id_prodotto).last()
+                    prezzo_ordine += prodotto_base.prezzo * prodotto.quantita
+                    
+                ordine_dict["prezzo"] = prezzo_ordine
+                response_list.append(ordine_dict)
+            except:
+                pass
+            response_list.reverse()
+    return render(request=request, template_name="ordinibar/admin/ordini/cronologia.html",context={"ordini":response_list})
     

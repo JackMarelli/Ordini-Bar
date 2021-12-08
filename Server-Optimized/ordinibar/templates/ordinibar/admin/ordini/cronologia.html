@@ -1,0 +1,25 @@
+{% load static %}
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedMenu - Admin</title>
+    <link rel="stylesheet" href="{% static 'ordinibar/css/general.css'%}">
+</head>
+<body>
+    <div class="h-100 d-col">
+    <div class="icon"><img src="{% static 'ordinibar/img/back-black.png'%}"alt="" onclick="window.history.back()"></div>
+    <div class="t1 p3">Cronologia</div>    
+    <div class="content">
+       <div class="list">
+           {% for ordine in ordini %}
+           <div class="d-col" onclick="window.location.href = 'ordinedaaccettare/{{ordine.pk}}'">
+               <div class="t3">{{ordine.username}} - {{ordine.data|date:"d/m/y"}} - {{ordine.orario|date:"H:i"}}</div>
+               <div class="t4 t-grey-dark">{{ordine.prezzo}}€</div>
+            </div>
+            {% endfor %}
+       </div>
+    </div>
+</body>
+</html>
