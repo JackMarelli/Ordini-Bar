@@ -15,6 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import render
+
+def resource_not_found(request, exception, template_name="ordinibar/404.html"):
+    response = render(None, template_name = template_name)
+    response.status_code = 404
+    return response
+
+handler404 = resource_not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),
